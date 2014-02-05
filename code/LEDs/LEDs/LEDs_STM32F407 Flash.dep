@@ -1,0 +1,30 @@
+Dependencies for Project 'LEDs', Target 'STM32F407 Flash': (DO NOT MODIFY !)
+F (.\startup_stm32f4xx.s)(0x4F855D78)(--cpu Cortex-M4.fp -g --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F4xx --list ".\Flash\startup_stm32f4xx.lst" --xref -o ".\Flash\startup_stm32f4xx.o" --depend ".\Flash\startup_stm32f4xx.d")
+F (.\system_stm32f4xx.c)(0x504F6A8A)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F4xx -DSTM32F4XX -DHSE_VALUE="8000000" -o ".\Flash\system_stm32f4xx.o" --omf_browse ".\Flash\system_stm32f4xx.crf" --depend ".\Flash\system_stm32f4xx.d")
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\stm32f4xx.h)(0x4F855D74)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x50068BF2)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB14304)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x5059BEFC)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDAF6CC)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x4F58AD66)
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h)(0x4F855D74)
+F (.\LED.c)(0x52D7C681)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F4xx -DSTM32F4XX -DHSE_VALUE="8000000" -o ".\Flash\led.o" --omf_browse ".\Flash\led.crf" --depend ".\Flash\led.d")
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h)(0x4F855D74)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x50068BF2)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB14304)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x5059BEFC)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDAF6CC)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x4F58AD66)
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h)(0x4F855D74)
+I (LED.h)(0x52D7B6C4)
+F (.\LEDs.c)(0x52DFBCE7)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F4xx -DSTM32F4XX -DHSE_VALUE="8000000" -o ".\Flash\leds.o" --omf_browse ".\Flash\leds.crf" --depend ".\Flash\leds.d")
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB14306)
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h)(0x4F855D74)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x50068BF2)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB14304)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x5059BEFC)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDAF6CC)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x4F58AD66)
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h)(0x4F855D74)
+I (LED.h)(0x52D7B6C4)
+F (.\Abstract.txt)(0x4F58A98E)()

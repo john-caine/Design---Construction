@@ -1,0 +1,12 @@
+.\Flash\switches.o: Switches.c
+.\Flash\switches.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
+.\Flash\switches.o: C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h
+.\Flash\switches.o: C:\Keil\ARM\CMSIS\Include\core_cm4.h
+.\Flash\switches.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\Flash\switches.o: C:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+.\Flash\switches.o: C:\Keil\ARM\CMSIS\Include\core_cmFunc.h
+.\Flash\switches.o: C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h
+.\Flash\switches.o: C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h
+.\Flash\switches.o: LED.h
+.\Flash\switches.o: SWT.h
+.\Flash\switches.o: LCD.h

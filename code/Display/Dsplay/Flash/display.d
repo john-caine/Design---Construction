@@ -1,0 +1,13 @@
+.\Flash\display.o: display.c
+.\Flash\display.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
+.\Flash\display.o: C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h
+.\Flash\display.o: C:\Keil\ARM\CMSIS\Include\core_cm4.h
+.\Flash\display.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\Flash\display.o: C:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+.\Flash\display.o: C:\Keil\ARM\CMSIS\Include\core_cmFunc.h
+.\Flash\display.o: C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h
+.\Flash\display.o: C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h
+.\Flash\display.o: LED.h
+.\Flash\display.o: SWT.h
+.\Flash\display.o: LCD.h
+.\Flash\display.o: Sqaure.h
