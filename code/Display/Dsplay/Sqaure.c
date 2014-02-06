@@ -8,6 +8,7 @@
 
 #include "STM32F4xx.h"
 #include "LCD.h"
+#include "Sqaure.h"
 
 void Square_Init (void){
 

@@ -431,6 +431,11 @@
               <FileType>1</FileType>
               <FilePath>.\Sqaure.c</FilePath>
             </File>
+            <File>
+              <FileName>Sqaure.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Sqaure.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -869,6 +874,11 @@
               <FileName>Sqaure.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Sqaure.c</FilePath>
+            </File>
+            <File>
+              <FileName>Sqaure.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Sqaure.h</FilePath>
             </File>
           </Files>
         </Group>
