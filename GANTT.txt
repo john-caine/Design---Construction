@@ -1,6 +1,4 @@
 GANTT Chart
 
-Did not consider the group will be working less over easter towards the project hance the final deadline being much earlier than expected. 
-Some activities are unpredictable.
-10 hours a week, 2 hours a day.
-Delays...
+Did not consider the group will be working less over easter towards the project hence the final deadline being much earlier than expected, another contributing factor is that the GANTT Chart is designed with the duration units in hours. 10 hours a week, 2 hours a day.
+Some activities are unpredictable because only the initial concept can be grasped but implementing may take a significantly different amount of time. Illness have been taken into account by allocating 4 days per group member, further unexpected delays related to testing errors have been given 10 hours per group.
