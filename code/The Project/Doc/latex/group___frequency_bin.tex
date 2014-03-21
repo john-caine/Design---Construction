@@ -1,0 +1,45 @@
+\hypertarget{group___frequency_bin}{\section{Frequency Bin Example}
+\label{group___frequency_bin}\index{Frequency Bin Example@{Frequency Bin Example}}
+}
+\begin{DoxyParagraph}{Description}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+Demonstrates the calculation of the maximum energy bin in the frequency domain of the input signal with the use of Complex F\-F\-T, Complex Magnitude, and Maximum functions.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Algorithm\-:}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+The input test signal contains a 10 k\-Hz signal with uniformly distributed white noise. Calculating the F\-F\-T of the input signal will give us the maximum energy of the bin corresponding to the input frequency of 10 k\-Hz.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Block Diagram\-:}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+The figure below shows the time domain signal of 10 k\-Hz signal with uniformly distributed white noise, and the next figure shows the input in the frequency domain. The bin with maximum energy corresponds to 10 k\-Hz signal. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+  
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Variables Description\-:}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+\begin{DoxyItemize}
+\item {\ttfamily test\-Input\-\_\-f32\-\_\-10khz} points to the input data \item {\ttfamily test\-Output} points to the output data \item {\ttfamily fft\-Size} length of F\-F\-T \item {\ttfamily ifft\-Flag} flag for the selection of C\-F\-F\-T/\-C\-I\-F\-F\-T \item {\ttfamily do\-Bit\-Reverse} Flag for selection of normal order or bit reversed order \item {\ttfamily ref\-Index} reference index value at which maximum energy of bin ocuurs \item {\ttfamily test\-Index} calculated index value at which maximum energy of bin ocuurs\end{DoxyItemize}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{C\-M\-S\-I\-S D\-S\-P Software Library Functions Used\-:}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+
+\begin{DoxyItemize}
+\item \hyperlink{group___c_f_f_t___c_i_f_f_t_gaf336459f684f0b17bfae539ef1b1b78a}{arm\-\_\-cfft\-\_\-radix4\-\_\-init\-\_\-f32()}
+\item \hyperlink{group___c_f_f_t___c_i_f_f_t_ga521f670cd9c571bc61aff9bec89f4c26}{arm\-\_\-cfft\-\_\-radix4\-\_\-f32()}
+\item \hyperlink{group__cmplx__mag_gae45024c497392cde2ae358a76d435213}{arm\-\_\-cmplx\-\_\-mag\-\_\-f32()}
+\item \hyperlink{group___max_ga5b89d1b04575aeec494f678695fb87d8}{arm\-\_\-max\-\_\-f32()}
+\end{DoxyItemize}
+\end{DoxyParagraph}
+{\bfseries  Refer } \hyperlink{arm_fft_bin_example_f32_8c-example}{arm\-\_\-fft\-\_\-bin\-\_\-example\-\_\-f32.\-c} 

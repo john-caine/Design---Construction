@@ -1,0 +1,33 @@
+*** Creating Trace Output File '.\MyProject\MyProject.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '".\myproject\system_stm32f4xx.o"'
+### List of Objects: adding '".\myproject\stm32f4xx_it.o"'
+### List of Objects: adding '".\myproject\main.o"'
+### List of Objects: adding '".\myproject\timer.o"'
+### List of Objects: adding '".\myproject\stm32f4_discovery.o"'
+### List of Objects: adding '".\myproject\misc.o"'
+### List of Objects: adding '".\myproject\stm32f4xx_gpio.o"'
+### List of Objects: adding '".\myproject\stm32f4xx_rcc.o"'
+### List of Objects: adding '".\myproject\stm32f4xx_rtc.o"'
+### List of Objects: adding '".\myproject\stm32f4xx_sdio.o"'
+### List of Objects: adding '".\myproject\stm32f4xx_syscfg.o"'
+### List of Objects: adding '".\myproject\stm32f4xx_tim.o"'
+### List of Objects: adding '".\myproject\stm32f4xx_exti.o"'
+### List of Objects: adding '".\myproject\startup_stm32f4xx.o"'
+### ADS-LD Command completed:
+--cpu Cortex-M4.fp ".\myproject\system_stm32f4xx.o" ".\myproject\stm32f4xx_it.o" ".\myproject\main.o" ".\myproject\timer.o" ".\myproject\stm32f4_discovery.o" ".\myproject\misc.o" ".\myproject\stm32f4xx_gpio.o" ".\myproject\stm32f4xx_rcc.o" ".\myproject\stm32f4xx_rtc.o" ".\myproject\stm32f4xx_sdio.o" ".\myproject\stm32f4xx_syscfg.o" ".\myproject\stm32f4xx_tim.o" ".\myproject\stm32f4xx_exti.o" ".\myproject\startup_stm32f4xx.o" 
+--library_type=microlib --strict --scatter ".\MyProject\MyProject.sct" 
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\MyProject\MyProject.map" -o .\MyProject\MyProject.axf### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: '.\MyProject\MyProject.axf'
+### ADS-LD Command File: '.\MyProject\MyProject.lnp'
+### Checking for dirty Components...
+### Creating CmdFile '.\MyProject\MyProject.lnp', Handle=0x00000470
+### Writing '.lnp' file
+### ADS-LD Command file '.\MyProject\MyProject.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.

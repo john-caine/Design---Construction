@@ -1,0 +1,135 @@
+\hypertarget{group__negate}{\section{Vector Negate}
+\label{group__negate}\index{Vector Negate@{Vector Negate}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__negate_ga2e169c4de6cc6e3ba4be9473531e6657}{arm\-\_\-negate\-\_\-f32} (float32\-\_\-t $\ast$p\-Src, float32\-\_\-t $\ast$p\-Dst, uint32\-\_\-t block\-Size)
+\begin{DoxyCompactList}\small\item\em Negates the elements of a floating-\/point vector. \end{DoxyCompactList}\item 
+void \hyperlink{group__negate_ga0239a833d72cf00290b9723c394e5042}{arm\-\_\-negate\-\_\-q15} (q15\-\_\-t $\ast$p\-Src, q15\-\_\-t $\ast$p\-Dst, uint32\-\_\-t block\-Size)
+\begin{DoxyCompactList}\small\item\em Negates the elements of a Q15 vector. \end{DoxyCompactList}\item 
+void \hyperlink{group__negate_ga2784c6887686a73dc7c364e2e41c776c}{arm\-\_\-negate\-\_\-q31} (q31\-\_\-t $\ast$p\-Src, q31\-\_\-t $\ast$p\-Dst, uint32\-\_\-t block\-Size)
+\begin{DoxyCompactList}\small\item\em Negates the elements of a Q31 vector. \end{DoxyCompactList}\item 
+void \hyperlink{group__negate_gaae78fc079a43bdaa3055f9b32e2a1f4c}{arm\-\_\-negate\-\_\-q7} (q7\-\_\-t $\ast$p\-Src, q7\-\_\-t $\ast$p\-Dst, uint32\-\_\-t block\-Size)
+\begin{DoxyCompactList}\small\item\em Negates the elements of a Q7 vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Negates the elements of a vector.
+
+
+\begin{DoxyPre}   
+    pDst[n] = -pSrc[n],   0 <= n < blockSize.   
+\end{DoxyPre}
+ 
+
+\subsection{Function Documentation}
+\hypertarget{group__negate_ga2e169c4de6cc6e3ba4be9473531e6657}{\index{Vector Negate@{Vector Negate}!arm\-\_\-negate\-\_\-f32@{arm\-\_\-negate\-\_\-f32}}
+\index{arm\-\_\-negate\-\_\-f32@{arm\-\_\-negate\-\_\-f32}!Vector Negate@{Vector Negate}}
+\subsubsection[{arm\-\_\-negate\-\_\-f32}]{\setlength{\rightskip}{0pt plus 5cm}void arm\-\_\-negate\-\_\-f32 (
+\begin{DoxyParamCaption}
+\item[{float32\-\_\-t $\ast$}]{p\-Src, }
+\item[{float32\-\_\-t $\ast$}]{p\-Dst, }
+\item[{uint32\-\_\-t}]{block\-Size}
+\end{DoxyParamCaption}
+)}}\label{group__negate_ga2e169c4de6cc6e3ba4be9473531e6657}
+
+
+Negates the elements of a floating-\/point vector. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p\-Src} & points to the input vector \\
+\hline
+\mbox{\tt out}  & {\em $\ast$p\-Dst} & points to the output vector \\
+\hline
+\mbox{\tt in}  & {\em block\-Size} & number of samples in the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none. 
+\end{DoxyReturn}
+\hypertarget{group__negate_ga0239a833d72cf00290b9723c394e5042}{\index{Vector Negate@{Vector Negate}!arm\-\_\-negate\-\_\-q15@{arm\-\_\-negate\-\_\-q15}}
+\index{arm\-\_\-negate\-\_\-q15@{arm\-\_\-negate\-\_\-q15}!Vector Negate@{Vector Negate}}
+\subsubsection[{arm\-\_\-negate\-\_\-q15}]{\setlength{\rightskip}{0pt plus 5cm}void arm\-\_\-negate\-\_\-q15 (
+\begin{DoxyParamCaption}
+\item[{q15\-\_\-t $\ast$}]{p\-Src, }
+\item[{q15\-\_\-t $\ast$}]{p\-Dst, }
+\item[{uint32\-\_\-t}]{block\-Size}
+\end{DoxyParamCaption}
+)}}\label{group__negate_ga0239a833d72cf00290b9723c394e5042}
+
+
+Negates the elements of a Q15 vector. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p\-Src} & points to the input vector \\
+\hline
+\mbox{\tt out}  & {\em $\ast$p\-Dst} & points to the output vector \\
+\hline
+\mbox{\tt in}  & {\em block\-Size} & number of samples in the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none.
+\end{DoxyReturn}
+{\bfseries Scaling and Overflow Behavior\-:} \begin{DoxyParagraph}{}
+The function uses saturating arithmetic. The Q15 value -\/1 (0x8000) will be saturated to the maximum allowable positive value 0x7\-F\-F\-F. 
+\end{DoxyParagraph}
+\hypertarget{group__negate_ga2784c6887686a73dc7c364e2e41c776c}{\index{Vector Negate@{Vector Negate}!arm\-\_\-negate\-\_\-q31@{arm\-\_\-negate\-\_\-q31}}
+\index{arm\-\_\-negate\-\_\-q31@{arm\-\_\-negate\-\_\-q31}!Vector Negate@{Vector Negate}}
+\subsubsection[{arm\-\_\-negate\-\_\-q31}]{\setlength{\rightskip}{0pt plus 5cm}void arm\-\_\-negate\-\_\-q31 (
+\begin{DoxyParamCaption}
+\item[{q31\-\_\-t $\ast$}]{p\-Src, }
+\item[{q31\-\_\-t $\ast$}]{p\-Dst, }
+\item[{uint32\-\_\-t}]{block\-Size}
+\end{DoxyParamCaption}
+)}}\label{group__negate_ga2784c6887686a73dc7c364e2e41c776c}
+
+
+Negates the elements of a Q31 vector. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p\-Src} & points to the input vector \\
+\hline
+\mbox{\tt out}  & {\em $\ast$p\-Dst} & points to the output vector \\
+\hline
+\mbox{\tt in}  & {\em block\-Size} & number of samples in the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none.
+\end{DoxyReturn}
+{\bfseries Scaling and Overflow Behavior\-:} \begin{DoxyParagraph}{}
+The function uses saturating arithmetic. The Q31 value -\/1 (0x80000000) will be saturated to the maximum allowable positive value 0x7\-F\-F\-F\-F\-F\-F\-F. 
+\end{DoxyParagraph}
+\hypertarget{group__negate_gaae78fc079a43bdaa3055f9b32e2a1f4c}{\index{Vector Negate@{Vector Negate}!arm\-\_\-negate\-\_\-q7@{arm\-\_\-negate\-\_\-q7}}
+\index{arm\-\_\-negate\-\_\-q7@{arm\-\_\-negate\-\_\-q7}!Vector Negate@{Vector Negate}}
+\subsubsection[{arm\-\_\-negate\-\_\-q7}]{\setlength{\rightskip}{0pt plus 5cm}void arm\-\_\-negate\-\_\-q7 (
+\begin{DoxyParamCaption}
+\item[{q7\-\_\-t $\ast$}]{p\-Src, }
+\item[{q7\-\_\-t $\ast$}]{p\-Dst, }
+\item[{uint32\-\_\-t}]{block\-Size}
+\end{DoxyParamCaption}
+)}}\label{group__negate_gaae78fc079a43bdaa3055f9b32e2a1f4c}
+
+
+Negates the elements of a Q7 vector. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p\-Src} & points to the input vector \\
+\hline
+\mbox{\tt out}  & {\em $\ast$p\-Dst} & points to the output vector \\
+\hline
+\mbox{\tt in}  & {\em block\-Size} & number of samples in the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none.
+\end{DoxyReturn}
+{\bfseries Scaling and Overflow Behavior\-:} \begin{DoxyParagraph}{}
+The function uses saturating arithmetic. The Q7 value -\/1 (0x80) will be saturated to the maximum allowable positive value 0x7\-F. 
+\end{DoxyParagraph}

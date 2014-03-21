@@ -1,0 +1,141 @@
+\hypertarget{group__dot__prod}{\section{Vector Dot Product}
+\label{group__dot__prod}\index{Vector Dot Product@{Vector Dot Product}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__dot__prod_ga55418d4362f6ba84c327f9b4f089a8c3}{arm\-\_\-dot\-\_\-prod\-\_\-f32} (float32\-\_\-t $\ast$p\-Src\-A, float32\-\_\-t $\ast$p\-Src\-B, uint32\-\_\-t block\-Size, float32\-\_\-t $\ast$result)
+\begin{DoxyCompactList}\small\item\em Dot product of floating-\/point vectors. \end{DoxyCompactList}\item 
+void \hyperlink{group__dot__prod_ga436d5bed28a4b73b24acbde436a3044b}{arm\-\_\-dot\-\_\-prod\-\_\-q15} (q15\-\_\-t $\ast$p\-Src\-A, q15\-\_\-t $\ast$p\-Src\-B, uint32\-\_\-t block\-Size, q63\-\_\-t $\ast$result)
+\begin{DoxyCompactList}\small\item\em Dot product of Q15 vectors. \end{DoxyCompactList}\item 
+void \hyperlink{group__dot__prod_gab15d8fa060fc85b4d948d091b7deaa11}{arm\-\_\-dot\-\_\-prod\-\_\-q31} (q31\-\_\-t $\ast$p\-Src\-A, q31\-\_\-t $\ast$p\-Src\-B, uint32\-\_\-t block\-Size, q63\-\_\-t $\ast$result)
+\begin{DoxyCompactList}\small\item\em Dot product of Q31 vectors. \end{DoxyCompactList}\item 
+void \hyperlink{group__dot__prod_ga9c3293a50ac7ec8ba928bf8e3aaea6c1}{arm\-\_\-dot\-\_\-prod\-\_\-q7} (q7\-\_\-t $\ast$p\-Src\-A, q7\-\_\-t $\ast$p\-Src\-B, uint32\-\_\-t block\-Size, q31\-\_\-t $\ast$result)
+\begin{DoxyCompactList}\small\item\em Dot product of Q7 vectors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Computes the dot product of two vectors. The vectors are multiplied element-\/by-\/element and then summed. There are separate functions for floating-\/point, Q7, Q15, and Q31 data types. 
+
+\subsection{Function Documentation}
+\hypertarget{group__dot__prod_ga55418d4362f6ba84c327f9b4f089a8c3}{\index{Vector Dot Product@{Vector Dot Product}!arm\-\_\-dot\-\_\-prod\-\_\-f32@{arm\-\_\-dot\-\_\-prod\-\_\-f32}}
+\index{arm\-\_\-dot\-\_\-prod\-\_\-f32@{arm\-\_\-dot\-\_\-prod\-\_\-f32}!Vector Dot Product@{Vector Dot Product}}
+\subsubsection[{arm\-\_\-dot\-\_\-prod\-\_\-f32}]{\setlength{\rightskip}{0pt plus 5cm}void arm\-\_\-dot\-\_\-prod\-\_\-f32 (
+\begin{DoxyParamCaption}
+\item[{float32\-\_\-t $\ast$}]{p\-Src\-A, }
+\item[{float32\-\_\-t $\ast$}]{p\-Src\-B, }
+\item[{uint32\-\_\-t}]{block\-Size, }
+\item[{float32\-\_\-t $\ast$}]{result}
+\end{DoxyParamCaption}
+)}}\label{group__dot__prod_ga55418d4362f6ba84c327f9b4f089a8c3}
+
+
+Dot product of floating-\/point vectors. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p\-Src\-A} & points to the first input vector \\
+\hline
+\mbox{\tt in}  & {\em $\ast$p\-Src\-B} & points to the second input vector \\
+\hline
+\mbox{\tt in}  & {\em block\-Size} & number of samples in each vector \\
+\hline
+\mbox{\tt out}  & {\em $\ast$result} & output result returned here \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none. 
+\end{DoxyReturn}
+\hypertarget{group__dot__prod_ga436d5bed28a4b73b24acbde436a3044b}{\index{Vector Dot Product@{Vector Dot Product}!arm\-\_\-dot\-\_\-prod\-\_\-q15@{arm\-\_\-dot\-\_\-prod\-\_\-q15}}
+\index{arm\-\_\-dot\-\_\-prod\-\_\-q15@{arm\-\_\-dot\-\_\-prod\-\_\-q15}!Vector Dot Product@{Vector Dot Product}}
+\subsubsection[{arm\-\_\-dot\-\_\-prod\-\_\-q15}]{\setlength{\rightskip}{0pt plus 5cm}void arm\-\_\-dot\-\_\-prod\-\_\-q15 (
+\begin{DoxyParamCaption}
+\item[{q15\-\_\-t $\ast$}]{p\-Src\-A, }
+\item[{q15\-\_\-t $\ast$}]{p\-Src\-B, }
+\item[{uint32\-\_\-t}]{block\-Size, }
+\item[{q63\-\_\-t $\ast$}]{result}
+\end{DoxyParamCaption}
+)}}\label{group__dot__prod_ga436d5bed28a4b73b24acbde436a3044b}
+
+
+Dot product of Q15 vectors. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p\-Src\-A} & points to the first input vector \\
+\hline
+\mbox{\tt in}  & {\em $\ast$p\-Src\-B} & points to the second input vector \\
+\hline
+\mbox{\tt in}  & {\em block\-Size} & number of samples in each vector \\
+\hline
+\mbox{\tt out}  & {\em $\ast$result} & output result returned here \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none.
+\end{DoxyReturn}
+{\bfseries Scaling and Overflow Behavior\-:} \begin{DoxyParagraph}{}
+The intermediate multiplications are in 1.\-15 x 1.\-15 = 2.\-30 format and these results are added to a 64-\/bit accumulator in 34.\-30 format. Nonsaturating additions are used and given that there are 33 guard bits in the accumulator there is no risk of overflow. The return result is in 34.\-30 format. 
+\end{DoxyParagraph}
+\hypertarget{group__dot__prod_gab15d8fa060fc85b4d948d091b7deaa11}{\index{Vector Dot Product@{Vector Dot Product}!arm\-\_\-dot\-\_\-prod\-\_\-q31@{arm\-\_\-dot\-\_\-prod\-\_\-q31}}
+\index{arm\-\_\-dot\-\_\-prod\-\_\-q31@{arm\-\_\-dot\-\_\-prod\-\_\-q31}!Vector Dot Product@{Vector Dot Product}}
+\subsubsection[{arm\-\_\-dot\-\_\-prod\-\_\-q31}]{\setlength{\rightskip}{0pt plus 5cm}void arm\-\_\-dot\-\_\-prod\-\_\-q31 (
+\begin{DoxyParamCaption}
+\item[{q31\-\_\-t $\ast$}]{p\-Src\-A, }
+\item[{q31\-\_\-t $\ast$}]{p\-Src\-B, }
+\item[{uint32\-\_\-t}]{block\-Size, }
+\item[{q63\-\_\-t $\ast$}]{result}
+\end{DoxyParamCaption}
+)}}\label{group__dot__prod_gab15d8fa060fc85b4d948d091b7deaa11}
+
+
+Dot product of Q31 vectors. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p\-Src\-A} & points to the first input vector \\
+\hline
+\mbox{\tt in}  & {\em $\ast$p\-Src\-B} & points to the second input vector \\
+\hline
+\mbox{\tt in}  & {\em block\-Size} & number of samples in each vector \\
+\hline
+\mbox{\tt out}  & {\em $\ast$result} & output result returned here \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none.
+\end{DoxyReturn}
+{\bfseries Scaling and Overflow Behavior\-:} \begin{DoxyParagraph}{}
+The intermediate multiplications are in 1.\-31 x 1.\-31 = 2.\-62 format and these are truncated to 2.\-48 format by discarding the lower 14 bits. The 2.\-48 result is then added without saturation to a 64-\/bit accumulator in 16.\-48 format. There are 15 guard bits in the accumulator and there is no risk of overflow as long as the length of the vectors is less than 2$^\wedge$16 elements. The return result is in 16.\-48 format. 
+\end{DoxyParagraph}
+\hypertarget{group__dot__prod_ga9c3293a50ac7ec8ba928bf8e3aaea6c1}{\index{Vector Dot Product@{Vector Dot Product}!arm\-\_\-dot\-\_\-prod\-\_\-q7@{arm\-\_\-dot\-\_\-prod\-\_\-q7}}
+\index{arm\-\_\-dot\-\_\-prod\-\_\-q7@{arm\-\_\-dot\-\_\-prod\-\_\-q7}!Vector Dot Product@{Vector Dot Product}}
+\subsubsection[{arm\-\_\-dot\-\_\-prod\-\_\-q7}]{\setlength{\rightskip}{0pt plus 5cm}void arm\-\_\-dot\-\_\-prod\-\_\-q7 (
+\begin{DoxyParamCaption}
+\item[{q7\-\_\-t $\ast$}]{p\-Src\-A, }
+\item[{q7\-\_\-t $\ast$}]{p\-Src\-B, }
+\item[{uint32\-\_\-t}]{block\-Size, }
+\item[{q31\-\_\-t $\ast$}]{result}
+\end{DoxyParamCaption}
+)}}\label{group__dot__prod_ga9c3293a50ac7ec8ba928bf8e3aaea6c1}
+
+
+Dot product of Q7 vectors. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p\-Src\-A} & points to the first input vector \\
+\hline
+\mbox{\tt in}  & {\em $\ast$p\-Src\-B} & points to the second input vector \\
+\hline
+\mbox{\tt in}  & {\em block\-Size} & number of samples in each vector \\
+\hline
+\mbox{\tt out}  & {\em $\ast$result} & output result returned here \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none.
+\end{DoxyReturn}
+{\bfseries Scaling and Overflow Behavior\-:} \begin{DoxyParagraph}{}
+The intermediate multiplications are in 1.\-7 x 1.\-7 = 2.\-14 format and these results are added to an accumulator in 18.\-14 format. Nonsaturating additions are used and there is no danger of wrap around as long as the vectors are less than 2$^\wedge$18 elements long. The return result is in 18.\-14 format. 
+\end{DoxyParagraph}

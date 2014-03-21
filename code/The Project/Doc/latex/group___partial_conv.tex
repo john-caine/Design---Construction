@@ -1,0 +1,254 @@
+\hypertarget{group___partial_conv}{\section{Partial Convolution}
+\label{group___partial_conv}\index{Partial Convolution@{Partial Convolution}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+arm\-\_\-status \hyperlink{group___partial_conv_ga16d10f32072cd79fc5fb6e785df45f5e}{arm\-\_\-conv\-\_\-partial\-\_\-f32} (float32\-\_\-t $\ast$p\-Src\-A, uint32\-\_\-t src\-A\-Len, float32\-\_\-t $\ast$p\-Src\-B, uint32\-\_\-t src\-B\-Len, float32\-\_\-t $\ast$p\-Dst, uint32\-\_\-t first\-Index, uint32\-\_\-t num\-Points)
+\begin{DoxyCompactList}\small\item\em Partial convolution of floating-\/point sequences. \end{DoxyCompactList}\item 
+arm\-\_\-status \hyperlink{group___partial_conv_ga1e4d43385cb62262a78c6752fe1fafb2}{arm\-\_\-conv\-\_\-partial\-\_\-fast\-\_\-q15} (q15\-\_\-t $\ast$p\-Src\-A, uint32\-\_\-t src\-A\-Len, q15\-\_\-t $\ast$p\-Src\-B, uint32\-\_\-t src\-B\-Len, q15\-\_\-t $\ast$p\-Dst, uint32\-\_\-t first\-Index, uint32\-\_\-t num\-Points)
+\begin{DoxyCompactList}\small\item\em Partial convolution of Q15 sequences (fast version) for Cortex-\/\-M3 and Cortex-\/\-M4. \end{DoxyCompactList}\item 
+arm\-\_\-status \hyperlink{group___partial_conv_ga10c5294cda8c4985386f4e3944be7650}{arm\-\_\-conv\-\_\-partial\-\_\-fast\-\_\-q31} (q31\-\_\-t $\ast$p\-Src\-A, uint32\-\_\-t src\-A\-Len, q31\-\_\-t $\ast$p\-Src\-B, uint32\-\_\-t src\-B\-Len, q31\-\_\-t $\ast$p\-Dst, uint32\-\_\-t first\-Index, uint32\-\_\-t num\-Points)
+\begin{DoxyCompactList}\small\item\em Partial convolution of Q31 sequences (fast version) for Cortex-\/\-M3 and Cortex-\/\-M4. \end{DoxyCompactList}\item 
+arm\-\_\-status \hyperlink{group___partial_conv_ga209a2a913a0c5e5679c5988da8f46b03}{arm\-\_\-conv\-\_\-partial\-\_\-q15} (q15\-\_\-t $\ast$p\-Src\-A, uint32\-\_\-t src\-A\-Len, q15\-\_\-t $\ast$p\-Src\-B, uint32\-\_\-t src\-B\-Len, q15\-\_\-t $\ast$p\-Dst, uint32\-\_\-t first\-Index, uint32\-\_\-t num\-Points)
+\begin{DoxyCompactList}\small\item\em Partial convolution of Q15 sequences. \end{DoxyCompactList}\item 
+arm\-\_\-status \hyperlink{group___partial_conv_ga78e73a5f02d103168a09821fb461e77a}{arm\-\_\-conv\-\_\-partial\-\_\-q31} (q31\-\_\-t $\ast$p\-Src\-A, uint32\-\_\-t src\-A\-Len, q31\-\_\-t $\ast$p\-Src\-B, uint32\-\_\-t src\-B\-Len, q31\-\_\-t $\ast$p\-Dst, uint32\-\_\-t first\-Index, uint32\-\_\-t num\-Points)
+\begin{DoxyCompactList}\small\item\em Partial convolution of Q31 sequences. \end{DoxyCompactList}\item 
+arm\-\_\-status \hyperlink{group___partial_conv_ga8567259fe18396dd972242c41741ebf4}{arm\-\_\-conv\-\_\-partial\-\_\-q7} (q7\-\_\-t $\ast$p\-Src\-A, uint32\-\_\-t src\-A\-Len, q7\-\_\-t $\ast$p\-Src\-B, uint32\-\_\-t src\-B\-Len, q7\-\_\-t $\ast$p\-Dst, uint32\-\_\-t first\-Index, uint32\-\_\-t num\-Points)
+\begin{DoxyCompactList}\small\item\em Partial convolution of Q7 sequences. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Partial Convolution is equivalent to Convolution except that a subset of the output samples is generated. Each function has two additional arguments. {\ttfamily first\-Index} specifies the starting index of the subset of output samples. {\ttfamily num\-Points} is the number of output samples to compute. The function computes the output in the range {\ttfamily \mbox{[}first\-Index, ..., first\-Index+num\-Points-\/1\mbox{]}}. The output array {\ttfamily p\-Dst} contains {\ttfamily num\-Points} values.
+
+The allowable range of output indices is \mbox{[}0 src\-A\-Len+src\-B\-Len-\/2\mbox{]}. If the requested subset does not fall in this range then the functions return A\-R\-M\-\_\-\-M\-A\-T\-H\-\_\-\-A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R. Otherwise the functions return A\-R\-M\-\_\-\-M\-A\-T\-H\-\_\-\-S\-U\-C\-C\-E\-S\-S. \begin{DoxyNote}{Note}
+Refer \hyperlink{group___conv_ga3f860dc98c6fc4cafc421e4a2aed3c89}{arm\-\_\-conv\-\_\-f32()} for details on fixed point behavior. 
+\end{DoxyNote}
+
+
+\subsection{Function Documentation}
+\hypertarget{group___partial_conv_ga16d10f32072cd79fc5fb6e785df45f5e}{\index{Partial Convolution@{Partial Convolution}!arm\-\_\-conv\-\_\-partial\-\_\-f32@{arm\-\_\-conv\-\_\-partial\-\_\-f32}}
+\index{arm\-\_\-conv\-\_\-partial\-\_\-f32@{arm\-\_\-conv\-\_\-partial\-\_\-f32}!Partial Convolution@{Partial Convolution}}
+\subsubsection[{arm\-\_\-conv\-\_\-partial\-\_\-f32}]{\setlength{\rightskip}{0pt plus 5cm}arm\-\_\-status arm\-\_\-conv\-\_\-partial\-\_\-f32 (
+\begin{DoxyParamCaption}
+\item[{float32\-\_\-t $\ast$}]{p\-Src\-A, }
+\item[{uint32\-\_\-t}]{src\-A\-Len, }
+\item[{float32\-\_\-t $\ast$}]{p\-Src\-B, }
+\item[{uint32\-\_\-t}]{src\-B\-Len, }
+\item[{float32\-\_\-t $\ast$}]{p\-Dst, }
+\item[{uint32\-\_\-t}]{first\-Index, }
+\item[{uint32\-\_\-t}]{num\-Points}
+\end{DoxyParamCaption}
+)}}\label{group___partial_conv_ga16d10f32072cd79fc5fb6e785df45f5e}
+
+
+Partial convolution of floating-\/point sequences. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p\-Src\-A} & points to the first input sequence. \\
+\hline
+\mbox{\tt in}  & {\em src\-A\-Len} & length of the first input sequence. \\
+\hline
+\mbox{\tt in}  & {\em $\ast$p\-Src\-B} & points to the second input sequence. \\
+\hline
+\mbox{\tt in}  & {\em src\-B\-Len} & length of the second input sequence. \\
+\hline
+\mbox{\tt out}  & {\em $\ast$p\-Dst} & points to the location where the output result is written. \\
+\hline
+\mbox{\tt in}  & {\em first\-Index} & is the first output sample to start with. \\
+\hline
+\mbox{\tt in}  & {\em num\-Points} & is the number of output points to be computed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns either A\-R\-M\-\_\-\-M\-A\-T\-H\-\_\-\-S\-U\-C\-C\-E\-S\-S if the function completed correctly or A\-R\-M\-\_\-\-M\-A\-T\-H\-\_\-\-A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R if the requested subset is not in the range \mbox{[}0 src\-A\-Len+src\-B\-Len-\/2\mbox{]}. 
+\end{DoxyReturn}
+\hypertarget{group___partial_conv_ga1e4d43385cb62262a78c6752fe1fafb2}{\index{Partial Convolution@{Partial Convolution}!arm\-\_\-conv\-\_\-partial\-\_\-fast\-\_\-q15@{arm\-\_\-conv\-\_\-partial\-\_\-fast\-\_\-q15}}
+\index{arm\-\_\-conv\-\_\-partial\-\_\-fast\-\_\-q15@{arm\-\_\-conv\-\_\-partial\-\_\-fast\-\_\-q15}!Partial Convolution@{Partial Convolution}}
+\subsubsection[{arm\-\_\-conv\-\_\-partial\-\_\-fast\-\_\-q15}]{\setlength{\rightskip}{0pt plus 5cm}arm\-\_\-status arm\-\_\-conv\-\_\-partial\-\_\-fast\-\_\-q15 (
+\begin{DoxyParamCaption}
+\item[{q15\-\_\-t $\ast$}]{p\-Src\-A, }
+\item[{uint32\-\_\-t}]{src\-A\-Len, }
+\item[{q15\-\_\-t $\ast$}]{p\-Src\-B, }
+\item[{uint32\-\_\-t}]{src\-B\-Len, }
+\item[{q15\-\_\-t $\ast$}]{p\-Dst, }
+\item[{uint32\-\_\-t}]{first\-Index, }
+\item[{uint32\-\_\-t}]{num\-Points}
+\end{DoxyParamCaption}
+)}}\label{group___partial_conv_ga1e4d43385cb62262a78c6752fe1fafb2}
+
+
+Partial convolution of Q15 sequences (fast version) for Cortex-\/\-M3 and Cortex-\/\-M4. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p\-Src\-A} & points to the first input sequence. \\
+\hline
+\mbox{\tt in}  & {\em src\-A\-Len} & length of the first input sequence. \\
+\hline
+\mbox{\tt in}  & {\em $\ast$p\-Src\-B} & points to the second input sequence. \\
+\hline
+\mbox{\tt in}  & {\em src\-B\-Len} & length of the second input sequence. \\
+\hline
+\mbox{\tt out}  & {\em $\ast$p\-Dst} & points to the location where the output result is written. \\
+\hline
+\mbox{\tt in}  & {\em first\-Index} & is the first output sample to start with. \\
+\hline
+\mbox{\tt in}  & {\em num\-Points} & is the number of output points to be computed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns either A\-R\-M\-\_\-\-M\-A\-T\-H\-\_\-\-S\-U\-C\-C\-E\-S\-S if the function completed correctly or A\-R\-M\-\_\-\-M\-A\-T\-H\-\_\-\-A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R if the requested subset is not in the range \mbox{[}0 src\-A\-Len+src\-B\-Len-\/2\mbox{]}.
+\end{DoxyReturn}
+See {\ttfamily \hyperlink{group___partial_conv_ga209a2a913a0c5e5679c5988da8f46b03}{arm\-\_\-conv\-\_\-partial\-\_\-q15()}} for a slower implementation of this function which uses a 64-\/bit accumulator to avoid wrap around distortion. \hypertarget{group___partial_conv_ga10c5294cda8c4985386f4e3944be7650}{\index{Partial Convolution@{Partial Convolution}!arm\-\_\-conv\-\_\-partial\-\_\-fast\-\_\-q31@{arm\-\_\-conv\-\_\-partial\-\_\-fast\-\_\-q31}}
+\index{arm\-\_\-conv\-\_\-partial\-\_\-fast\-\_\-q31@{arm\-\_\-conv\-\_\-partial\-\_\-fast\-\_\-q31}!Partial Convolution@{Partial Convolution}}
+\subsubsection[{arm\-\_\-conv\-\_\-partial\-\_\-fast\-\_\-q31}]{\setlength{\rightskip}{0pt plus 5cm}arm\-\_\-status arm\-\_\-conv\-\_\-partial\-\_\-fast\-\_\-q31 (
+\begin{DoxyParamCaption}
+\item[{q31\-\_\-t $\ast$}]{p\-Src\-A, }
+\item[{uint32\-\_\-t}]{src\-A\-Len, }
+\item[{q31\-\_\-t $\ast$}]{p\-Src\-B, }
+\item[{uint32\-\_\-t}]{src\-B\-Len, }
+\item[{q31\-\_\-t $\ast$}]{p\-Dst, }
+\item[{uint32\-\_\-t}]{first\-Index, }
+\item[{uint32\-\_\-t}]{num\-Points}
+\end{DoxyParamCaption}
+)}}\label{group___partial_conv_ga10c5294cda8c4985386f4e3944be7650}
+
+
+Partial convolution of Q31 sequences (fast version) for Cortex-\/\-M3 and Cortex-\/\-M4. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p\-Src\-A} & points to the first input sequence. \\
+\hline
+\mbox{\tt in}  & {\em src\-A\-Len} & length of the first input sequence. \\
+\hline
+\mbox{\tt in}  & {\em $\ast$p\-Src\-B} & points to the second input sequence. \\
+\hline
+\mbox{\tt in}  & {\em src\-B\-Len} & length of the second input sequence. \\
+\hline
+\mbox{\tt out}  & {\em $\ast$p\-Dst} & points to the location where the output result is written. \\
+\hline
+\mbox{\tt in}  & {\em first\-Index} & is the first output sample to start with. \\
+\hline
+\mbox{\tt in}  & {\em num\-Points} & is the number of output points to be computed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns either A\-R\-M\-\_\-\-M\-A\-T\-H\-\_\-\-S\-U\-C\-C\-E\-S\-S if the function completed correctly or A\-R\-M\-\_\-\-M\-A\-T\-H\-\_\-\-A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R if the requested subset is not in the range \mbox{[}0 src\-A\-Len+src\-B\-Len-\/2\mbox{]}.
+\end{DoxyReturn}
+\begin{DoxyParagraph}{}
+See {\ttfamily \hyperlink{group___partial_conv_ga78e73a5f02d103168a09821fb461e77a}{arm\-\_\-conv\-\_\-partial\-\_\-q31()}} for a slower implementation of this function which uses a 64-\/bit accumulator to provide higher precision. 
+\end{DoxyParagraph}
+\hypertarget{group___partial_conv_ga209a2a913a0c5e5679c5988da8f46b03}{\index{Partial Convolution@{Partial Convolution}!arm\-\_\-conv\-\_\-partial\-\_\-q15@{arm\-\_\-conv\-\_\-partial\-\_\-q15}}
+\index{arm\-\_\-conv\-\_\-partial\-\_\-q15@{arm\-\_\-conv\-\_\-partial\-\_\-q15}!Partial Convolution@{Partial Convolution}}
+\subsubsection[{arm\-\_\-conv\-\_\-partial\-\_\-q15}]{\setlength{\rightskip}{0pt plus 5cm}arm\-\_\-status arm\-\_\-conv\-\_\-partial\-\_\-q15 (
+\begin{DoxyParamCaption}
+\item[{q15\-\_\-t $\ast$}]{p\-Src\-A, }
+\item[{uint32\-\_\-t}]{src\-A\-Len, }
+\item[{q15\-\_\-t $\ast$}]{p\-Src\-B, }
+\item[{uint32\-\_\-t}]{src\-B\-Len, }
+\item[{q15\-\_\-t $\ast$}]{p\-Dst, }
+\item[{uint32\-\_\-t}]{first\-Index, }
+\item[{uint32\-\_\-t}]{num\-Points}
+\end{DoxyParamCaption}
+)}}\label{group___partial_conv_ga209a2a913a0c5e5679c5988da8f46b03}
+
+
+Partial convolution of Q15 sequences. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p\-Src\-A} & points to the first input sequence. \\
+\hline
+\mbox{\tt in}  & {\em src\-A\-Len} & length of the first input sequence. \\
+\hline
+\mbox{\tt in}  & {\em $\ast$p\-Src\-B} & points to the second input sequence. \\
+\hline
+\mbox{\tt in}  & {\em src\-B\-Len} & length of the second input sequence. \\
+\hline
+\mbox{\tt out}  & {\em $\ast$p\-Dst} & points to the location where the output result is written. \\
+\hline
+\mbox{\tt in}  & {\em first\-Index} & is the first output sample to start with. \\
+\hline
+\mbox{\tt in}  & {\em num\-Points} & is the number of output points to be computed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns either A\-R\-M\-\_\-\-M\-A\-T\-H\-\_\-\-S\-U\-C\-C\-E\-S\-S if the function completed correctly or A\-R\-M\-\_\-\-M\-A\-T\-H\-\_\-\-A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R if the requested subset is not in the range \mbox{[}0 src\-A\-Len+src\-B\-Len-\/2\mbox{]}.
+\end{DoxyReturn}
+Refer to {\ttfamily \hyperlink{group___partial_conv_ga1e4d43385cb62262a78c6752fe1fafb2}{arm\-\_\-conv\-\_\-partial\-\_\-fast\-\_\-q15()}} for a faster but less precise version of this function for Cortex-\/\-M3 and Cortex-\/\-M4. \hypertarget{group___partial_conv_ga78e73a5f02d103168a09821fb461e77a}{\index{Partial Convolution@{Partial Convolution}!arm\-\_\-conv\-\_\-partial\-\_\-q31@{arm\-\_\-conv\-\_\-partial\-\_\-q31}}
+\index{arm\-\_\-conv\-\_\-partial\-\_\-q31@{arm\-\_\-conv\-\_\-partial\-\_\-q31}!Partial Convolution@{Partial Convolution}}
+\subsubsection[{arm\-\_\-conv\-\_\-partial\-\_\-q31}]{\setlength{\rightskip}{0pt plus 5cm}arm\-\_\-status arm\-\_\-conv\-\_\-partial\-\_\-q31 (
+\begin{DoxyParamCaption}
+\item[{q31\-\_\-t $\ast$}]{p\-Src\-A, }
+\item[{uint32\-\_\-t}]{src\-A\-Len, }
+\item[{q31\-\_\-t $\ast$}]{p\-Src\-B, }
+\item[{uint32\-\_\-t}]{src\-B\-Len, }
+\item[{q31\-\_\-t $\ast$}]{p\-Dst, }
+\item[{uint32\-\_\-t}]{first\-Index, }
+\item[{uint32\-\_\-t}]{num\-Points}
+\end{DoxyParamCaption}
+)}}\label{group___partial_conv_ga78e73a5f02d103168a09821fb461e77a}
+
+
+Partial convolution of Q31 sequences. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p\-Src\-A} & points to the first input sequence. \\
+\hline
+\mbox{\tt in}  & {\em src\-A\-Len} & length of the first input sequence. \\
+\hline
+\mbox{\tt in}  & {\em $\ast$p\-Src\-B} & points to the second input sequence. \\
+\hline
+\mbox{\tt in}  & {\em src\-B\-Len} & length of the second input sequence. \\
+\hline
+\mbox{\tt out}  & {\em $\ast$p\-Dst} & points to the location where the output result is written. \\
+\hline
+\mbox{\tt in}  & {\em first\-Index} & is the first output sample to start with. \\
+\hline
+\mbox{\tt in}  & {\em num\-Points} & is the number of output points to be computed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns either A\-R\-M\-\_\-\-M\-A\-T\-H\-\_\-\-S\-U\-C\-C\-E\-S\-S if the function completed correctly or A\-R\-M\-\_\-\-M\-A\-T\-H\-\_\-\-A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R if the requested subset is not in the range \mbox{[}0 src\-A\-Len+src\-B\-Len-\/2\mbox{]}.
+\end{DoxyReturn}
+See {\ttfamily \hyperlink{group___partial_conv_ga10c5294cda8c4985386f4e3944be7650}{arm\-\_\-conv\-\_\-partial\-\_\-fast\-\_\-q31()}} for a faster but less precise implementation of this function for Cortex-\/\-M3 and Cortex-\/\-M4. \hypertarget{group___partial_conv_ga8567259fe18396dd972242c41741ebf4}{\index{Partial Convolution@{Partial Convolution}!arm\-\_\-conv\-\_\-partial\-\_\-q7@{arm\-\_\-conv\-\_\-partial\-\_\-q7}}
+\index{arm\-\_\-conv\-\_\-partial\-\_\-q7@{arm\-\_\-conv\-\_\-partial\-\_\-q7}!Partial Convolution@{Partial Convolution}}
+\subsubsection[{arm\-\_\-conv\-\_\-partial\-\_\-q7}]{\setlength{\rightskip}{0pt plus 5cm}arm\-\_\-status arm\-\_\-conv\-\_\-partial\-\_\-q7 (
+\begin{DoxyParamCaption}
+\item[{q7\-\_\-t $\ast$}]{p\-Src\-A, }
+\item[{uint32\-\_\-t}]{src\-A\-Len, }
+\item[{q7\-\_\-t $\ast$}]{p\-Src\-B, }
+\item[{uint32\-\_\-t}]{src\-B\-Len, }
+\item[{q7\-\_\-t $\ast$}]{p\-Dst, }
+\item[{uint32\-\_\-t}]{first\-Index, }
+\item[{uint32\-\_\-t}]{num\-Points}
+\end{DoxyParamCaption}
+)}}\label{group___partial_conv_ga8567259fe18396dd972242c41741ebf4}
+
+
+Partial convolution of Q7 sequences. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p\-Src\-A} & points to the first input sequence. \\
+\hline
+\mbox{\tt in}  & {\em src\-A\-Len} & length of the first input sequence. \\
+\hline
+\mbox{\tt in}  & {\em $\ast$p\-Src\-B} & points to the second input sequence. \\
+\hline
+\mbox{\tt in}  & {\em src\-B\-Len} & length of the second input sequence. \\
+\hline
+\mbox{\tt out}  & {\em $\ast$p\-Dst} & points to the location where the output result is written. \\
+\hline
+\mbox{\tt in}  & {\em first\-Index} & is the first output sample to start with. \\
+\hline
+\mbox{\tt in}  & {\em num\-Points} & is the number of output points to be computed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns either A\-R\-M\-\_\-\-M\-A\-T\-H\-\_\-\-S\-U\-C\-C\-E\-S\-S if the function completed correctly or A\-R\-M\-\_\-\-M\-A\-T\-H\-\_\-\-A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R if the requested subset is not in the range \mbox{[}0 src\-A\-Len+src\-B\-Len-\/2\mbox{]}. 
+\end{DoxyReturn}

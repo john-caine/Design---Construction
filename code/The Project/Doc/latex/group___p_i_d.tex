@@ -1,0 +1,218 @@
+\hypertarget{group___p_i_d}{\section{P\-I\-D Motor Control}
+\label{group___p_i_d}\index{P\-I\-D Motor Control@{P\-I\-D Motor Control}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___p_i_d_gae31536b19b82b93ed184fb1ab73cfcb3}{arm\-\_\-pid\-\_\-init\-\_\-f32} (\hyperlink{structarm__pid__instance__f32}{arm\-\_\-pid\-\_\-instance\-\_\-f32} $\ast$S, int32\-\_\-t reset\-State\-Flag)
+\begin{DoxyCompactList}\small\item\em Initialization function for the floating-\/point P\-I\-D Control. \end{DoxyCompactList}\item 
+void \hyperlink{group___p_i_d_ga2cb1e3d3ebb167348fdabec74653d5c3}{arm\-\_\-pid\-\_\-init\-\_\-q15} (\hyperlink{structarm__pid__instance__q15}{arm\-\_\-pid\-\_\-instance\-\_\-q15} $\ast$S, int32\-\_\-t reset\-State\-Flag)
+\begin{DoxyCompactList}\small\item\em Initialization function for the Q15 P\-I\-D Control. \end{DoxyCompactList}\item 
+void \hyperlink{group___p_i_d_gad9d88485234fa9460b1ce9e64989ac86}{arm\-\_\-pid\-\_\-init\-\_\-q31} (\hyperlink{structarm__pid__instance__q31}{arm\-\_\-pid\-\_\-instance\-\_\-q31} $\ast$S, int32\-\_\-t reset\-State\-Flag)
+\begin{DoxyCompactList}\small\item\em Initialization function for the Q31 P\-I\-D Control. \end{DoxyCompactList}\item 
+void \hyperlink{group___p_i_d_ga9ec860bcb6f8ca31205bf0f1b51ab723}{arm\-\_\-pid\-\_\-reset\-\_\-f32} (\hyperlink{structarm__pid__instance__f32}{arm\-\_\-pid\-\_\-instance\-\_\-f32} $\ast$S)
+\begin{DoxyCompactList}\small\item\em Reset function for the floating-\/point P\-I\-D Control. \end{DoxyCompactList}\item 
+void \hyperlink{group___p_i_d_ga408566dacb4fa6e0458b2c75672e525f}{arm\-\_\-pid\-\_\-reset\-\_\-q15} (\hyperlink{structarm__pid__instance__q15}{arm\-\_\-pid\-\_\-instance\-\_\-q15} $\ast$S)
+\begin{DoxyCompactList}\small\item\em Reset function for the Q15 P\-I\-D Control. \end{DoxyCompactList}\item 
+void \hyperlink{group___p_i_d_gaeecbacd3fb37c608ec25474d3a0dffa9}{arm\-\_\-pid\-\_\-reset\-\_\-q31} (\hyperlink{structarm__pid__instance__q31}{arm\-\_\-pid\-\_\-instance\-\_\-q31} $\ast$S)
+\begin{DoxyCompactList}\small\item\em Reset function for the Q31 P\-I\-D Control. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A Proportional Integral Derivative (P\-I\-D) controller is a generic feedback control loop mechanism widely used in industrial control systems. A P\-I\-D controller is the most commonly used type of feedback controller.
+
+This set of functions implements (P\-I\-D) controllers for Q15, Q31, and floating-\/point data types. The functions operate on a single sample of data and each call to the function returns a single processed value. {\ttfamily S} points to an instance of the P\-I\-D control data structure. {\ttfamily in} is the input sample value. The functions return the output value.
+
+\begin{DoxyParagraph}{Algorithm\-:}
+
+\begin{DoxyPre}
+   y[n] = y[n-1] + A0 * x[n] + A1 * x[n-1] + A2 * x[n-2]
+   A0 = Kp + Ki + Kd
+   A1 = (-Kp ) - (2 * Kd )
+   A2 = Kd  \end{DoxyPre}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+where {\ttfamily Kp} is proportional constant, {\ttfamily Ki} is Integral constant and {\ttfamily Kd} is Derivative constant
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+The P\-I\-D controller calculates an \char`\"{}error\char`\"{} value as the difference between the measured output and the reference input. The controller attempts to minimize the error by adjusting the process control inputs. The proportional value determines the reaction to the current error, the integral value determines the reaction based on the sum of recent errors, and the derivative value determines the reaction based on the rate at which the error has been changing.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Instance Structure }
+The Gains A0, A1, A2 and state variables for a P\-I\-D controller are stored together in an instance data structure. A separate instance structure must be defined for each P\-I\-D Controller. There are separate instance structure declarations for each of the 3 supported data types.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Reset Functions }
+There is also an associated reset function for each data type which clears the state array.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Initialization Functions }
+There is also an associated initialization function for each data type. The initialization function performs the following operations\-:
+\begin{DoxyItemize}
+\item Initializes the Gains A0, A1, A2 from Kp,Ki, Kd gains.
+\item Zeros out the values in the state buffer.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+Instance structure cannot be placed into a const data section and it is recommended to use the initialization function.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Fixed-\/\-Point Behavior }
+Care must be taken when using the fixed-\/point versions of the P\-I\-D Controller functions. In particular, the overflow and saturation behavior of the accumulator used in each function must be considered. Refer to the function specific documentation below for usage guidelines. 
+\end{DoxyParagraph}
+
+
+\subsection{Function Documentation}
+\hypertarget{group___p_i_d_gae31536b19b82b93ed184fb1ab73cfcb3}{\index{P\-I\-D Motor Control@{P\-I\-D Motor Control}!arm\-\_\-pid\-\_\-init\-\_\-f32@{arm\-\_\-pid\-\_\-init\-\_\-f32}}
+\index{arm\-\_\-pid\-\_\-init\-\_\-f32@{arm\-\_\-pid\-\_\-init\-\_\-f32}!PID Motor Control@{P\-I\-D Motor Control}}
+\subsubsection[{arm\-\_\-pid\-\_\-init\-\_\-f32}]{\setlength{\rightskip}{0pt plus 5cm}void arm\-\_\-pid\-\_\-init\-\_\-f32 (
+\begin{DoxyParamCaption}
+\item[{{\bf arm\-\_\-pid\-\_\-instance\-\_\-f32} $\ast$}]{S, }
+\item[{int32\-\_\-t}]{reset\-State\-Flag}
+\end{DoxyParamCaption}
+)}}\label{group___p_i_d_gae31536b19b82b93ed184fb1ab73cfcb3}
+
+
+Initialization function for the floating-\/point P\-I\-D Control. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em $\ast$\-S} & points to an instance of the P\-I\-D structure. \\
+\hline
+\mbox{\tt in}  & {\em reset\-State\-Flag} & flag to reset the state. 0 = no change in state \& 1 = reset the state. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Description\-: }
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+The {\ttfamily reset\-State\-Flag} specifies whether to set state to zero or not. \par
+ The function computes the structure fields\-: {\ttfamily A0}, {\ttfamily A1} {\ttfamily A2} using the proportional gain( {\ttfamily Kp}), integral gain( {\ttfamily Ki}) and derivative gain( {\ttfamily Kd}) also sets the state variables to all zeros. 
+\end{DoxyParagraph}
+\hypertarget{group___p_i_d_ga2cb1e3d3ebb167348fdabec74653d5c3}{\index{P\-I\-D Motor Control@{P\-I\-D Motor Control}!arm\-\_\-pid\-\_\-init\-\_\-q15@{arm\-\_\-pid\-\_\-init\-\_\-q15}}
+\index{arm\-\_\-pid\-\_\-init\-\_\-q15@{arm\-\_\-pid\-\_\-init\-\_\-q15}!PID Motor Control@{P\-I\-D Motor Control}}
+\subsubsection[{arm\-\_\-pid\-\_\-init\-\_\-q15}]{\setlength{\rightskip}{0pt plus 5cm}void arm\-\_\-pid\-\_\-init\-\_\-q15 (
+\begin{DoxyParamCaption}
+\item[{{\bf arm\-\_\-pid\-\_\-instance\-\_\-q15} $\ast$}]{S, }
+\item[{int32\-\_\-t}]{reset\-State\-Flag}
+\end{DoxyParamCaption}
+)}}\label{group___p_i_d_ga2cb1e3d3ebb167348fdabec74653d5c3}
+
+
+Initialization function for the Q15 P\-I\-D Control. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em $\ast$\-S} & points to an instance of the Q15 P\-I\-D structure. \\
+\hline
+\mbox{\tt in}  & {\em reset\-State\-Flag} & flag to reset the state. 0 = no change in state 1 = reset the state. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Description\-: }
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+The {\ttfamily reset\-State\-Flag} specifies whether to set state to zero or not. \par
+ The function computes the structure fields\-: {\ttfamily A0}, {\ttfamily A1} {\ttfamily A2} using the proportional gain( {\ttfamily Kp}), integral gain( {\ttfamily Ki}) and derivative gain( {\ttfamily Kd}) also sets the state variables to all zeros. 
+\end{DoxyParagraph}
+\hypertarget{group___p_i_d_gad9d88485234fa9460b1ce9e64989ac86}{\index{P\-I\-D Motor Control@{P\-I\-D Motor Control}!arm\-\_\-pid\-\_\-init\-\_\-q31@{arm\-\_\-pid\-\_\-init\-\_\-q31}}
+\index{arm\-\_\-pid\-\_\-init\-\_\-q31@{arm\-\_\-pid\-\_\-init\-\_\-q31}!PID Motor Control@{P\-I\-D Motor Control}}
+\subsubsection[{arm\-\_\-pid\-\_\-init\-\_\-q31}]{\setlength{\rightskip}{0pt plus 5cm}void arm\-\_\-pid\-\_\-init\-\_\-q31 (
+\begin{DoxyParamCaption}
+\item[{{\bf arm\-\_\-pid\-\_\-instance\-\_\-q31} $\ast$}]{S, }
+\item[{int32\-\_\-t}]{reset\-State\-Flag}
+\end{DoxyParamCaption}
+)}}\label{group___p_i_d_gad9d88485234fa9460b1ce9e64989ac86}
+
+
+Initialization function for the Q31 P\-I\-D Control. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em $\ast$\-S} & points to an instance of the Q31 P\-I\-D structure. \\
+\hline
+\mbox{\tt in}  & {\em reset\-State\-Flag} & flag to reset the state. 0 = no change in state 1 = reset the state. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Description\-: }
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+The {\ttfamily reset\-State\-Flag} specifies whether to set state to zero or not. \par
+ The function computes the structure fields\-: {\ttfamily A0}, {\ttfamily A1} {\ttfamily A2} using the proportional gain( {\ttfamily Kp}), integral gain( {\ttfamily Ki}) and derivative gain( {\ttfamily Kd}) also sets the state variables to all zeros. 
+\end{DoxyParagraph}
+\hypertarget{group___p_i_d_ga9ec860bcb6f8ca31205bf0f1b51ab723}{\index{P\-I\-D Motor Control@{P\-I\-D Motor Control}!arm\-\_\-pid\-\_\-reset\-\_\-f32@{arm\-\_\-pid\-\_\-reset\-\_\-f32}}
+\index{arm\-\_\-pid\-\_\-reset\-\_\-f32@{arm\-\_\-pid\-\_\-reset\-\_\-f32}!PID Motor Control@{P\-I\-D Motor Control}}
+\subsubsection[{arm\-\_\-pid\-\_\-reset\-\_\-f32}]{\setlength{\rightskip}{0pt plus 5cm}void arm\-\_\-pid\-\_\-reset\-\_\-f32 (
+\begin{DoxyParamCaption}
+\item[{{\bf arm\-\_\-pid\-\_\-instance\-\_\-f32} $\ast$}]{S}
+\end{DoxyParamCaption}
+)}}\label{group___p_i_d_ga9ec860bcb6f8ca31205bf0f1b51ab723}
+
+
+Reset function for the floating-\/point P\-I\-D Control. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$\-S} & Instance pointer of P\-I\-D control data structure. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Description\-: }
+The function resets the state buffer to zeros. 
+\end{DoxyParagraph}
+\hypertarget{group___p_i_d_ga408566dacb4fa6e0458b2c75672e525f}{\index{P\-I\-D Motor Control@{P\-I\-D Motor Control}!arm\-\_\-pid\-\_\-reset\-\_\-q15@{arm\-\_\-pid\-\_\-reset\-\_\-q15}}
+\index{arm\-\_\-pid\-\_\-reset\-\_\-q15@{arm\-\_\-pid\-\_\-reset\-\_\-q15}!PID Motor Control@{P\-I\-D Motor Control}}
+\subsubsection[{arm\-\_\-pid\-\_\-reset\-\_\-q15}]{\setlength{\rightskip}{0pt plus 5cm}void arm\-\_\-pid\-\_\-reset\-\_\-q15 (
+\begin{DoxyParamCaption}
+\item[{{\bf arm\-\_\-pid\-\_\-instance\-\_\-q15} $\ast$}]{S}
+\end{DoxyParamCaption}
+)}}\label{group___p_i_d_ga408566dacb4fa6e0458b2c75672e525f}
+
+
+Reset function for the Q15 P\-I\-D Control. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$\-S} & Instance pointer of P\-I\-D control data structure. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Description\-: }
+The function resets the state buffer to zeros. 
+\end{DoxyParagraph}
+\hypertarget{group___p_i_d_gaeecbacd3fb37c608ec25474d3a0dffa9}{\index{P\-I\-D Motor Control@{P\-I\-D Motor Control}!arm\-\_\-pid\-\_\-reset\-\_\-q31@{arm\-\_\-pid\-\_\-reset\-\_\-q31}}
+\index{arm\-\_\-pid\-\_\-reset\-\_\-q31@{arm\-\_\-pid\-\_\-reset\-\_\-q31}!PID Motor Control@{P\-I\-D Motor Control}}
+\subsubsection[{arm\-\_\-pid\-\_\-reset\-\_\-q31}]{\setlength{\rightskip}{0pt plus 5cm}void arm\-\_\-pid\-\_\-reset\-\_\-q31 (
+\begin{DoxyParamCaption}
+\item[{{\bf arm\-\_\-pid\-\_\-instance\-\_\-q31} $\ast$}]{S}
+\end{DoxyParamCaption}
+)}}\label{group___p_i_d_gaeecbacd3fb37c608ec25474d3a0dffa9}
+
+
+Reset function for the Q31 P\-I\-D Control. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$\-S} & Instance pointer of P\-I\-D control data structure. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Description\-: }
+The function resets the state buffer to zeros. 
+\end{DoxyParagraph}

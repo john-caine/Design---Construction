@@ -1,0 +1,128 @@
+\hypertarget{group___fill}{\section{Vector Fill}
+\label{group___fill}\index{Vector Fill@{Vector Fill}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___fill_ga2248e8d3901b4afb7827163132baad94}{arm\-\_\-fill\-\_\-f32} (float32\-\_\-t value, float32\-\_\-t $\ast$p\-Dst, uint32\-\_\-t block\-Size)
+\begin{DoxyCompactList}\small\item\em Fills a constant value into a floating-\/point vector. \end{DoxyCompactList}\item 
+void \hyperlink{group___fill_ga76b21c32a3783a2b3334d930a646e5d8}{arm\-\_\-fill\-\_\-q15} (q15\-\_\-t value, q15\-\_\-t $\ast$p\-Dst, uint32\-\_\-t block\-Size)
+\begin{DoxyCompactList}\small\item\em Fills a constant value into a Q15 vector. \end{DoxyCompactList}\item 
+void \hyperlink{group___fill_ga69cc781cf337bd0a31bb85c772a35f7f}{arm\-\_\-fill\-\_\-q31} (q31\-\_\-t value, q31\-\_\-t $\ast$p\-Dst, uint32\-\_\-t block\-Size)
+\begin{DoxyCompactList}\small\item\em Fills a constant value into a Q31 vector. \end{DoxyCompactList}\item 
+void \hyperlink{group___fill_ga0465cf326ada039ed792f94b033d9ec5}{arm\-\_\-fill\-\_\-q7} (q7\-\_\-t value, q7\-\_\-t $\ast$p\-Dst, uint32\-\_\-t block\-Size)
+\begin{DoxyCompactList}\small\item\em Fills a constant value into a Q7 vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Fills the destination vector with a constant value.
+
+
+\begin{DoxyPre}   
+    pDst[n] = value;   0 <= n < blockSize.   
+\end{DoxyPre}
+
+
+There are separate functions for floating point, Q31, Q15, and Q7 data types. 
+
+\subsection{Function Documentation}
+\hypertarget{group___fill_ga2248e8d3901b4afb7827163132baad94}{\index{Vector Fill@{Vector Fill}!arm\-\_\-fill\-\_\-f32@{arm\-\_\-fill\-\_\-f32}}
+\index{arm\-\_\-fill\-\_\-f32@{arm\-\_\-fill\-\_\-f32}!Vector Fill@{Vector Fill}}
+\subsubsection[{arm\-\_\-fill\-\_\-f32}]{\setlength{\rightskip}{0pt plus 5cm}void arm\-\_\-fill\-\_\-f32 (
+\begin{DoxyParamCaption}
+\item[{float32\-\_\-t}]{value, }
+\item[{float32\-\_\-t $\ast$}]{p\-Dst, }
+\item[{uint32\-\_\-t}]{block\-Size}
+\end{DoxyParamCaption}
+)}}\label{group___fill_ga2248e8d3901b4afb7827163132baad94}
+
+
+Fills a constant value into a floating-\/point vector. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & input value to be filled \\
+\hline
+\mbox{\tt out}  & {\em $\ast$p\-Dst} & points to output vector \\
+\hline
+\mbox{\tt in}  & {\em block\-Size} & length of the output vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none. 
+\end{DoxyReturn}
+\hypertarget{group___fill_ga76b21c32a3783a2b3334d930a646e5d8}{\index{Vector Fill@{Vector Fill}!arm\-\_\-fill\-\_\-q15@{arm\-\_\-fill\-\_\-q15}}
+\index{arm\-\_\-fill\-\_\-q15@{arm\-\_\-fill\-\_\-q15}!Vector Fill@{Vector Fill}}
+\subsubsection[{arm\-\_\-fill\-\_\-q15}]{\setlength{\rightskip}{0pt plus 5cm}void arm\-\_\-fill\-\_\-q15 (
+\begin{DoxyParamCaption}
+\item[{q15\-\_\-t}]{value, }
+\item[{q15\-\_\-t $\ast$}]{p\-Dst, }
+\item[{uint32\-\_\-t}]{block\-Size}
+\end{DoxyParamCaption}
+)}}\label{group___fill_ga76b21c32a3783a2b3334d930a646e5d8}
+
+
+Fills a constant value into a Q15 vector. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & input value to be filled \\
+\hline
+\mbox{\tt out}  & {\em $\ast$p\-Dst} & points to output vector \\
+\hline
+\mbox{\tt in}  & {\em block\-Size} & length of the output vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none. 
+\end{DoxyReturn}
+\hypertarget{group___fill_ga69cc781cf337bd0a31bb85c772a35f7f}{\index{Vector Fill@{Vector Fill}!arm\-\_\-fill\-\_\-q31@{arm\-\_\-fill\-\_\-q31}}
+\index{arm\-\_\-fill\-\_\-q31@{arm\-\_\-fill\-\_\-q31}!Vector Fill@{Vector Fill}}
+\subsubsection[{arm\-\_\-fill\-\_\-q31}]{\setlength{\rightskip}{0pt plus 5cm}void arm\-\_\-fill\-\_\-q31 (
+\begin{DoxyParamCaption}
+\item[{q31\-\_\-t}]{value, }
+\item[{q31\-\_\-t $\ast$}]{p\-Dst, }
+\item[{uint32\-\_\-t}]{block\-Size}
+\end{DoxyParamCaption}
+)}}\label{group___fill_ga69cc781cf337bd0a31bb85c772a35f7f}
+
+
+Fills a constant value into a Q31 vector. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & input value to be filled \\
+\hline
+\mbox{\tt out}  & {\em $\ast$p\-Dst} & points to output vector \\
+\hline
+\mbox{\tt in}  & {\em block\-Size} & length of the output vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none. 
+\end{DoxyReturn}
+\hypertarget{group___fill_ga0465cf326ada039ed792f94b033d9ec5}{\index{Vector Fill@{Vector Fill}!arm\-\_\-fill\-\_\-q7@{arm\-\_\-fill\-\_\-q7}}
+\index{arm\-\_\-fill\-\_\-q7@{arm\-\_\-fill\-\_\-q7}!Vector Fill@{Vector Fill}}
+\subsubsection[{arm\-\_\-fill\-\_\-q7}]{\setlength{\rightskip}{0pt plus 5cm}void arm\-\_\-fill\-\_\-q7 (
+\begin{DoxyParamCaption}
+\item[{q7\-\_\-t}]{value, }
+\item[{q7\-\_\-t $\ast$}]{p\-Dst, }
+\item[{uint32\-\_\-t}]{block\-Size}
+\end{DoxyParamCaption}
+)}}\label{group___fill_ga0465cf326ada039ed792f94b033d9ec5}
+
+
+Fills a constant value into a Q7 vector. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & input value to be filled \\
+\hline
+\mbox{\tt out}  & {\em $\ast$p\-Dst} & points to output vector \\
+\hline
+\mbox{\tt in}  & {\em block\-Size} & length of the output vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none. 
+\end{DoxyReturn}

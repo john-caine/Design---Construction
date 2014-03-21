@@ -1,0 +1,56 @@
+\hypertarget{structarm__fir__sparse__instance__f32}{\section{arm\-\_\-fir\-\_\-sparse\-\_\-instance\-\_\-f32 Struct Reference}
+\label{structarm__fir__sparse__instance__f32}\index{arm\-\_\-fir\-\_\-sparse\-\_\-instance\-\_\-f32@{arm\-\_\-fir\-\_\-sparse\-\_\-instance\-\_\-f32}}
+}
+
+
+Instance structure for the floating-\/point sparse F\-I\-R filter.  
+
+
+
+
+{\ttfamily \#include $<$arm\-\_\-math.\-h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uint16\-\_\-t \hyperlink{structarm__fir__sparse__instance__f32_a751941891e47f522a7f5375fe8990aac}{num\-Taps}
+\item 
+uint16\-\_\-t \hyperlink{structarm__fir__sparse__instance__f32_a566a0cb53437e48b9a3bf18e5b03d8aa}{state\-Index}
+\item 
+float32\-\_\-t $\ast$ \hyperlink{structarm__fir__sparse__instance__f32_a335c87e6fdc4b96601d95a5de8b9c463}{p\-State}
+\item 
+float32\-\_\-t $\ast$ \hyperlink{structarm__fir__sparse__instance__f32_aacbb8dd8eeba4b21fc2bb40076405ee3}{p\-Coeffs}
+\item 
+uint16\-\_\-t \hyperlink{structarm__fir__sparse__instance__f32_ab25f4ee7550e6d92acff77ada283733f}{max\-Delay}
+\item 
+int32\-\_\-t $\ast$ \hyperlink{structarm__fir__sparse__instance__f32_adec00b3793ab4f08edfeb4ea6a9eb6e6}{p\-Tap\-Delay}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Instance structure for the floating-\/point sparse F\-I\-R filter. 
+
+\subsection{Field Documentation}
+\hypertarget{structarm__fir__sparse__instance__f32_ab25f4ee7550e6d92acff77ada283733f}{\index{arm\-\_\-fir\-\_\-sparse\-\_\-instance\-\_\-f32@{arm\-\_\-fir\-\_\-sparse\-\_\-instance\-\_\-f32}!max\-Delay@{max\-Delay}}
+\index{max\-Delay@{max\-Delay}!arm_fir_sparse_instance_f32@{arm\-\_\-fir\-\_\-sparse\-\_\-instance\-\_\-f32}}
+\subsubsection[{max\-Delay}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t max\-Delay}}\label{structarm__fir__sparse__instance__f32_ab25f4ee7550e6d92acff77ada283733f}
+maximum offset specified by the p\-Tap\-Delay array. \hypertarget{structarm__fir__sparse__instance__f32_a751941891e47f522a7f5375fe8990aac}{\index{arm\-\_\-fir\-\_\-sparse\-\_\-instance\-\_\-f32@{arm\-\_\-fir\-\_\-sparse\-\_\-instance\-\_\-f32}!num\-Taps@{num\-Taps}}
+\index{num\-Taps@{num\-Taps}!arm_fir_sparse_instance_f32@{arm\-\_\-fir\-\_\-sparse\-\_\-instance\-\_\-f32}}
+\subsubsection[{num\-Taps}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t num\-Taps}}\label{structarm__fir__sparse__instance__f32_a751941891e47f522a7f5375fe8990aac}
+number of coefficients in the filter. \hypertarget{structarm__fir__sparse__instance__f32_aacbb8dd8eeba4b21fc2bb40076405ee3}{\index{arm\-\_\-fir\-\_\-sparse\-\_\-instance\-\_\-f32@{arm\-\_\-fir\-\_\-sparse\-\_\-instance\-\_\-f32}!p\-Coeffs@{p\-Coeffs}}
+\index{p\-Coeffs@{p\-Coeffs}!arm_fir_sparse_instance_f32@{arm\-\_\-fir\-\_\-sparse\-\_\-instance\-\_\-f32}}
+\subsubsection[{p\-Coeffs}]{\setlength{\rightskip}{0pt plus 5cm}float32\-\_\-t$\ast$ p\-Coeffs}}\label{structarm__fir__sparse__instance__f32_aacbb8dd8eeba4b21fc2bb40076405ee3}
+points to the coefficient array. The array is of length num\-Taps. \hypertarget{structarm__fir__sparse__instance__f32_a335c87e6fdc4b96601d95a5de8b9c463}{\index{arm\-\_\-fir\-\_\-sparse\-\_\-instance\-\_\-f32@{arm\-\_\-fir\-\_\-sparse\-\_\-instance\-\_\-f32}!p\-State@{p\-State}}
+\index{p\-State@{p\-State}!arm_fir_sparse_instance_f32@{arm\-\_\-fir\-\_\-sparse\-\_\-instance\-\_\-f32}}
+\subsubsection[{p\-State}]{\setlength{\rightskip}{0pt plus 5cm}float32\-\_\-t$\ast$ p\-State}}\label{structarm__fir__sparse__instance__f32_a335c87e6fdc4b96601d95a5de8b9c463}
+points to the state buffer array. The array is of length max\-Delay+block\-Size-\/1. \hypertarget{structarm__fir__sparse__instance__f32_adec00b3793ab4f08edfeb4ea6a9eb6e6}{\index{arm\-\_\-fir\-\_\-sparse\-\_\-instance\-\_\-f32@{arm\-\_\-fir\-\_\-sparse\-\_\-instance\-\_\-f32}!p\-Tap\-Delay@{p\-Tap\-Delay}}
+\index{p\-Tap\-Delay@{p\-Tap\-Delay}!arm_fir_sparse_instance_f32@{arm\-\_\-fir\-\_\-sparse\-\_\-instance\-\_\-f32}}
+\subsubsection[{p\-Tap\-Delay}]{\setlength{\rightskip}{0pt plus 5cm}int32\-\_\-t$\ast$ p\-Tap\-Delay}}\label{structarm__fir__sparse__instance__f32_adec00b3793ab4f08edfeb4ea6a9eb6e6}
+points to the array of delay values. The array is of length num\-Taps. \hypertarget{structarm__fir__sparse__instance__f32_a566a0cb53437e48b9a3bf18e5b03d8aa}{\index{arm\-\_\-fir\-\_\-sparse\-\_\-instance\-\_\-f32@{arm\-\_\-fir\-\_\-sparse\-\_\-instance\-\_\-f32}!state\-Index@{state\-Index}}
+\index{state\-Index@{state\-Index}!arm_fir_sparse_instance_f32@{arm\-\_\-fir\-\_\-sparse\-\_\-instance\-\_\-f32}}
+\subsubsection[{state\-Index}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t state\-Index}}\label{structarm__fir__sparse__instance__f32_a566a0cb53437e48b9a3bf18e5b03d8aa}
+state buffer index. Points to the oldest sample in the state buffer. 
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Z\-:/dc/\-Simple\-Timer\-Tutorial\-\_\-\-Upload/\-Libraries/\-C\-M\-S\-I\-S/\-Include/arm\-\_\-math.\-h\end{DoxyCompactItemize}
