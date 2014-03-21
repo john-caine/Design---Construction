@@ -1,0 +1,32 @@
+*** Creating Trace Output File '.\DAC_SignalsGeneration\DAC_SignalsGeneration.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '".\dac_signalsgeneration\main.o"'
+### List of Objects: adding '".\dac_signalsgeneration\stm32f4xx_it.o"'
+### List of Objects: adding '".\dac_signalsgeneration\system_stm32f4xx.o"'
+### List of Objects: adding '".\dac_signalsgeneration\stm32f4_discovery.o"'
+### List of Objects: adding '".\dac_signalsgeneration\stm32f4xx_rcc.o"'
+### List of Objects: adding '".\dac_signalsgeneration\misc.o"'
+### List of Objects: adding '".\dac_signalsgeneration\stm32f4xx_gpio.o"'
+### List of Objects: adding '".\dac_signalsgeneration\stm32f4xx_syscfg.o"'
+### List of Objects: adding '".\dac_signalsgeneration\stm32f4xx_exti.o"'
+### List of Objects: adding '".\dac_signalsgeneration\stm32f4xx_dma.o"'
+### List of Objects: adding '".\dac_signalsgeneration\stm32f4xx_dac.o"'
+### List of Objects: adding '".\dac_signalsgeneration\stm32f4xx_tim.o"'
+### List of Objects: adding '".\dac_signalsgeneration\startup_stm32f4xx.o"'
+### ADS-LD Command completed:
+--cpu Cortex-M4.fp ".\dac_signalsgeneration\main.o" ".\dac_signalsgeneration\stm32f4xx_it.o" ".\dac_signalsgeneration\system_stm32f4xx.o" ".\dac_signalsgeneration\stm32f4_discovery.o" ".\dac_signalsgeneration\stm32f4xx_rcc.o" ".\dac_signalsgeneration\misc.o" ".\dac_signalsgeneration\stm32f4xx_gpio.o" ".\dac_signalsgeneration\stm32f4xx_syscfg.o" ".\dac_signalsgeneration\stm32f4xx_exti.o" ".\dac_signalsgeneration\stm32f4xx_dma.o" ".\dac_signalsgeneration\stm32f4xx_dac.o" ".\dac_signalsgeneration\stm32f4xx_tim.o" ".\dac_signalsgeneration\startup_stm32f4xx.o" 
+--library_type=microlib --strict --scatter ".\DAC_SignalsGeneration\DAC_SignalsGeneration.sct" 
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\DAC_SignalsGeneration\DAC_SignalsGeneration.map" -o .\DAC_SignalsGeneration\DAC_SignalsGeneration.axf### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: '.\DAC_SignalsGeneration\DAC_SignalsGeneration.axf'
+### ADS-LD Command File: '.\DAC_SignalsGeneration\DAC_SignalsGeneration.lnp'
+### Checking for dirty Components...
+### Creating CmdFile '.\DAC_SignalsGeneration\DAC_SignalsGeneration.lnp', Handle=0x000001B4
+### Writing '.lnp' file
+### ADS-LD Command file '.\DAC_SignalsGeneration\DAC_SignalsGeneration.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.
