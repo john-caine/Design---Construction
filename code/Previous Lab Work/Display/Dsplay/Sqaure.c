@@ -20,8 +20,7 @@ void Square_Init (void){
 }
 
 void Timer_Init (void) {
-	
-	TIM3_CR1 = 
+	 
 	
 	GPIOC->MODER    = (2UL << 2* 6); 										  /* PC 6 is Alternate Function mode */
 }
@@ -30,8 +29,8 @@ void Make_Square (void) {
 	
 	while(1) {	
 		GPIOC->ODR = 1;
-		Delay(5); 
+		Delay(5000); 
 		GPIOC->ODR = 0;
-		Delay(5);
+		Delay(5000);
 	}
 }

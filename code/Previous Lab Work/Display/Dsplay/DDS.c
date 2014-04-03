@@ -5,16 +5,67 @@
  *----------------------------------------------------------------------------
  * 
  *----------------------------------------------------------------------------*/
+  
+ #include "STM32F4xx.h"
+ #include "display.h"
+ #include "DDS.h"
+ #include <math.h>
  
-#include "DDS.h"
-#include "display.c"
+ void DDS_write(int pin, int state)
+ { 
+	 if ( state == LOW) 
+	 {
+			GPIOE->BSRRL |= ( 1UL << pin );
+	 }
+	 else if (state == HIGH) 
+	 {
+		 GPIOE->BSRRH |= ( 1UL << pin );
+	 }
+ }
 
 void DDS_init()
 {
-  digitalWrite(RESET, LOW);
-  digitalWrite(CLOCK, LOW);
-  digitalWrite(LOAD, LOW);
-  digitalWrite(DATA, LOW);
+	RCC->AHB1ENR    |=  ((1UL <<  4)    );   /* Enable GPIOE clock              */
+	
+	GPIOE->MODER    &= ~((3UL << 2* 3) |
+                       (3UL << 2* 4) |
+                       (3UL << 2* 5) |
+                       (3UL << 2* 6) |		/* PE.3..6 is output								*/
+                       (3UL << 2* 7) );   /* PE.7 is input  									*/ 
+	
+	GPIOE->MODER		|=	((1UL << 2* 3) |
+                       (1UL << 2* 4) |
+                       (1UL << 2* 5) |
+                       (1UL << 2* 6) );		/* PE.3..6 is output								*/
+
+	GPIOE->OTYPER		&= ~((1UL << 3) |
+                       (1UL << 4) |
+                       (1UL << 5) |
+                       (1UL << 6) );		/* PE.3..6 is push-pull for output		*/	
+	
+  GPIOE->OSPEEDR  |=  ((3UL << 2* 3) |		
+                       (3UL << 2* 4) | 
+                       (3UL << 2* 5) | 
+                       (2UL << 2* 6) | 
+                       (2UL << 2* 7) ); 	/* PE.3..7 is High Speed          */
+	
+  GPIOE->PUPDR    &= ~((3UL << 2* 3) |
+                       (3UL << 2* 4) |
+                       (3UL << 2* 5) |
+                       (3UL << 2* 6) |
+                       (3UL << 2* 7)  );   /* PE.7 is no Pull up or down    */
+											 
+	GPIOE->PUPDR		|=  ((2UL << 2* 3) |
+											 (2UL << 2* 4) |
+											 (2UL << 2* 5) |
+											 (2UL << 2* 6));		/* PE.3..6 is pull down resistor	*/
+											 
+							
+	
+  DDS_write(RESET, LOW);
+  DDS_write(CLOCK, LOW);
+  DDS_write(LOAD, LOW);
+  DDS_write(DATA, LOW);
 }
 
 void DDS_reset()
@@ -28,43 +79,66 @@ void DDS_reset()
    // data sheet diagrams show only RESET and CLOCK being used to reset the device, but I see no output unless I also
    // toggle the LOAD line here.
   
-	 digitalWrite(CLOCK, LOW);
-	 digitalWrite(LOAD, LOW);
+	 DDS_write(CLOCK, LOW);
+	 DDS_write(LOAD, LOW);
     
-	 digitalWrite(RESET, LOW);
+	 DDS_write(RESET, LOW);
 	 Delay(5);
-	 digitalWrite(RESET, HIGH);  //pulse RESET
+	 DDS_write(RESET, HIGH);  //pulse RESET
 	 Delay(5);
-	 digitalWrite(RESET, LOW);
+	 DDS_write(RESET, LOW);
 	 Delay(5);
 	 
-	 digitalWrite(CLOCK, LOW);
+	 DDS_write(CLOCK, LOW);
 	 Delay(5);
-	 digitalWrite(CLOCK, HIGH);  //pulse CLOCK
+	 DDS_write(CLOCK, HIGH);  //pulse CLOCK
 	 Delay(5);
-	 digitalWrite(CLOCK, LOW);
+	 DDS_write(CLOCK, LOW);
 	 Delay(5);
-	 digitalWrite(DATA, LOW);    //make sure DATA pin is LOW
+	 DDS_write(DATA, LOW);    //make sure DATA pin is LOW
 	 
-	 digitalWrite(LOAD, LOW);
+	 DDS_write(LOAD, LOW);
 	 Delay(5);
-	 digitalWrite(LOAD, HIGH);  //pulse LOAD
+	 DDS_write(LOAD, HIGH);  //pulse LOAD
 	 Delay(5);
-	 digitalWrite(LOAD, LOW);
+	 DDS_write(LOAD, LOW);
   // Chip is RESET now
 }
 
 void SetFrequency(unsigned long frequency)
 {
+	int i;
+	
+	// Calculate the tuning word and make sure its at least 32-bits long
   unsigned long tuning_word = (frequency * pow(2, 32)) / DDS_CLOCK;
-  digitalWrite (LOAD, LOW); 
-
-  shiftOut(DATA, CLOCK, LSBFIRST, tuning_word);
-  shiftOut(DATA, CLOCK, LSBFIRST, tuning_word >> 8);
-  shiftOut(DATA, CLOCK, LSBFIRST, tuning_word >> 16);
-  shiftOut(DATA, CLOCK, LSBFIRST, tuning_word >> 24);
-  shiftOut(DATA, CLOCK, LSBFIRST, 0x0);
+	unsigned long tuning_word_32 = tuning_word | 0x00000000;
   
-  digitalWrite (LOAD, HIGH); 
-}
+	// Take load low ready for new tuning word to be written
+	DDS_write(LOAD, LOW); 
+	
+	// Write 32-bit tuning word
+	for(i = 0 ; i < 32 ; i++)
+	{
+		int tuning_bit = GETBIT(i, tuning_word_32);
+	
+		DDS_write(DATA, tuning_bit);
+	}
+	
+	// Write 2 CONTROL bits as 0
+	DDS_write(DATA, 0);
+	DDS_write(DATA, 0);
+	
+	// Write power-down bit as 0
+	DDS_write(DATA, 0);
+	
+	// Write 5 phase bits as 0
+	DDS_write(DATA, 0);
+	DDS_write(DATA, 0);
+	DDS_write(DATA, 0);
+	DDS_write(DATA, 0);
+	DDS_write(DATA, 0);
+  
+	// Take load high to set FQ_UP
+  DDS_write(LOAD, HIGH); 
+} 
 

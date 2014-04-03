@@ -1,89 +1,77 @@
 Dependencies for Project 'display', Target 'STM32F407 Flash': (DO NOT MODIFY !)
-F (.\startup_stm32f4xx.s)(0x4F854F68)(--cpu Cortex-M4.fp -g --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F4xx --list ".\Flash\startup_stm32f4xx.lst" --xref -o ".\Flash\startup_stm32f4xx.o" --depend ".\Flash\startup_stm32f4xx.d")
-F (.\system_stm32f4xx.c)(0x52EA3DB1)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F4xx -o ".\Flash\system_stm32f4xx.o" --omf_browse ".\Flash\system_stm32f4xx.crf" --depend ".\Flash\system_stm32f4xx.d")
-I (C:\Keil\ARM\Inc\ST\STM32F4xx\stm32f4xx.h)(0x4F855D74)
-I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x50068BF2)
-I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB14304)
-I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x5059BEFC)
-I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDAF6CC)
-I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x4F58AD66)
-I (C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h)(0x4F855D74)
-F (.\LED.c)(0x509D309E)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F4xx -o ".\Flash\led.o" --omf_browse ".\Flash\led.crf" --depend ".\Flash\led.d")
-I (C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h)(0x4F855D74)
-I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x50068BF2)
-I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB14304)
-I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x5059BEFC)
-I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDAF6CC)
-I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x4F58AD66)
-I (C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h)(0x4F855D74)
-I (LED.h)(0x509D305E)
-F (.\SWT.c)(0x50A0D9B4)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F4xx -o ".\Flash\swt.o" --omf_browse ".\Flash\swt.crf" --depend ".\Flash\swt.d")
-I (C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h)(0x4F855D74)
-I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x50068BF2)
-I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB14304)
-I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x5059BEFC)
-I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDAF6CC)
-I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x4F58AD66)
-I (C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h)(0x4F855D74)
-I (SWT.h)(0x509FA012)
-F (.\LCD.c)(0x52E0F3B4)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F4xx -o ".\Flash\lcd.o" --omf_browse ".\Flash\lcd.crf" --depend ".\Flash\lcd.d")
-I (C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h)(0x4F855D74)
-I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x50068BF2)
-I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB14304)
-I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x5059BEFC)
-I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDAF6CC)
-I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x4F58AD66)
-I (C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h)(0x4F855D74)
-I (LCD.h)(0x50A11832)
-F (.\display.c)(0x52E90429)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F4xx -o ".\Flash\display.o" --omf_browse ".\Flash\display.crf" --depend ".\Flash\display.d")
-I (C:\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB14306)
-I (C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h)(0x4F855D74)
-I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x50068BF2)
-I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB14304)
-I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x5059BEFC)
-I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDAF6CC)
-I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x4F58AD66)
-I (C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h)(0x4F855D74)
-I (LED.h)(0x509D305E)
-I (SWT.h)(0x509FA012)
-I (LCD.h)(0x50A11832)
-I (Sqaure.h)(0x52E9043F)
-F (.\Sqaure.c)(0x52F37901)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F4xx -o ".\Flash\sqaure.o" --omf_browse ".\Flash\sqaure.crf" --depend ".\Flash\sqaure.d")
-I (C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h)(0x4F855D74)
-I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x50068BF2)
-I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB14304)
-I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x5059BEFC)
-I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDAF6CC)
-I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x4F58AD66)
-I (C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h)(0x4F855D74)
-I (LCD.h)(0x50A11832)
-I (Sqaure.h)(0x52E9043F)
-F (.\Sqaure.h)(0x52E9043F)()
-F (.\ramp.c)(0x52F37901)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F4xx -o ".\Flash\ramp.o" --omf_browse ".\Flash\ramp.crf" --depend ".\Flash\ramp.d")
-I (C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h)(0x4F855D74)
-I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x50068BF2)
-I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB14304)
-I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x5059BEFC)
-I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDAF6CC)
-I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x4F58AD66)
-I (C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h)(0x4F855D74)
-I (LCD.h)(0x50A11832)
-I (ramp.h)(0x52F37901)
-F (.\ramp.h)(0x52F37901)()
-F (.\DDS.c)(0x5305D823)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F4xx -o ".\Flash\dds.o" --omf_browse ".\Flash\dds.crf" --depend ".\Flash\dds.d")
-I (DDS.h)(0x5305D5D6)
-I (display.c)(0x52E90429)
-I (C:\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB14306)
-I (C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h)(0x4F855D74)
-I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x50068BF2)
-I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB14304)
-I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x5059BEFC)
-I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDAF6CC)
-I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x4F58AD66)
-I (C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h)(0x4F855D74)
-I (LED.h)(0x509D305E)
-I (SWT.h)(0x509FA012)
-I (LCD.h)(0x50A11832)
-I (Sqaure.h)(0x52E9043F)
-F (.\DDS.h)(0x5305D5D6)()
-F (.\Abstract.txt)(0x50F6E23A)()
+F (.\startup_stm32f4xx.s)(0x532C4421)(--cpu Cortex-M4.fp --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx--list .\flash\startup_stm32f4xx.lst --xref -o .\flash\startup_stm32f4xx.o --depend .\flash\startup_stm32f4xx.d)
+F (.\system_stm32f4xx.c)(0x532C4421)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-o .\flash\system_stm32f4xx.o --omf_browse .\flash\system_stm32f4xx.crf --depend .\flash\system_stm32f4xx.d)
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\stm32f4xx.h)(0x533D416D)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x520A17B2)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C827C4)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x520A17B0)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x520A17B2)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x520A17B0)
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h)(0x520A17F4)
+F (.\LED.c)(0x532C4421)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-o .\flash\led.o --omf_browse .\flash\led.crf --depend .\flash\led.d)
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h)(0x533D416D)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x520A17B2)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C827C4)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x520A17B0)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x520A17B2)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x520A17B0)
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h)(0x520A17F4)
+I (LED.h)(0x532C4421)
+F (.\SWT.c)(0x532C4421)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-o .\flash\swt.o --omf_browse .\flash\swt.crf --depend .\flash\swt.d)
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h)(0x533D416D)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x520A17B2)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C827C4)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x520A17B0)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x520A17B2)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x520A17B0)
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h)(0x520A17F4)
+I (SWT.h)(0x532C4421)
+F (.\LCD.c)(0x533D5E3F)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-o .\flash\lcd.o --omf_browse .\flash\lcd.crf --depend .\flash\lcd.d)
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h)(0x533D416D)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x520A17B2)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C827C4)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x520A17B0)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x520A17B2)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x520A17B0)
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h)(0x520A17F4)
+I (LCD.h)(0x532C4421)
+F (.\display.c)(0x533D75D5)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-o .\flash\display.o --omf_browse .\flash\display.crf --depend .\flash\display.d)
+I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C827C4)
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h)(0x533D416D)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x520A17B2)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C827C4)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x520A17B0)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x520A17B2)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x520A17B0)
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h)(0x520A17F4)
+I (LED.h)(0x532C4421)
+I (SWT.h)(0x532C4421)
+I (LCD.h)(0x532C4421)
+I (Sqaure.h)(0x532C4421)
+F (.\Sqaure.c)(0x533D5E3F)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-o .\flash\sqaure.o --omf_browse .\flash\sqaure.crf --depend .\flash\sqaure.d)
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h)(0x533D416D)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x520A17B2)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C827C4)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x520A17B0)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x520A17B2)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x520A17B0)
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h)(0x520A17F4)
+I (LCD.h)(0x532C4421)
+I (Sqaure.h)(0x532C4421)
+F (.\Sqaure.h)(0x532C4421)()
+F (.\ramp.c)(0x533D401A)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-o .\flash\ramp.o --omf_browse .\flash\ramp.crf --depend .\flash\ramp.d)
+F (.\ramp.h)(0x532C4421)()
+F (.\DDS.c)(0x533D89D2)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-o .\flash\dds.o --omf_browse .\flash\dds.crf --depend .\flash\dds.d)
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h)(0x533D416D)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x520A17B2)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C827C4)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x520A17B0)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x520A17B2)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x520A17B0)
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h)(0x520A17F4)
+I (display.h)(0x533D89DE)
+I (DDS.h)(0x533D813F)
+I (C:\Keil\ARM\ARMCC\include\math.h)(0x51C827C4)
+F (.\DDS.h)(0x533D813F)()
+F (.\display.h)(0x533D89DE)()
+F (.\Abstract.txt)(0x532C4421)()

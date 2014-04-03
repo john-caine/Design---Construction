@@ -130,22 +130,22 @@ void LCD_Initpins (void) {
  *----------------------------------------------------------------------------*/
 void LCD_Init (void) {
 	
-	Delay(20);
+	Delay(20000);
 	
 	LCD_Eoff();
 	LCD_RSoff();
 	LCD_RWoff();
 	
-	Delay(20);
+	Delay(20000);
 	
 	LCD_DataWrite( 0x20 );
 	LCD_Clk();
-	Delay(1);
+	Delay(1000);
 	LCD_Clk();
-	Delay(1);
+	Delay(1000);
 	LCD_Clk();
 	
-	Delay(20);
+	Delay(20000);
 	
 	// Function Set: 4 bit mode, 1/16 duty, 5x8 font, 2 lines
 	LCD_Write(0x28);
@@ -158,7 +158,7 @@ void LCD_Init (void) {
 	
 	// Clear Display
 	/* LCD_Clear();
-  Delay(100); */
+  Delay(100000); */
 }
 
 
@@ -273,7 +273,7 @@ void LCD_DriverOff (void) {
 void LCD_Clk (void) {
 
   LCD_Eon();
-	Delay(1);
+	Delay(1000);
 	LCD_Eoff();
 }
 
@@ -286,12 +286,12 @@ void LCD_Write (unsigned int value) {
   LCD_DataClear();
 	LCD_DataWrite(value & 0xF0);
 	LCD_Clk();
-	Delay(1);
+	Delay(1000);
 	
 	LCD_DataClear();
 	LCD_DataWrite((value<<4) & 0xF0);
 	LCD_Clk();
-	Delay(1);
+	Delay(1000);
 }
 
 /* Function that turns the display on, sets cursor on and blinking */
@@ -299,7 +299,7 @@ void LCD_cursor_on (void) {
 	
 	LCD_RSoff();
 	LCD_Write(0x03);
-	Delay(10);
+	Delay(10000);
 }
 
 /*----------------------------------------------------------------------------
@@ -309,7 +309,7 @@ void LCD_Clear (void) {
 
   LCD_RSoff();
 	LCD_Write(0x01);
-	Delay(10);
+	Delay(10000);
 }
 
 
@@ -320,7 +320,7 @@ void LCD_PutChar (unsigned int c) {
 
   LCD_RSon();
 	LCD_Write(c);
-	Delay(1);
+	Delay(1000);
 }
 
 
@@ -332,7 +332,7 @@ void LCD_PutS (const char * s) {
   LCD_RSon();
 	while(*s)
 		LCD_Write(*s++);
-	Delay(1);
+	Delay(1000);
 }
 
 
@@ -350,5 +350,5 @@ void LCD_GotoXY (unsigned int x, unsigned int y) {
 		if( y == 1 )
 			LCD_Write( 0xC0 | (x & 0x3F));
 
-	Delay(1);
+	Delay(1000);
 }
