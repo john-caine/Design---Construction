@@ -1,0 +1,12 @@
+scope.o: Scope.c
+scope.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
+scope.o: C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h
+scope.o: C:\Keil\ARM\CMSIS\Include\core_cm4.h
+scope.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+scope.o: C:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+scope.o: C:\Keil\ARM\CMSIS\Include\core_cmFunc.h
+scope.o: C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h
+scope.o: C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h
+scope.o: LED.h
+scope.o: SWT.h
+scope.o: LCD.h

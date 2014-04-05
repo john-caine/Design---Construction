@@ -1,0 +1,30 @@
+Dependencies for Project 'ADC_LEDs', Target 'STM32F407 FLASH': (DO NOT MODIFY !)
+F (.\startup_stm32f4xx.s)(0x4F856B84)(--cpu Cortex-M4.fp -g --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F4xx --list "startup_stm32f4xx.lst" --xref -o "startup_stm32f4xx.o" --depend "startup_stm32f4xx.d")
+F (.\system_stm32f4xx.c)(0x504F789A)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F4xx -o "system_stm32f4xx.o" --omf_browse "system_stm32f4xx.crf" --depend "system_stm32f4xx.d")
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\stm32f4xx.h)(0x4F856B84)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x50069A02)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB14304)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x5059CD0C)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDB04DC)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x4F58AD66)
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h)(0x4F856B84)
+F (.\LED.c)(0x5112AF5C)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F4xx -o "led.o" --omf_browse "led.crf" --depend "led.d")
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h)(0x4F856B84)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x50069A02)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB14304)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x5059CD0C)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDB04DC)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x4F58AD66)
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h)(0x4F856B84)
+I (LED.h)(0x4F58A98E)
+F (.\ADC_LEDs.c)(0x51136224)(-c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F4xx -o "adc_leds.o" --omf_browse "adc_leds.crf" --depend "adc_leds.d")
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB14306)
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h)(0x4F856B84)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x50069A02)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB14304)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x5059CD0C)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDB04DC)
+I (C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h)(0x4F58AD66)
+I (C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h)(0x4F856B84)
+I (LED.h)(0x4F58A98E)
+F (.\LED.h)(0x4F58A98E)()

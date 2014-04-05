@@ -4,10 +4,10 @@
 ".\flash\led.o"
 ".\flash\swt.o"
 ".\flash\lcd.o"
-".\flash\display.o"
 ".\flash\sqaure.o"
 ".\flash\ramp.o"
 ".\flash\dds.o"
+".\flash\main.o"
 --strict --scatter ".\Flash\Blinky.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

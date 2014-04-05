@@ -22,5 +22,7 @@
 extern void SWT_Init(void);
 extern uint32_t SWT_Get (void);
 extern int SWT_Check (unsigned int num);
+extern void BTN_Init(void);
+extern uint32_t BTN_Get(void);
 
 #endif

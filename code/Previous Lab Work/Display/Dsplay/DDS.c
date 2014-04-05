@@ -7,7 +7,7 @@
  *----------------------------------------------------------------------------*/
   
  #include "STM32F4xx.h"
- #include "display.h"
+ #include "main.h"
  #include "DDS.h"
  #include <math.h>
  
@@ -19,7 +19,7 @@
 	 }
 	 else if (state == HIGH) 
 	 {
-		 GPIOE->BSRRH |= ( 1UL << pin );
+		  GPIOE->BSRRH |= ( 1UL << pin );
 	 }
  }
 
@@ -30,8 +30,7 @@ void DDS_init()
 	GPIOE->MODER    &= ~((3UL << 2* 3) |
                        (3UL << 2* 4) |
                        (3UL << 2* 5) |
-                       (3UL << 2* 6) |		/* PE.3..6 is output								*/
-                       (3UL << 2* 7) );   /* PE.7 is input  									*/ 
+                       (3UL << 2* 6) );		/* PE.3..6 is output								*/                     
 	
 	GPIOE->MODER		|=	((1UL << 2* 3) |
                        (1UL << 2* 4) |
@@ -46,14 +45,12 @@ void DDS_init()
   GPIOE->OSPEEDR  |=  ((3UL << 2* 3) |		
                        (3UL << 2* 4) | 
                        (3UL << 2* 5) | 
-                       (2UL << 2* 6) | 
-                       (2UL << 2* 7) ); 	/* PE.3..7 is High Speed          */
+                       (2UL << 2* 6) ); /* PE.3..6 is High Speed          */
 	
   GPIOE->PUPDR    &= ~((3UL << 2* 3) |
                        (3UL << 2* 4) |
                        (3UL << 2* 5) |
-                       (3UL << 2* 6) |
-                       (3UL << 2* 7)  );   /* PE.7 is no Pull up or down    */
+                       (3UL << 2* 6) );
 											 
 	GPIOE->PUPDR		|=  ((2UL << 2* 3) |
 											 (2UL << 2* 4) |

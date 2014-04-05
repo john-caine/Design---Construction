@@ -1,0 +1,16 @@
+.\flash\main.o: main.c
+.\flash\main.o: C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h
+.\flash\main.o: C:\Keil\ARM\CMSIS\Include\core_cm4.h
+.\flash\main.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\flash\main.o: C:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+.\flash\main.o: C:\Keil\ARM\CMSIS\Include\core_cmFunc.h
+.\flash\main.o: C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h
+.\flash\main.o: C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h
+.\flash\main.o: main.h
+.\flash\main.o: LED.h
+.\flash\main.o: SWT.h
+.\flash\main.o: LCD.h
+.\flash\main.o: Sqaure.h
+.\flash\main.o: ramp.h
+.\flash\main.o: DDS.h
+.\flash\main.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h

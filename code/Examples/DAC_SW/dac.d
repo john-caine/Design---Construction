@@ -1,0 +1,12 @@
+dac.o: DAC.c
+dac.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
+dac.o: C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h
+dac.o: C:\Keil\ARM\CMSIS\Include\core_cm4.h
+dac.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+dac.o: C:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+dac.o: C:\Keil\ARM\CMSIS\Include\core_cmFunc.h
+dac.o: C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h
+dac.o: C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h
+dac.o: LED.h
+dac.o: SWT.h
+dac.o: LCD.h

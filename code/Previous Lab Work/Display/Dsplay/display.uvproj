@@ -429,11 +429,6 @@
               <FilePath>.\LCD.c</FilePath>
             </File>
             <File>
-              <FileName>display.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\display.c</FilePath>
-            </File>
-            <File>
               <FileName>Sqaure.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Sqaure.c</FilePath>
@@ -462,6 +457,31 @@
               <FileName>DDS.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\DDS.h</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>main.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\main.h</FilePath>
+            </File>
+            <File>
+              <FileName>LED.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\LED.h</FilePath>
+            </File>
+            <File>
+              <FileName>SWT.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\SWT.h</FilePath>
+            </File>
+            <File>
+              <FileName>LCD.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\LCD.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -900,11 +920,6 @@
               <FilePath>.\LCD.c</FilePath>
             </File>
             <File>
-              <FileName>display.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\display.c</FilePath>
-            </File>
-            <File>
               <FileName>Sqaure.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Sqaure.c</FilePath>
@@ -933,6 +948,31 @@
               <FileName>DDS.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\DDS.h</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>main.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\main.h</FilePath>
+            </File>
+            <File>
+              <FileName>LED.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\LED.h</FilePath>
+            </File>
+            <File>
+              <FileName>SWT.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\SWT.h</FilePath>
+            </File>
+            <File>
+              <FileName>LCD.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\LCD.h</FilePath>
             </File>
           </Files>
         </Group>
