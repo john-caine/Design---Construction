@@ -1,1 +1,1 @@
-.\Flash\startup_stm32f4xx.o: startup_stm32f4xx.s
+.\flash\startup_stm32f4xx.o: startup_stm32f4xx.s

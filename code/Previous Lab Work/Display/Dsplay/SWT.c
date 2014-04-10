@@ -21,7 +21,7 @@ const unsigned long SWT_mask[] = {1UL << 8, 1UL << 9, 1UL << 10, 1UL << 11, 1UL 
 /*----------------------------------------------------------------------------
   initialize SWT Pins
  *----------------------------------------------------------------------------*/
-void SWT_Init (void) {
+void SWTS_Init (void) {
 
   RCC->AHB1ENR    |=  ((1UL <<  4)    );   /* Enable GPIOE clock              */
 

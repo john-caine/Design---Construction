@@ -29,8 +29,8 @@ void Make_Square (void) {
 	
 	while(1) {	
 		GPIOC->ODR = 1;
-		Delay(5000); 
+		Delay(5); 
 		GPIOC->ODR = 0;
-		Delay(5000);
+		Delay(5);
 	}
 }

@@ -69,6 +69,7 @@ int main (void) {
   uint32_t btns = 0;
 
   SystemCoreClockUpdate();                      /* Get Core Clock Frequency   */
+	printf("%d", SystemCoreClock);
   if (SysTick_Config(SystemCoreClock / 1000)) { /* SysTick 1 msec interrupts  */
     while (1);                                  /* Capture error              */
   }

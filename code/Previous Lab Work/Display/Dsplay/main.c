@@ -23,48 +23,36 @@ int main (void) {
 
   SystemCoreClockUpdate();                      /* Get Core Clock Frequency   */
   
-	if (SysTick_Config(SystemCoreClock / 1000)) {  /* SysTick 1 micro sec interrupts  */
+	if (SysTick_Config(SystemCoreClock / 1000)) {  /* SysTick 1 msec interrupts  */
     while (1);                                  /* Capture error              */
   }
-
-  LED_Init();
-	LED_On(1);
-	Delay(1000);
-	LED_Off(1);
 	
-//  BTN_Init();   
-//  SWT_Init();
-//	Square_Init();
-//  LCD_Initpins();	
-//	LCD_DriverOn();
-//	
-//	Delay(10000);
-//	LCD_Init();
-
-//	LCD_DriverOn();
-//	LCD_On(1);
-//	Delay(20000);
-//	LCD_Clear();
-//	LCD_PutS("Hello World!");
-//	
-//	LCD_GotoXY(4,1);
-//	LCD_PutS("Testing Testing");
-//	
-//	Make_Square();
-
-//	DDS_init();
-//	Delay(10);
-//	SetFrequency(1000);
-//	
-//	//while(1);
+  // Initialise Required Pins
+	BTN_Init();   
+  SWTS_Init();
+  LCD_Initpins();
+	DDS_Init();
+	
+	// Turn the LCD on
+	LCD_DriverOn();
+	Delay(10);
+	LCD_Init();
+	LCD_DriverOn();
+	LCD_On(1);
+	Delay(2);
+	
+	//Initialise the DDS for sine & square waves
+	DDS_Default_Init();
+	
+	while(1);
 }
 
-volatile uint32_t usTicks;                      /* counts 1us timeTicks       */
+volatile uint32_t msTicks;                      /* counts 1ms timeTicks       */
 /*----------------------------------------------------------------------------
   SysTick_Handler
  *----------------------------------------------------------------------------*/
 void SysTick_Handler(void) {
-  usTicks++;
+  msTicks++;
 }
 
 /*----------------------------------------------------------------------------
@@ -78,6 +66,6 @@ void Delay (uint32_t dlyTicks) {
 	// 100000us = 0.1s
 	// 1000000us = 1s
 
-  curTicks = usTicks;
-  while ((usTicks - curTicks) < dlyTicks);
+  curTicks = msTicks;
+  while ((msTicks - curTicks) < dlyTicks);
 }

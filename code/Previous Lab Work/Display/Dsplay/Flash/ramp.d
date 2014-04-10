@@ -1,1 +1,10 @@
 .\flash\ramp.o: ramp.c
+.\flash\ramp.o: C:\Keil\ARM\Inc\ST\STM32F4xx\STM32F4xx.h
+.\flash\ramp.o: C:\Keil\ARM\CMSIS\Include\core_cm4.h
+.\flash\ramp.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\flash\ramp.o: C:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+.\flash\ramp.o: C:\Keil\ARM\CMSIS\Include\core_cmFunc.h
+.\flash\ramp.o: C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h
+.\flash\ramp.o: C:\Keil\ARM\Inc\ST\STM32F4xx\system_stm32f4xx.h
+.\flash\ramp.o: main.h
+.\flash\ramp.o: ramp.h
