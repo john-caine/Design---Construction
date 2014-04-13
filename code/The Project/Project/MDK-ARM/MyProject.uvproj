@@ -165,7 +165,7 @@
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
-            <DriverSelection>4105</DriverSelection>
+            <DriverSelection>4103</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>STLink\ST-LINKIII-KEIL_SWO.dll</Flash2>
@@ -434,11 +434,6 @@
               <FilePath>..\main_2.c</FilePath>
             </File>
             <File>
-              <FileName>ramp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\ramp.c</FilePath>
-            </File>
-            <File>
               <FileName>Sqaure.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Sqaure.c</FilePath>
@@ -447,6 +442,11 @@
               <FileName>SWT.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\SWT.c</FilePath>
+            </File>
+            <File>
+              <FileName>DAC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\DAC.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -502,6 +502,11 @@
               <FileName>stm32f4xx_exti.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.c</FilePath>
             </File>
           </Files>
         </Group>

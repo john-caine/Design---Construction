@@ -34,11 +34,12 @@
 .\myproject\main_2.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h
 .\myproject\main_2.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h
 .\myproject\main_2.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h
+.\myproject\main_2.o: ..\..\Utilities\STM32F4-Discovery\stm32f4_discovery.h
 .\myproject\main_2.o: ..\main_2.h
 .\myproject\main_2.o: ..\LED.h
 .\myproject\main_2.o: ..\SWT.h
 .\myproject\main_2.o: ..\LCD.h
 .\myproject\main_2.o: ..\Sqaure.h
-.\myproject\main_2.o: ..\ramp.h
+.\myproject\main_2.o: ..\DAC.h
 .\myproject\main_2.o: ..\DDS.h
 .\myproject\main_2.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h

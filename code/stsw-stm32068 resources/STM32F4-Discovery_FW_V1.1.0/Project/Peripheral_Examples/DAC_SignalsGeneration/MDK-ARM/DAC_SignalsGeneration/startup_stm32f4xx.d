@@ -1,1 +1,1 @@
-.\DAC_SignalsGeneration\startup_stm32f4xx.o: ..\..\..\..\Libraries\CMSIS\ST\STM32F4xx\Source\Templates\arm\startup_stm32f4xx.s
+.\dac_signalsgeneration\startup_stm32f4xx.o: ..\..\..\..\Libraries\CMSIS\ST\STM32F4xx\Source\Templates\arm\startup_stm32f4xx.s

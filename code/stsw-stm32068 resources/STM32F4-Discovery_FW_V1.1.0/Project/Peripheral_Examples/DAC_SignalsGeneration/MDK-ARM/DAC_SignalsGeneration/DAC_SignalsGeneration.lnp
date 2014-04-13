@@ -1,5 +1,18 @@
---cpu Cortex-M4.fp ".\dac_signalsgeneration\main.o" ".\dac_signalsgeneration\stm32f4xx_it.o" ".\dac_signalsgeneration\system_stm32f4xx.o" ".\dac_signalsgeneration\stm32f4_discovery.o" ".\dac_signalsgeneration\stm32f4xx_rcc.o" ".\dac_signalsgeneration\misc.o" ".\dac_signalsgeneration\stm32f4xx_gpio.o" ".\dac_signalsgeneration\stm32f4xx_syscfg.o" ".\dac_signalsgeneration\stm32f4xx_exti.o" ".\dac_signalsgeneration\stm32f4xx_dma.o" ".\dac_signalsgeneration\stm32f4xx_dac.o" ".\dac_signalsgeneration\stm32f4xx_tim.o" ".\dac_signalsgeneration\startup_stm32f4xx.o" 
---library_type=microlib --strict --scatter ".\DAC_SignalsGeneration\DAC_SignalsGeneration.sct" 
---summary_stderr --info summarysizes --map --xref --callgraph --symbols 
---info sizes --info totals --info unused --info veneers 
- --list ".\DAC_SignalsGeneration\DAC_SignalsGeneration.map" -o .\DAC_SignalsGeneration\DAC_SignalsGeneration.axf
+--cpu Cortex-M4.fp
+".\dac_signalsgeneration\main.o"
+".\dac_signalsgeneration\stm32f4xx_it.o"
+".\dac_signalsgeneration\system_stm32f4xx.o"
+".\dac_signalsgeneration\stm32f4_discovery.o"
+".\dac_signalsgeneration\stm32f4xx_rcc.o"
+".\dac_signalsgeneration\misc.o"
+".\dac_signalsgeneration\stm32f4xx_gpio.o"
+".\dac_signalsgeneration\stm32f4xx_syscfg.o"
+".\dac_signalsgeneration\stm32f4xx_exti.o"
+".\dac_signalsgeneration\stm32f4xx_dma.o"
+".\dac_signalsgeneration\stm32f4xx_dac.o"
+".\dac_signalsgeneration\stm32f4xx_tim.o"
+".\dac_signalsgeneration\startup_stm32f4xx.o"
+--library_type=microlib --strict --scatter ".\DAC_SignalsGeneration\DAC_SignalsGeneration.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\DAC_SignalsGeneration\DAC_SignalsGeneration.map" -o .\DAC_SignalsGeneration\DAC_SignalsGeneration.axf

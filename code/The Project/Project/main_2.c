@@ -7,16 +7,18 @@
  *----------------------------------------------------------------------------*/
 
 #include "STM32F4xx.h"
+#include "stm32f4_discovery.h"
 #include "main_2.h"
 #include "LED.h"
 #include "SWT.h"
 #include "LCD.h"
 #include "Sqaure.h"
-#include "ramp.h"
+#include "DAC.h"
 #include "DDS.h"
 #include <stdio.h>
 
 double currentFrequency = 1000;
+double increment = 1;
 int function = WAVE_GENERATION;
 
 /*----------------------------------------------------------------------------
@@ -30,11 +32,15 @@ int main (void) {
     while (1);                                  /* Capture error              */
   }
 	
+	// Enable interrupts for the device
+	__enable_irq();
+	
   // Initialise Required Pins
 	BTN_Init();   
   SWTS_Init();
   LCD_Initpins();
 	DDS_Init();
+	DACs_Init();
 	
 	// Turn the LCD on
 	LCD_DriverOn();
@@ -43,64 +49,75 @@ int main (void) {
 	LCD_DriverOn();
 	LCD_On(1);
 	Delay(2);
+	LCD_Clear();
 	
 	//Initialise the DDS for sine & square waves
 	DDS_Default_Init();
 	
+	// Initialise the DACs for Triangle & Noise generation
+	DAC_Ch2_TriangleConfig();
+	DAC_Ch1_NoiseConfig();
+	
+	LCD_GotoXY(0,0);
+	LCD_PutS("Testing");
+	
 	// Set up intterupts for the blue user button - ie the menu
-	Config_menu_interrupt();
+	//STM_EVAL_PBInit(BUTTON_USER, BUTTON_MODE_EXTI);
+	//Config_menu_interrupt();
+	
+	//EXTI_GenerateSWInterrupt(EXTI_Line0);
 	
 	// Check for switch presses to chnage DDS fequency
 	while(1) {
 		uint32_t switchsState = SWT_Get();
 		
 		if (switchsState == (1UL << 8)) {
-			currentFrequency = currentFrequency + 0.01;
-			DDS_Set(currentFrequency);
+			increment = 0.01;
+			LCD_Clear();
+			LCD_GotoXY(0, 0);
+			LCD_PutS("Inc = 0.01");
 		}
 		else if (switchsState == (1UL << 9)) {
-			currentFrequency = currentFrequency + 1;
-			DDS_Set(currentFrequency);
+			increment = 1;
+			LCD_Clear();
+			LCD_GotoXY(0, 0);
+			LCD_PutS("Inc = 1");
 		}
 		else if (switchsState == (1UL << 10)) {
-			currentFrequency = currentFrequency + 100;
-			DDS_Set(currentFrequency);
+			increment = 100;
+			LCD_Clear();
+			LCD_GotoXY(0, 0);
+			LCD_PutS("Inc = 100");
 		}
 		else if (switchsState == (1UL << 11)) {
-			currentFrequency = currentFrequency + 1000;
-			DDS_Set(currentFrequency);
+			increment = 1000;
+			LCD_Clear();
+			LCD_GotoXY(0, 0);
+			LCD_PutS("Inc = 1000");
 		}
 		else if (switchsState == (1UL << 12)) {
-			currentFrequency = currentFrequency + 100000;
-			DDS_Set(currentFrequency);
+			increment = 100000;
+			LCD_Clear();
+			LCD_GotoXY(0, 0);
+			LCD_PutS("Inc = 10000");
 		}
 		else if (switchsState == (1UL << 13)) {
-			currentFrequency = currentFrequency + 1000000;
-			DDS_Set(currentFrequency);
+			increment = 1000000;
+			LCD_Clear();
+			LCD_GotoXY(0, 0);
+			LCD_PutS("Inc = 1000000");
 		}
-		else if ((switchsState == (1UL << 15)) && (switchsState == (1UL << 13))) {
-			currentFrequency = currentFrequency - 1000000;
+		else if (switchsState == (1UL << 14)) {
+			currentFrequency = currentFrequency - increment;
 			DDS_Set(currentFrequency);
+			LCD_GotoXY(0, 1);
+			LCD_PutS("Freq = ");
 		}
-		else if ((switchsState == (1UL << 15)) && (switchsState == (1UL << 12))) {
-			currentFrequency = currentFrequency - 100000;
+		else if (switchsState == (1UL << 15)) {
+			currentFrequency = currentFrequency + increment;
 			DDS_Set(currentFrequency);
-		}
-		else if ((switchsState == (1UL << 15)) && (switchsState == (1UL << 11))) {
-			currentFrequency = currentFrequency - 1000;
-			DDS_Set(currentFrequency);
-		}
-		else if ((switchsState == (1UL << 15)) && (switchsState == (1UL << 10))) {
-			currentFrequency = currentFrequency - 100;
-			DDS_Set(currentFrequency);
-		}
-		else if ((switchsState == (1UL << 15)) && (switchsState == (1UL << 9))) {
-			currentFrequency = currentFrequency - 1;
-			DDS_Set(currentFrequency);
-		}
-		else if ((switchsState == (1UL << 15)) && (switchsState == (1UL << 8))) {
-			currentFrequency = currentFrequency - 0.1;
-			DDS_Set(currentFrequency);
+			LCD_GotoXY(0, 1);
+			LCD_PutS("Freq = ");
 		}
 	};
 }
@@ -118,20 +135,33 @@ void SysTick_Handler(void) {
  *----------------------------------------------------------------------------*/
 void Delay (uint32_t dlyTicks) {                                              
   uint32_t curTicks;
-	
-	// 1000us = 1ms
-	// 10000us = 10ms
-	// 100000us = 0.1s
-	// 1000000us = 1s
 
   curTicks = msTicks;
   while ((msTicks - curTicks) < dlyTicks);
 }
 
 void Config_menu_interrupt(void) {
-	EXTI->IMR |= (1UL << 0); 				// Mask EXTI 0 line
-	EXTI->RTSR |= (1UL << 0);				// Set interrupt for rising edges
-	SYSCFG->EXTICR[1] &= 0xFFFFFFF0;		// Set EXTI 0 to GPIOA 0
+    EXTI_InitTypeDef EXTI_InitStructure;
+		NVIC_InitTypeDef NVIC_InitStructure;
+	
+		RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
+	
+	  /* Connect EXTI Line0 to GPIOA Pin 0*/
+    SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOA, EXTI_PinSource0);
+
+    /* Configure EXTI line0 */
+    EXTI_InitStructure.EXTI_Line = EXTI_Line0;
+    EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+    EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  
+    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+    EXTI_Init(&EXTI_InitStructure);
+
+    /* Enable and set EXTI Line0 Interrupt to the lowest priority */
+    NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x01;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x01;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure); 
 }
 
  void EXTI0_IRQHandler(void) {
@@ -164,5 +194,5 @@ void Config_menu_interrupt(void) {
 			//Triangle_frequency(1000);
 		}
 		
-		EXTI->PR |= (1 << 0);					// Clear the pending bit to signal IRQ finished
+	EXTI_ClearITPendingBit(EXTI_Line0);				// Clear the pending bit to signal IRQ finished
 }

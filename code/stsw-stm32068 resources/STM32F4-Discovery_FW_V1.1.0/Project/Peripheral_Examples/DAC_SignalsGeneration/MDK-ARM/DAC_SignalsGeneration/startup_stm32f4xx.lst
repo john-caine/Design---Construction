@@ -841,8 +841,8 @@ ARM Macro Assembler    Page 13
   425 0000001C                 END
               00000000 
               00000000 
-Command Line: --debug --xref --cpu=Cortex-M4.fp --apcs=interwork --depend=.\DAC
-_SignalsGeneration\startup_stm32f4xx.d -o.\DAC_SignalsGeneration\startup_stm32f
+Command Line: --debug --xref --cpu=Cortex-M4.fp --apcs=interwork --depend=.\dac
+_signalsgeneration\startup_stm32f4xx.d -o.\dac_signalsgeneration\startup_stm32f
 
 
 
@@ -850,9 +850,9 @@ ARM Macro Assembler    Page 14
 
 
 4xx.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\ST\S
-TM32F4xx --predefine="__MICROLIB SETA 1" --list=.\DAC_SignalsGeneration\startup
-_stm32f4xx.lst ..\..\..\..\Libraries\CMSIS\ST\STM32F4xx\Source\Templates\arm\st
-artup_stm32f4xx.s
+TM32F4xx --predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1" --list=.\d
+ac_signalsgeneration\startup_stm32f4xx.lst ..\..\..\..\Libraries\CMSIS\ST\STM32
+F4xx\Source\Templates\arm\startup_stm32f4xx.s
 
 
 
@@ -2282,4 +2282,4 @@ ates\arm\startup_stm32f4xx.s
 ates\arm\startup_stm32f4xx.s
 Comment: __main used once
 2 symbols
-443 symbols in table
+444 symbols in table

@@ -6,9 +6,9 @@
 ".\myproject\lcd.o"
 ".\myproject\led.o"
 ".\myproject\main_2.o"
-".\myproject\ramp.o"
 ".\myproject\sqaure.o"
 ".\myproject\swt.o"
+".\myproject\dac.o"
 ".\myproject\stm32f4_discovery.o"
 ".\myproject\misc.o"
 ".\myproject\stm32f4xx_gpio.o"
@@ -18,6 +18,7 @@
 ".\myproject\stm32f4xx_syscfg.o"
 ".\myproject\stm32f4xx_tim.o"
 ".\myproject\stm32f4xx_exti.o"
+".\myproject\stm32f4xx_dac.o"
 ".\myproject\startup_stm32f4xx.o"
 --library_type=microlib --strict --scatter ".\MyProject\MyProject.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
