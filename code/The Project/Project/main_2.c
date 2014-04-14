@@ -15,6 +15,7 @@
 #include "Sqaure.h"
 #include "DAC.h"
 #include "DDS.h"
+#include "FreqMeter.h"
 #include <stdio.h>
 
 double currentFrequency = 1000;
@@ -25,8 +26,11 @@ int function = WAVE_GENERATION;
   MAIN function
  *----------------------------------------------------------------------------*/
 int main (void) {
-
-  SystemCoreClockUpdate();                      /* Get Core Clock Frequency   */
+ 
+	char Freq_Tmp[15];
+	char DC_Tmp[15];
+	
+	SystemCoreClockUpdate();                      /* Get Core Clock Frequency   */
   
 	if (SysTick_Config(SystemCoreClock / 1000)) {  /* SysTick 1 msec interrupts  */
     while (1);                                  /* Capture error              */
@@ -59,6 +63,7 @@ int main (void) {
 	DAC_Ch1_NoiseConfig();
 	
 	LCD_GotoXY(0,0);
+	Delay(1);
 	LCD_PutS("Testing");
 	
 	// Set up intterupts for the blue user button - ie the menu
@@ -67,9 +72,24 @@ int main (void) {
 	
 	//EXTI_GenerateSWInterrupt(EXTI_Line0);
 	
+	DDS_Set(10000);
+	
+	Freq_Meter_Init();
+	
 	// Check for switch presses to chnage DDS fequency
 	while(1) {
+		
 		uint32_t switchsState = SWT_Get();
+		
+		LCD_Clear();
+		Delay(1);
+		LCD_GotoXY(0, 0);
+		sprintf(Freq_Tmp, "Freq = %d", Frequency);
+		LCD_PutS(Freq_Tmp);
+		Delay(1);
+		LCD_GotoXY(0, 1);
+		sprintf(DC_Tmp, "D/C = %d", DutyCycle);
+		LCD_PutS(DC_Tmp);
 		
 		if (switchsState == (1UL << 8)) {
 			increment = 0.01;

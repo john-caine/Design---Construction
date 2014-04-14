@@ -9,6 +9,7 @@
 ".\myproject\sqaure.o"
 ".\myproject\swt.o"
 ".\myproject\dac.o"
+".\myproject\freqmeter.o"
 ".\myproject\stm32f4_discovery.o"
 ".\myproject\misc.o"
 ".\myproject\stm32f4xx_gpio.o"

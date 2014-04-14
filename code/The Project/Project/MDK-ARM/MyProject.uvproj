@@ -48,7 +48,7 @@
           <OutputName>MyProject</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>1</CreateHexFile>
+          <CreateHexFile>0</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\MyProject\</ListingPath>
@@ -133,7 +133,7 @@
             <UseTarget>1</UseTarget>
             <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
             <RunToMain>1</RunToMain>
-            <RestoreBreakpoints>1</RestoreBreakpoints>
+            <RestoreBreakpoints>0</RestoreBreakpoints>
             <RestoreWatchpoints>1</RestoreWatchpoints>
             <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
             <RestoreFunctions>0</RestoreFunctions>
@@ -447,6 +447,11 @@
               <FileName>DAC.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\DAC.c</FilePath>
+            </File>
+            <File>
+              <FileName>FreqMeter.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FreqMeter.c</FilePath>
             </File>
           </Files>
         </Group>
