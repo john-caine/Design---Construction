@@ -68,7 +68,7 @@ void TIM_Config(void)
   GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_AF;
   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-  GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_UP ;
+  GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_DOWN ;
   GPIO_Init(GPIOB, &GPIO_InitStructure);
   
   /* Connect TIM pin to AF2 */
@@ -107,16 +107,6 @@ void TIM4_IRQHandler(void){
 		DutyCycle = 0;
 		Frequency = 0;
   }
-	
-//	LCD_Clear();
-//	Delay(1);
-//	LCD_GotoXY(0, 0);
-//	sprintf(Freq_Tmp, "Freq = %d", Frequency);
-//	LCD_PutS(Freq_Tmp);
-//	Delay(1);
-//	LCD_GotoXY(0, 1);
-//	sprintf(DC_Tmp, "D/C = %d", DutyCycle);
-//	LCD_PutS(DC_Tmp);
 	
 	/* Clear TIM4 Capture compare interrupt pending bit */
   TIM_ClearITPendingBit(TIM4, TIM_IT_CC2);

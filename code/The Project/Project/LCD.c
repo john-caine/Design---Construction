@@ -138,27 +138,34 @@ void LCD_Init (void) {
 	
 	Delay(20);
 	
-	LCD_DataWrite( 0x20 );
+	LCD_DataWrite( 0x20 ); 
 	LCD_Clk();
 	Delay(1);
 	LCD_Clk();
 	Delay(1);
 	LCD_Clk();
-	
-	Delay(20);
 	
 	// Function Set: 4 bit mode, 1/16 duty, 5x8 font, 2 lines
-	LCD_Write(0x28);
+	LCD_Write(0x28); //0010 1000
+	Delay(1);
 	
-	// Display ON/OFF Control: ON
-	LCD_Write(0x0C);
+	// Display ON/OFF Control: ON, Cursor(+ blink) OFF
+	LCD_Write(0x0C); //0000 1100
+	Delay(1);
+	
+	// Display clear
+	LCD_Write(0x01);
+	Delay(2);
 	
 	// Entry Mode Set: Increment
-	LCD_Write(0x06);
+	LCD_Write(0x06); //0000 0110
+	//Delay(1);
 	
 	// Clear Display
 	/* LCD_Clear();
   Delay(100000); */
+	
+	Delay(10);
 }
 
 

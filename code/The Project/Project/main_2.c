@@ -26,9 +26,6 @@ int function = WAVE_GENERATION;
   MAIN function
  *----------------------------------------------------------------------------*/
 int main (void) {
- 
-	char Freq_Tmp[15];
-	char DC_Tmp[15];
 	
 	SystemCoreClockUpdate();                      /* Get Core Clock Frequency   */
   
@@ -55,10 +52,8 @@ int main (void) {
 	Delay(2);
 	LCD_Clear();
 	
-	//Initialise the DDS for sine & square waves
-	DDS_Default_Init();
-	
-	// Initialise the DACs for Triangle & Noise generation
+	//Initialise components to defaults
+	DDS_Default_Init();	
 	DAC_Ch2_TriangleConfig();
 	DAC_Ch1_NoiseConfig();
 	
@@ -67,64 +62,57 @@ int main (void) {
 	LCD_PutS("Testing");
 	
 	// Set up intterupts for the blue user button - ie the menu
-	//STM_EVAL_PBInit(BUTTON_USER, BUTTON_MODE_EXTI);
+	STM_EVAL_PBInit(BUTTON_USER, BUTTON_MODE_EXTI);
 	//Config_menu_interrupt();
 	
-	//EXTI_GenerateSWInterrupt(EXTI_Line0);
+	DDS_Set(5000);
 	
-	DDS_Set(10000);
 	
-	Freq_Meter_Init();
-	
-	// Check for switch presses to chnage DDS fequency
-	while(1) {
+	while(function == WAVE_GENERATION) {
 		
-		uint32_t switchsState = SWT_Get();
+		uint32_t switchsState;
 		
 		LCD_Clear();
-		Delay(1);
 		LCD_GotoXY(0, 0);
-		sprintf(Freq_Tmp, "Freq = %d", Frequency);
-		LCD_PutS(Freq_Tmp);
-		Delay(1);
-		LCD_GotoXY(0, 1);
-		sprintf(DC_Tmp, "D/C = %d", DutyCycle);
-		LCD_PutS(DC_Tmp);
+		LCD_PutS("SQUARE&SIN WAVES");
+		
+		// Check for switch presses to change DDS fequency
+		switchsState = SWT_Get();
 		
 		if (switchsState == (1UL << 8)) {
 			increment = 0.01;
 			LCD_Clear();
-			LCD_GotoXY(0, 0);
+			LCD_GotoXY(0, 1);
 			LCD_PutS("Inc = 0.01");
 		}
 		else if (switchsState == (1UL << 9)) {
 			increment = 1;
 			LCD_Clear();
-			LCD_GotoXY(0, 0);
+			LCD_GotoXY(0, 1);
 			LCD_PutS("Inc = 1");
 		}
 		else if (switchsState == (1UL << 10)) {
 			increment = 100;
 			LCD_Clear();
-			LCD_GotoXY(0, 0);
+			LCD_GotoXY(0, 1);
 			LCD_PutS("Inc = 100");
 		}
 		else if (switchsState == (1UL << 11)) {
 			increment = 1000;
 			LCD_Clear();
-			LCD_GotoXY(0, 0);
+			LCD_GotoXY(0, 1);
 			LCD_PutS("Inc = 1000");
 		}
 		else if (switchsState == (1UL << 12)) {
 			increment = 100000;
 			LCD_Clear();
-			LCD_GotoXY(0, 0);
+			LCD_GotoXY(0, 1);
 			LCD_PutS("Inc = 10000");
 		}
 		else if (switchsState == (1UL << 13)) {
 			increment = 1000000;
 			LCD_Clear();
-			LCD_GotoXY(0, 0);
+			LCD_GotoXY(0, 1);
 			LCD_PutS("Inc = 1000000");
 		}
 		else if (switchsState == (1UL << 14)) {
@@ -140,6 +128,55 @@ int main (void) {
 			LCD_PutS("Freq = ");
 		}
 	};
+	
+	while(function == FREQUENCY_METER) {
+		
+		uint32_t switchsState;
+		
+//		LCD_Clear();
+//		LCD_GotoXY(0, 0);
+//		LCD_PutS("FREQUENCY METER");
+		
+		// Check for switch presses to chnage DDS fequency
+		switchsState = SWT_Get();
+		
+		if (switchsState == (1UL << 15)) {
+			char Freq_Tmp[15];
+			char DC_Tmp[15];
+			
+			Freq_Meter_Init();
+			
+			LCD_Clear();
+			Delay(1);
+			LCD_GotoXY(0, 0);
+			sprintf(Freq_Tmp, "Freq = %d", Frequency);
+			LCD_PutS(Freq_Tmp);
+			Delay(1);
+			LCD_GotoXY(0, 1);
+			sprintf(DC_Tmp, "D/C = %d", DutyCycle);
+			LCD_PutS(DC_Tmp);
+		}
+	}
+	
+	while(function == TRIANGLE_GENERATION) {
+		LCD_Clear();
+		LCD_GotoXY(0, 0);
+		LCD_PutS("TRIANGLE WAVE");
+		
+		//TODO - change frequency using switches
+	}
+	
+	while(function == NOISE_GENERATION) {
+		LCD_Clear();
+		LCD_GotoXY(0, 0);
+		LCD_PutS("NOISE GENERATION");
+	}
+	
+	while(function == ARBITORY_FUNCTION) {
+		LCD_Clear();
+		LCD_GotoXY(0, 0);
+		LCD_PutS("ARBITORY FUNC");
+	}
 }
 
 volatile uint32_t msTicks;                      /* counts 1ms timeTicks       */
@@ -178,40 +215,33 @@ void Config_menu_interrupt(void) {
 
     /* Enable and set EXTI Line0 Interrupt to the lowest priority */
     NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x01;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x01;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F; // chnaged from 0x01
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;				// chnaged from 0x01
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure); 
 }
 
  void EXTI0_IRQHandler(void) {
-	LCD_Clear();
-	LCD_GotoXY(0, 0);
 	 
 	if (function == WAVE_GENERATION) 
 		{
 			function = FREQUENCY_METER;
-			LCD_PutS("Frequency Meter");
-			// Frequency_meter_init();
+			
+//			LCD_Clear();
+			LCD_GotoXY(0, 0);
+			LCD_PutS("FREQUENCY METER");
 		}
 	else if (function == FREQUENCY_METER)
 		{
 			function = NOISE_GENERATION;
-			LCD_PutS("Noise Generation");
-			// Generate_Noise();
 		}
 	else if (function == NOISE_GENERATION)
 		{
 			function = ARBITORY_FUNCTION;
-			LCD_PutS("Arbitory Function");
-			// Generate_arbitory_function();
 		}
 	else if (function == ARBITORY_FUNCTION)
 		{
 			function = WAVE_GENERATION;
-			LCD_PutS("Wave Generation");
-			DDS_Set(1000);
-			//Triangle_frequency(1000);
 		}
 		
 	EXTI_ClearITPendingBit(EXTI_Line0);				// Clear the pending bit to signal IRQ finished

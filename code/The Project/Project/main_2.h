@@ -8,9 +8,10 @@
 #define __MAIN_H
 
 #define WAVE_GENERATION 0
-#define FREQUENCY_METER 1
-#define NOISE_GENERATION 2
-#define ARBITORY_FUNCTION 3
+#define TRIANGLE_GENERATION 1
+#define FREQUENCY_METER 2
+#define NOISE_GENERATION 3
+#define ARBITORY_FUNCTION 4
 
 extern void SysTick_Handler (void);
 extern void Delay (uint32_t dlyTicks);
