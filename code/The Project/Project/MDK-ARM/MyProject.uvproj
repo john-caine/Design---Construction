@@ -453,6 +453,11 @@
               <FileType>1</FileType>
               <FilePath>..\FreqMeter.c</FilePath>
             </File>
+            <File>
+              <FileName>hd44780.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\hd44780.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

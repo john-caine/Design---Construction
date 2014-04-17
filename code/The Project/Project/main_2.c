@@ -16,12 +16,14 @@
 #include "DAC.h"
 #include "DDS.h"
 #include "FreqMeter.h"
+#include "hd44780.h"
 #include <stdio.h>
 
-double currentFrequency = 1000;
-double increment = 1;
-int function = WAVE_GENERATION;
-unsigned char updateFlag = 0;
+volatile uint32_t msTicks;                      /* counts 1ms timeTicks       */
+__IO double currentFrequency = 1000;
+__IO double increment = 1;
+__IO int function = WAVE_GENERATION;
+__IO unsigned char updateFlag = 1;
 
 /*----------------------------------------------------------------------------
   MAIN function
@@ -33,227 +35,304 @@ int main (void) {
 	if (SysTick_Config(SystemCoreClock / 1000)) {  /* SysTick 1 msec interrupts  */
     while (1);                                  /* Capture error              */
   }
+
 	
-	// Enable interrupts for the device
-	//__enable_irq();
 	
   // Initialise Required Pins
 	BTN_Init();   
   SWTS_Init();
-  LCD_Initpins();
-	DDS_Init();
-	DACs_Init();
+	LED_Init();
 	
-	// Turn the LCD on
-	LCD_DriverOn();
-	Delay(10);
-	LCD_Init();
-	LCD_DriverOn();
-	LCD_On(1);
-	Delay(2);
-	LCD_Clear();
-	
-	//Initialise components to defaults
-	DDS_Default_Init();	
-	DAC_Ch2_TriangleConfig();
-	DAC_Ch1_NoiseConfig();
-	
-	LCD_GotoXY(0,0);
-	Delay(1);
-	LCD_PutS("TestingA");
-	
-	// Set up intterupts for the blue user button - ie the menu
-	STM_EVAL_PBInit(BUTTON_USER, BUTTON_MODE_EXTI);
-	//Config_menu_interrupt();
-	
-	DDS_Set(5000);
-	
-	
-	while(1) 
-	{	
-		if((function == WAVE_GENERATION) && (updateFlag == 1))
-		{
-			uint32_t switchsState;
-			updateFlag = 0;
-			
-			LCD_GotoXY(0, 0);
-			LCD_PutS("SQUARE&SIN WAVES");
-			
-			// Check for switch presses to change DDS fequency
-			/*
-			switchsState = SWT_Get();
-			
-			if (switchsState == (1UL << 8)) {
-				increment = 0.01;
-				LCD_GotoXY(0, 1);
-				LCD_PutS("Inc = 0.01");
-			}
-			else if (switchsState == (1UL << 9)) {
-				increment = 1;
-				LCD_GotoXY(0, 1);
-				LCD_PutS("Inc = 1");
-			}
-			else if (switchsState == (1UL << 10)) {
-				increment = 100;
-				LCD_GotoXY(0, 1);
-				LCD_PutS("Inc = 100");
-			}
-			else if (switchsState == (1UL << 11)) {
-				increment = 1000;
-				LCD_GotoXY(0, 1);
-				LCD_PutS("Inc = 1000");
-			}
-			else if (switchsState == (1UL << 12)) {
-				increment = 100000;
-				LCD_GotoXY(0, 1);
-				LCD_PutS("Inc = 10000");
-			}
-			else if (switchsState == (1UL << 13)) {
-				increment = 1000000;
-				LCD_GotoXY(0, 1);
-				LCD_PutS("Inc = 1000000");
-			}
-			else if (switchsState == (1UL << 14)) {
-				currentFrequency = currentFrequency - increment;
-				DDS_Set(currentFrequency);
-				LCD_GotoXY(0, 1);
-				LCD_PutS("Freq = ");
-			}
-			else if (switchsState == (1UL << 15)) {
-				currentFrequency = currentFrequency + increment;
-				DDS_Set(currentFrequency);
-				LCD_GotoXY(0, 1);
-				LCD_PutS("Freq = ");
-			}
-			*/
-		}
-		else if((function == FREQUENCY_METER) && (updateFlag == 1))
-		{		
-			uint32_t switchsState;
-			updateFlag = 0;
-			LCD_GotoXY(0, 0);
-			LCD_PutS("FREQUENCY METER");
-			
-			// Check for switch presses to chnage DDS fequency
-			/*
-			switchsState = SWT_Get();
-			
-			if (switchsState == (1UL << 15)) {
-				char Freq_Tmp[15];
-				char DC_Tmp[15];
-				
-				Freq_Meter_Init();
-				
-				Delay(1);
-				LCD_GotoXY(0, 0);
-				sprintf(Freq_Tmp, "Freq = %d", Frequency);
-				LCD_PutS(Freq_Tmp);
-				Delay(1);
-				LCD_GotoXY(0, 1);
-				sprintf(DC_Tmp, "D/C = %d", DutyCycle);
-				LCD_PutS(DC_Tmp);
-			}
-			*/
-		}
-		else if((function == NOISE_GENERATION) && (updateFlag == 1))
-		{
-			updateFlag = 0;
-			LCD_GotoXY(0, 0);
-			LCD_PutS("NOISE GENERATION");
-		}
-		else if((function == ARBITORY_FUNCTION) && (updateFlag == 1))
-		{
-			updateFlag = 0;
-			LCD_GotoXY(0, 0);
-			LCD_PutS("ARBITORY FUNC");
-		}
+	while(1) {
+		
+		LED_On(0);
+		Delay(1000);
+		LED_Off(0);
+		Delay(1000);
 	}
 }
+	
+//	init_lcd_driver();
+//  hd44780_init(GPIOD, GPIOB, GPIO_Pin_0, GPIO_Pin_1, GPIO_Pin_2, GPIO_Pin_4,
+//								GPIO_Pin_5, GPIO_Pin_6, GPIO_Pin_7, HD44780_LINES_2, HD44780_FONT_5x8);
+//	DDS_Init();
+//	DACs_Init();
+//	
+//	
+//	//Initialise components to defaults
+//	DDS_Default_Init();	
+//	DAC_Ch2_TriangleConfig();
+//	DAC_Ch1_NoiseConfig();
+//	
+//	// Turn on LCD display
+//	hd44780_display(true, false, false);
+//	
+//	// Set up intterupts for the blue user button - ie the menu
+//	//STM_EVAL_PBInit(BUTTON_USER, BUTTON_MODE_EXTI);
+//	Config_menu_interrupt();
+//	
+//	hd44780_print("first test");
+//	
+//	while(1) {}
+//	
+//	while(1) 
+//	{	
+//		if(function == WAVE_GENERATION) 
+//		{
+//			uint32_t switchsState;
+//			
+//			if(updateFlag == 1) 
+//			{
+//				updateFlag = 0;
+//				hd44780_position(0, 0);
+//				hd44780_print("WAVE GENERATION");
+//			}
+//			
+//			// Check for switch presses to change DDS fequency
+//			switchsState = SWT_Get();
+//			
+//			if (switchsState == (1UL << 8)) {
+//				LED_All_Off();
+//				LED_On(0);
+//				increment = 0.01;
+//				hd44780_clear();
+//				hd44780_position(1, 0);
+//				hd44780_print("Inc = 0.01    Hz");
+//				updateFlag = 1;
+//			}
+//			else if (switchsState == (1UL << 9)) {
+//				LED_All_Off();
+//				LED_On(1);
+//				increment = 1;
+//				hd44780_clear();
+//				hd44780_position(1, 0);
+//				hd44780_print("Inc = 1       Hz");
+//				updateFlag = 1;
+//			}
+//			else if (switchsState == (1UL << 10)) {
+//				LED_All_Off();
+//				LED_On(2);
+//				increment = 100;
+//				hd44780_clear();
+//				hd44780_position(1, 0);
+//				hd44780_print("Inc = 100     Hz");
+//				updateFlag = 1;
+//			}
+//			else if (switchsState == (1UL << 11)) {
+//				LED_All_Off();
+//				LED_On(3);
+//				increment = 1000;
+//				hd44780_clear();
+//				hd44780_position(1, 0);
+//				hd44780_print("Inc = 1000    Hz");
+//				updateFlag = 1;
 
-volatile uint32_t msTicks;                      /* counts 1ms timeTicks       */
-/*----------------------------------------------------------------------------
-  SysTick_Handler
- *----------------------------------------------------------------------------*/
-void SysTick_Handler(void) {
-  msTicks++;
-}
+//			}
+//			else if (switchsState == (1UL << 12)) {
+//				LED_All_Off();
+//				LED_On(4);
+//				increment = 100000;
+//				hd44780_clear();
+//				hd44780_position(1, 0);
+//				hd44780_print("Inc = 10000   Hz");
+//				updateFlag = 1;
+//			}
+//			else if (switchsState == (1UL << 13)) {
+//				LED_All_Off();
+//				LED_On(5);
+//				increment = 1000000;
+//				hd44780_clear();
+//				hd44780_position(1, 0);
+//				hd44780_print("Inc = 1000000 Hz");
+//				updateFlag = 1;
+//			}
+//			else if (switchsState == (1UL << 14)) {
+//				char tmp_string[15];
+//				
+//				LED_On(6);
+//				
+//				currentFrequency = currentFrequency - increment;
+//				if(currentFrequency < 0.01)
+//					currentFrequency = 0.01;
+//				DDS_Set(currentFrequency);
+//				
+//				sprintf(tmp_string, "Freq = %.2f", currentFrequency);
+//				hd44780_clear();
+//				hd44780_position(1, 0);
+//				hd44780_print(tmp_string);
+//				updateFlag = 1;
+//				
+//				LED_Off(6);
+//			}
+//			else if (switchsState == (1UL << 15)) {
+//				char tmp_string[15];
+//				
+//				LED_On(7);
+//				
+//				currentFrequency = currentFrequency + increment;
+//				if(currentFrequency > 35000000)
+//						currentFrequency = 35000000;
+//				DDS_Set(currentFrequency);
+//				
+//				sprintf(tmp_string, "Freq = %.2f ", currentFrequency);
+//				hd44780_clear();
+//				hd44780_position(1, 0);
+//				hd44780_print(tmp_string);
+//				updateFlag = 1;
+//				
+//				LED_Off(7);
+//			}
+//		}
+//		else if(function == FREQUENCY_METER)
+//		{		
+//			uint32_t switchsState;
+
+//			if(updateFlag == 1) 
+//			{
+//				updateFlag = 0;
+//				hd44780_position(0, 0);
+//				hd44780_print("FREQUENCY METER");
+//			}
+//			
+//			
+//			// Check for switch presses to capture frequency meter value
+//			switchsState = SWT_Get();
+//			
+//			if (switchsState == (1UL << 15)) {
+//				char Freq_Tmp[15];
+//				char DC_Tmp[15];
+//				LED_On(7);
+//				Freq_Meter_Init();
+//				hd44780_clear();
+//				hd44780_position(0, 0);
+//				sprintf(Freq_Tmp, "Freq = %d", Frequency);
+//				hd44780_print(Freq_Tmp);
+//				hd44780_position(0, 14);
+//				hd44780_print("Hz");
+//				Delay(1);
+//				hd44780_position(1, 0);
+//				sprintf(DC_Tmp, "Duty = %d", DutyCycle);
+//				hd44780_print(DC_Tmp);
+//				LED_Off(7);
+//			}
+//		}
+//		else if(function == NOISE_GENERATION)
+//		{
+//			if(updateFlag == 1) 
+//			{
+//				updateFlag = 0;
+//				hd44780_position(0, 0);
+//				hd44780_print("NOISE GENERATION");
+//			}
+//			
+//			DAC_Noise_On();
+//		}
+//		else if(function == ARBITORY_FUNCTION)
+//		{
+//			if(updateFlag == 1) 
+//			{
+//				updateFlag = 0;
+//				hd44780_position(0, 0);
+//				hd44780_print("ARBITRARY FUNC");
+//			}
+//		}
+//	}
+//}
+
+///*----------------------------------------------------------------------------
+//  SysTick_Handler
+// *----------------------------------------------------------------------------*/
+//void SysTick_Handler(void) {
+//  msTicks++;
+//}
 
 /*----------------------------------------------------------------------------
   delays number of tick Systicks (happens every 1 ms)
  *----------------------------------------------------------------------------*/
 void Delay (uint32_t dlyTicks) {                                              
-  uint32_t curTicks;
-	uint32_t temp;
-  uint32_t InnerTemp;
-	curTicks = msTicks;
-  //while ((msTicks - curTicks) < dlyTicks);
+	__IO uint32_t temp;
+  __IO uint32_t InnerTemp;
+
 	for(temp = 0 ; temp < dlyTicks; temp++)
 	{
-		for(InnerTemp = 0 ; InnerTemp < 1680; InnerTemp++)
+		InnerTemp = 0;
+		
+		for(InnerTemp = 0 ; InnerTemp == 2001; InnerTemp++)
 		{
-			
+			__NOP;
 		}		
 	}
 }
 
-void Config_menu_interrupt(void) {
-    EXTI_InitTypeDef EXTI_InitStructure;
-		NVIC_InitTypeDef NVIC_InitStructure;
-	
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
-	
-	  /* Connect EXTI Line0 to GPIOA Pin 0*/
-    SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOA, EXTI_PinSource0);
+///*----------------------------------------------------------------------------
+//  delays number of tick Systicks (happens every 1 ms)
+// *----------------------------------------------------------------------------*/
+//void Delay (uint32_t dlyTicks) {                                              
+//  uint32_t curTicks;
+//	curTicks = msTicks;
+//	
+//  while ((msTicks - curTicks) < dlyTicks);
+//}
 
-    /* Configure EXTI line0 */
-    EXTI_InitStructure.EXTI_Line = EXTI_Line0;
-    EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
-    EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  
-    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
-    EXTI_Init(&EXTI_InitStructure);
+//void Config_menu_interrupt(void) {
+//    EXTI_InitTypeDef EXTI_InitStructure;
+//		NVIC_InitTypeDef NVIC_InitStructure;
+//	
+//		RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
+//	
+//	  /* Connect EXTI Line0 to GPIOA Pin 0*/
+//    SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOA, EXTI_PinSource0);
 
-    /* Enable and set EXTI Line0 Interrupt to the lowest priority */
-    NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F; // changed from 0x01
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;				// changed from 0x01
-    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-    NVIC_Init(&NVIC_InitStructure); 
-}
+//    /* Configure EXTI line0 */
+//    EXTI_InitStructure.EXTI_Line = EXTI_Line0;
+//    EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+//    EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  
+//    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+//    EXTI_Init(&EXTI_InitStructure);
 
- void EXTI0_IRQHandler(void) {
-	 
-		LCD_DriverOn();
-		LCD_On(1);
-		Delay(20);
-		//LCD_Clear();
-		LCD_GotoXY(0, 0);
-		LCD_PutS("                ");
-	 
-	 if (function == WAVE_GENERATION) 
-		{
-			updateFlag = 1;
-			function = FREQUENCY_METER;
-		}
-	else if (function == FREQUENCY_METER)
-		{
-			updateFlag = 1;
-			function = NOISE_GENERATION;
-		}
-	else if (function == NOISE_GENERATION)
-		{
-			updateFlag = 1;
-			function = ARBITORY_FUNCTION;
-		}
-	else if (function == ARBITORY_FUNCTION)
-		{
-			updateFlag = 1;
-			function = WAVE_GENERATION;
-		}
-	else
-		{
-			updateFlag = 1;
-			function = WAVE_GENERATION;
-		}
-		
-	EXTI_ClearITPendingBit(EXTI_Line0);				// Clear the pending bit to signal IRQ finished
-}
+//    /* Enable and set EXTI Line0 Interrupt to the lowest priority */
+//    NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;
+//    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F; // changed from 0x01
+//    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;				// changed from 0x01
+//    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+//    NVIC_Init(&NVIC_InitStructure); 
+//}
+
+// void EXTI0_IRQHandler(void) {
+//	 
+//		hd44780_clear();
+//		
+//	 hd44780_print("Testing test");
+//	 
+//	 if (function == WAVE_GENERATION) 
+//		{
+//			updateFlag = 1;
+//			function = FREQUENCY_METER;
+//			LED_All_Off();
+//			Delay(100);
+//		}
+//	else if (function == FREQUENCY_METER)
+//		{
+//			updateFlag = 1;
+//			function = NOISE_GENERATION;
+//			Delay(100);
+//		}
+//	else if (function == NOISE_GENERATION)
+//		{
+//			updateFlag = 1;
+//			function = ARBITORY_FUNCTION;
+//			DAC_Noise_Off();
+//		}
+//	else if (function == ARBITORY_FUNCTION)
+//		{
+//			updateFlag = 1;
+//			function = WAVE_GENERATION;
+//		}
+//	else
+//		{
+//			updateFlag = 1;
+//			function = WAVE_GENERATION;
+//		}
+//		
+//	EXTI_ClearITPendingBit(EXTI_Line0);				// Clear the pending bit to signal IRQ finished
+//}

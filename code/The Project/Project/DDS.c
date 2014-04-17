@@ -18,22 +18,22 @@ void DDS_Init (void) {
 
   GPIOE->MODER    &= ~((3UL << 2* 3) |       
                        (3UL << 2* 4) |
-                       (3UL << 2* 5) );   /* PC.0,3-4 are outputs               */
+                       (3UL << 2* 5) );   /* PE.0,3-4 are outputs               */
   GPIOE->MODER    |=  ((1UL << 2* 3) |
                        (1UL << 2* 4) |
                        (1UL << 2* 5) );
   GPIOE->OTYPER   &= ~((1UL <<    3) |
                        (1UL <<    4) |
-                       (1UL <<    5) );   /* PC.0,3-4 are output Push-Pull     */
+                       (1UL <<    5) );   /* PE.0,3-4 are output Push-Pull     */
   GPIOE->OSPEEDR  &= ~((3UL << 2* 3) |
                        (3UL << 2* 4) |
-                       (3UL << 2* 5) );   /* PC.0,3-4 are 50MHz Fast Speed     */
+                       (3UL << 2* 5) );   /* PE.0,3-4 are 50MHz Fast Speed     */
   GPIOE->OSPEEDR  |=  ((2UL << 2* 3) |
                        (2UL << 2* 4) |
                        (2UL << 2* 5) ); 
   GPIOE->PUPDR    &= ~((3UL << 2* 3) |
                        (3UL << 2* 4) |
-                       (3UL << 2* 5) );   /* PC.0,3-4 are Pull up              */
+                       (3UL << 2* 5) );   /* PE.0,3-4 are Pull up              */
   GPIOE->PUPDR    |=  ((1UL << 2* 3) |
                        (1UL << 2* 4) |
                        (1UL << 2* 5) ); 

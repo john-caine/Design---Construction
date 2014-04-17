@@ -291,12 +291,16 @@ void LCD_Clk (void) {
 void LCD_Write (unsigned int value) {
 
   LCD_DataClear();
+	Delay(10);
 	LCD_DataWrite(value & 0xF0);
+	Delay(10);
 	LCD_Clk();
 	Delay(1);
 	
 	LCD_DataClear();
+	Delay(10);
 	LCD_DataWrite((value<<4) & 0xF0);
+	Delay(10);
 	LCD_Clk();
 	Delay(1);
 }
@@ -314,6 +318,7 @@ void LCD_cursor_on (void) {
  *----------------------------------------------------------------------------*/
 void LCD_Clear (void) {
 
+	LCD_RWoff();
   LCD_RSoff();
 	LCD_Write(0x01);
 	Delay(10);
@@ -337,9 +342,14 @@ void LCD_PutChar (unsigned int c) {
 void LCD_PutS (const char * s) {
 
   LCD_RSon();
-	while(*s)
+	Delay(10);
+	LCD_RWoff();
+	Delay(10);
+	while(*s) {
 		LCD_Write(*s++);
-	Delay(2);
+		Delay(20);
+	}
+	Delay(10);
 }
 
 

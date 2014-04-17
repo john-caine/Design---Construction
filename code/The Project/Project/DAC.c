@@ -70,8 +70,8 @@ void DAC_Ch2_TriangleConfig(void)
   DAC_InitStructure.DAC_OutputBuffer = DAC_OutputBuffer_Enable;
   DAC_Init(DAC_Channel_2, &DAC_InitStructure);
 
-  /* Enable DAC Channel2 */
-  DAC_Cmd(DAC_Channel_2, ENABLE);
+//  /* Enable DAC Channel2 */
+//  DAC_Cmd(DAC_Channel_2, ENABLE);
 
   /* Set DAC channel2 DHR12RD register */
   DAC_SetChannel2Data(DAC_Align_12b_R, 0x100);
@@ -86,9 +86,31 @@ void DAC_Ch1_NoiseConfig(void)
   DAC_InitStructure.DAC_OutputBuffer = DAC_OutputBuffer_Enable;
   DAC_Init(DAC_Channel_1, &DAC_InitStructure);
 
-  /* Enable DAC Channel1 */
-  DAC_Cmd(DAC_Channel_1, ENABLE);
+//  /* Enable DAC Channel1 */
+//  DAC_Cmd(DAC_Channel_1, ENABLE);
 
   /* Set DAC Channel1 DHR12L register */
   DAC_SetChannel1Data(DAC_Align_12b_L, 0x7FF0);
+}
+
+void DAC_Noise_On(void)
+{
+	/* Enable DAC Channel1 */
+  DAC_Cmd(DAC_Channel_1, ENABLE);
+}
+
+void DAC_Noise_Off(void)
+{
+	/* Disable DAC Channel1 */
+  DAC_Cmd(DAC_Channel_1, DISABLE);
+}
+
+void DAC_Triangle_On(void) {
+	/* Enable DAC Channel2 */
+  DAC_Cmd(DAC_Channel_2, ENABLE);
+}
+
+void DAC_Traingle_Off(void) {
+	/* Disable DAC Channel2 */
+  DAC_Cmd(DAC_Channel_2, DISABLE);
 }
