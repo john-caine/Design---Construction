@@ -21,6 +21,7 @@
 double currentFrequency = 1000;
 double increment = 1;
 int function = WAVE_GENERATION;
+unsigned char updateFlag = 0;
 
 /*----------------------------------------------------------------------------
   MAIN function
@@ -34,7 +35,7 @@ int main (void) {
   }
 	
 	// Enable interrupts for the device
-	__enable_irq();
+	//__enable_irq();
 	
   // Initialise Required Pins
 	BTN_Init();   
@@ -59,7 +60,7 @@ int main (void) {
 	
 	LCD_GotoXY(0,0);
 	Delay(1);
-	LCD_PutS("Testing");
+	LCD_PutS("TestingA");
 	
 	// Set up intterupts for the blue user button - ie the menu
 	STM_EVAL_PBInit(BUTTON_USER, BUTTON_MODE_EXTI);
@@ -68,114 +69,104 @@ int main (void) {
 	DDS_Set(5000);
 	
 	
-	while(function == WAVE_GENERATION) {
-		
-		uint32_t switchsState;
-		
-		LCD_Clear();
-		LCD_GotoXY(0, 0);
-		LCD_PutS("SQUARE&SIN WAVES");
-		
-		// Check for switch presses to change DDS fequency
-		switchsState = SWT_Get();
-		
-		if (switchsState == (1UL << 8)) {
-			increment = 0.01;
-			LCD_Clear();
-			LCD_GotoXY(0, 1);
-			LCD_PutS("Inc = 0.01");
-		}
-		else if (switchsState == (1UL << 9)) {
-			increment = 1;
-			LCD_Clear();
-			LCD_GotoXY(0, 1);
-			LCD_PutS("Inc = 1");
-		}
-		else if (switchsState == (1UL << 10)) {
-			increment = 100;
-			LCD_Clear();
-			LCD_GotoXY(0, 1);
-			LCD_PutS("Inc = 100");
-		}
-		else if (switchsState == (1UL << 11)) {
-			increment = 1000;
-			LCD_Clear();
-			LCD_GotoXY(0, 1);
-			LCD_PutS("Inc = 1000");
-		}
-		else if (switchsState == (1UL << 12)) {
-			increment = 100000;
-			LCD_Clear();
-			LCD_GotoXY(0, 1);
-			LCD_PutS("Inc = 10000");
-		}
-		else if (switchsState == (1UL << 13)) {
-			increment = 1000000;
-			LCD_Clear();
-			LCD_GotoXY(0, 1);
-			LCD_PutS("Inc = 1000000");
-		}
-		else if (switchsState == (1UL << 14)) {
-			currentFrequency = currentFrequency - increment;
-			DDS_Set(currentFrequency);
-			LCD_GotoXY(0, 1);
-			LCD_PutS("Freq = ");
-		}
-		else if (switchsState == (1UL << 15)) {
-			currentFrequency = currentFrequency + increment;
-			DDS_Set(currentFrequency);
-			LCD_GotoXY(0, 1);
-			LCD_PutS("Freq = ");
-		}
-	};
-	
-	while(function == FREQUENCY_METER) {
-		
-		uint32_t switchsState;
-		
-//		LCD_Clear();
-//		LCD_GotoXY(0, 0);
-//		LCD_PutS("FREQUENCY METER");
-		
-		// Check for switch presses to chnage DDS fequency
-		switchsState = SWT_Get();
-		
-		if (switchsState == (1UL << 15)) {
-			char Freq_Tmp[15];
-			char DC_Tmp[15];
+	while(1) 
+	{	
+		if((function == WAVE_GENERATION) && (updateFlag == 1))
+		{
+			uint32_t switchsState;
+			updateFlag = 0;
 			
-			Freq_Meter_Init();
-			
-			LCD_Clear();
-			Delay(1);
 			LCD_GotoXY(0, 0);
-			sprintf(Freq_Tmp, "Freq = %d", Frequency);
-			LCD_PutS(Freq_Tmp);
-			Delay(1);
-			LCD_GotoXY(0, 1);
-			sprintf(DC_Tmp, "D/C = %d", DutyCycle);
-			LCD_PutS(DC_Tmp);
+			LCD_PutS("SQUARE&SIN WAVES");
+			
+			// Check for switch presses to change DDS fequency
+			/*
+			switchsState = SWT_Get();
+			
+			if (switchsState == (1UL << 8)) {
+				increment = 0.01;
+				LCD_GotoXY(0, 1);
+				LCD_PutS("Inc = 0.01");
+			}
+			else if (switchsState == (1UL << 9)) {
+				increment = 1;
+				LCD_GotoXY(0, 1);
+				LCD_PutS("Inc = 1");
+			}
+			else if (switchsState == (1UL << 10)) {
+				increment = 100;
+				LCD_GotoXY(0, 1);
+				LCD_PutS("Inc = 100");
+			}
+			else if (switchsState == (1UL << 11)) {
+				increment = 1000;
+				LCD_GotoXY(0, 1);
+				LCD_PutS("Inc = 1000");
+			}
+			else if (switchsState == (1UL << 12)) {
+				increment = 100000;
+				LCD_GotoXY(0, 1);
+				LCD_PutS("Inc = 10000");
+			}
+			else if (switchsState == (1UL << 13)) {
+				increment = 1000000;
+				LCD_GotoXY(0, 1);
+				LCD_PutS("Inc = 1000000");
+			}
+			else if (switchsState == (1UL << 14)) {
+				currentFrequency = currentFrequency - increment;
+				DDS_Set(currentFrequency);
+				LCD_GotoXY(0, 1);
+				LCD_PutS("Freq = ");
+			}
+			else if (switchsState == (1UL << 15)) {
+				currentFrequency = currentFrequency + increment;
+				DDS_Set(currentFrequency);
+				LCD_GotoXY(0, 1);
+				LCD_PutS("Freq = ");
+			}
+			*/
 		}
-	}
-	
-	while(function == TRIANGLE_GENERATION) {
-		LCD_Clear();
-		LCD_GotoXY(0, 0);
-		LCD_PutS("TRIANGLE WAVE");
-		
-		//TODO - change frequency using switches
-	}
-	
-	while(function == NOISE_GENERATION) {
-		LCD_Clear();
-		LCD_GotoXY(0, 0);
-		LCD_PutS("NOISE GENERATION");
-	}
-	
-	while(function == ARBITORY_FUNCTION) {
-		LCD_Clear();
-		LCD_GotoXY(0, 0);
-		LCD_PutS("ARBITORY FUNC");
+		else if((function == FREQUENCY_METER) && (updateFlag == 1))
+		{		
+			uint32_t switchsState;
+			updateFlag = 0;
+			LCD_GotoXY(0, 0);
+			LCD_PutS("FREQUENCY METER");
+			
+			// Check for switch presses to chnage DDS fequency
+			/*
+			switchsState = SWT_Get();
+			
+			if (switchsState == (1UL << 15)) {
+				char Freq_Tmp[15];
+				char DC_Tmp[15];
+				
+				Freq_Meter_Init();
+				
+				Delay(1);
+				LCD_GotoXY(0, 0);
+				sprintf(Freq_Tmp, "Freq = %d", Frequency);
+				LCD_PutS(Freq_Tmp);
+				Delay(1);
+				LCD_GotoXY(0, 1);
+				sprintf(DC_Tmp, "D/C = %d", DutyCycle);
+				LCD_PutS(DC_Tmp);
+			}
+			*/
+		}
+		else if((function == NOISE_GENERATION) && (updateFlag == 1))
+		{
+			updateFlag = 0;
+			LCD_GotoXY(0, 0);
+			LCD_PutS("NOISE GENERATION");
+		}
+		else if((function == ARBITORY_FUNCTION) && (updateFlag == 1))
+		{
+			updateFlag = 0;
+			LCD_GotoXY(0, 0);
+			LCD_PutS("ARBITORY FUNC");
+		}
 	}
 }
 
@@ -188,13 +179,21 @@ void SysTick_Handler(void) {
 }
 
 /*----------------------------------------------------------------------------
-  delays number of tick Systicks (happens every 1 us)
+  delays number of tick Systicks (happens every 1 ms)
  *----------------------------------------------------------------------------*/
 void Delay (uint32_t dlyTicks) {                                              
   uint32_t curTicks;
-
-  curTicks = msTicks;
-  while ((msTicks - curTicks) < dlyTicks);
+	uint32_t temp;
+  uint32_t InnerTemp;
+	curTicks = msTicks;
+  //while ((msTicks - curTicks) < dlyTicks);
+	for(temp = 0 ; temp < dlyTicks; temp++)
+	{
+		for(InnerTemp = 0 ; InnerTemp < 1680; InnerTemp++)
+		{
+			
+		}		
+	}
 }
 
 void Config_menu_interrupt(void) {
@@ -215,32 +214,44 @@ void Config_menu_interrupt(void) {
 
     /* Enable and set EXTI Line0 Interrupt to the lowest priority */
     NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F; // chnaged from 0x01
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;				// chnaged from 0x01
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F; // changed from 0x01
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;				// changed from 0x01
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure); 
 }
 
  void EXTI0_IRQHandler(void) {
 	 
-	if (function == WAVE_GENERATION) 
+		LCD_DriverOn();
+		LCD_On(1);
+		Delay(20);
+		//LCD_Clear();
+		LCD_GotoXY(0, 0);
+		LCD_PutS("                ");
+	 
+	 if (function == WAVE_GENERATION) 
 		{
+			updateFlag = 1;
 			function = FREQUENCY_METER;
-			
-//			LCD_Clear();
-			LCD_GotoXY(0, 0);
-			LCD_PutS("FREQUENCY METER");
 		}
 	else if (function == FREQUENCY_METER)
 		{
+			updateFlag = 1;
 			function = NOISE_GENERATION;
 		}
 	else if (function == NOISE_GENERATION)
 		{
+			updateFlag = 1;
 			function = ARBITORY_FUNCTION;
 		}
 	else if (function == ARBITORY_FUNCTION)
 		{
+			updateFlag = 1;
+			function = WAVE_GENERATION;
+		}
+	else
+		{
+			updateFlag = 1;
 			function = WAVE_GENERATION;
 		}
 		

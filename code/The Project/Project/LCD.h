@@ -19,6 +19,8 @@
 /* LCD Definitions */
 #define LCD_NUM     8                        /* Number of user LCDs          */
 
+#include "STM32F4xx.h"
+
 extern void Delay (uint32_t dlyTicks);
 
 extern void LCD_Initpins (void);

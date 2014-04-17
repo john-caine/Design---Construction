@@ -339,7 +339,7 @@ void LCD_PutS (const char * s) {
   LCD_RSon();
 	while(*s)
 		LCD_Write(*s++);
-	Delay(1);
+	Delay(2);
 }
 
 
