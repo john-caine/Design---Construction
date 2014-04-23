@@ -9,9 +9,7 @@
 #include "STM32F4xx.h"
 #include "main_2.h"
 #include "DAC.h"
-
-#define DAC_DHR12R2_ADDRESS    0x40007414
-#define DAC_DHR8R1_ADDRESS     0x40007410
+#include "ArbitoryFunc.h"
 
 // CMSIS data structure for DAC
 DAC_InitTypeDef  DAC_InitStructure;
@@ -34,7 +32,8 @@ void DACs_Init(void)
   GPIO_Init(GPIOA, &GPIO_InitStructure);
 
   /* TIM6 Configuration ------------------------------------------------------*/
-  TIM6_Config();  
+  TIM6_Config();
+	TIM5_Config();
 	
 	/* Set DAC registers to default values */
 	DAC_DeInit(); 

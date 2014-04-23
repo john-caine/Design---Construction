@@ -399,11 +399,6 @@
           <GroupName>User</GroupName>
           <Files>
             <File>
-              <FileName>system_stm32f4xx.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\system_stm32f4xx.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\stm32f4xx_it.c</FilePath>
@@ -457,6 +452,11 @@
               <FileName>hd44780.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\hd44780.c</FilePath>
+            </File>
+            <File>
+              <FileName>ArbitoryFunc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\ArbitoryFunc.c</FilePath>
             </File>
           </Files>
         </Group>

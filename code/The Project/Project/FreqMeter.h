@@ -9,9 +9,15 @@
 
 #include "STM32F4xx.h"
 
-extern __IO uint16_t DutyCycle;
-extern __IO uint16_t Frequency;
-extern __IO uint16_t IC2Value;
+#define LESS_THAN_1 0
+#define ONE_TO_100 1
+#define HUNDRED_TO_10K 2
+#define MORE_THAN_10K 3
+
+extern volatile int freqRange;
+extern volatile uint16_t DutyCycle;
+extern volatile uint16_t Frequency;
+extern volatile uint16_t IC2Value;
 
 extern void TIM_Config(void);
 extern void Freq_Meter_Init(void);

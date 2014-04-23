@@ -234,7 +234,7 @@ void hd44780_clear(void) {
 
 	task_add(HD44780_WRITE, true, HD44780_CLEAR, 2);
 	task_add(HD44780_WAIT_NOT_BUSY, NONE, NONE, NONE);
-	//Delay(6);
+	Delay(6);
 }
 
 /**
@@ -472,4 +472,19 @@ void TIM7_IRQHandler(void) {
 
 	exec();
 	TIM_ClearITPendingBit(HD44780_TIMER, TIM_IT_Update );
+}
+
+/**
+ * Send 2 strings (1 for each line) to the LCD
+ *
+ * @param line1_string	String to be displayed on LCD line 1
+ * @param line2_string 	String to be displayed on LCD line 2
+ */
+void hd44780_print_lines(const char* line1_string, const char* line2_string) {
+
+	hd44780_clear();
+	hd44780_position(0, 0);
+	hd44780_print(line1_string);
+	hd44780_position(1, 0);
+	hd44780_print(line2_string);
 }

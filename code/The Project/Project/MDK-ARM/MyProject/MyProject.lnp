@@ -1,5 +1,4 @@
 --cpu Cortex-M4.fp
-".\myproject\system_stm32f4xx.o"
 ".\myproject\stm32f4xx_it.o"
 ".\myproject\timer.o"
 ".\myproject\dds.o"
@@ -11,6 +10,7 @@
 ".\myproject\dac.o"
 ".\myproject\freqmeter.o"
 ".\myproject\hd44780.o"
+".\myproject\arbitoryfunc.o"
 ".\myproject\stm32f4_discovery.o"
 ".\myproject\misc.o"
 ".\myproject\stm32f4xx_gpio.o"

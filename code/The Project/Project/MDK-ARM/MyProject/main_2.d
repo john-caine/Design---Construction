@@ -45,4 +45,5 @@
 .\myproject\main_2.o: ..\FreqMeter.h
 .\myproject\main_2.o: ..\hd44780.h
 .\myproject\main_2.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
+.\myproject\main_2.o: ..\ArbitoryFunc.h
 .\myproject\main_2.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h

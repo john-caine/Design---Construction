@@ -4,22 +4,25 @@
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
 D:\GitHub\Design---Construction\code\The Project\Project\MDK-ARM\MyProject.uvproj
-Project File Date:  04/17/2014
+Project File Date:  04/23/2014
 
 <h2>Output:</h2>
-Build target 'MyProject'
+Rebuild target 'MyProject'
+compiling stm32f4xx_it.c...
+compiling timer.c...
+compiling DDS.c...
+compiling LCD.c...
+compiling LED.c...
 compiling main_2.c...
-..\main_2.c(262): warning:  #174-D: expression has no effect
-                        __NOP;
-..\main_2.c: 1 warning, 0 errors
-linking...
-Program Size: Code=2396 RO-data=456 RW-data=56 ZI-data=19424  
-".\MyProject\MyProject.axf" - 0 Error(s), 1 Warning(s).
-Load "D:\\GitHub\\Design---Construction\\code\\The Project\\Project\\MDK-ARM\\MyProject\\MyProject.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
-ng:  #188-D: enumerated type mixed with another type
+compiling Sqaure.c...
+compiling SWT.c...
+compiling DAC.c...
+..\DAC.c(35): warning:  #223-D: function "TIM5_Config" declared implicitly
+        TIM5_Config();
+..\DAC.c: 1 warning, 0 errors
+compiling FreqMeter.c...
+compiling hd44780.c...
+..\hd44780.c(145): warning:  #188-D: enumerated type mixed with another type
         GPIO_WriteBit(Lcd_Conf.gpio_config, Lcd_Conf.rs, !reg);
 ..\hd44780.c(146): warning:  #188-D: enumerated type mixed with another type
         GPIO_WriteBit(Lcd_Conf.gpio_data, Lcd_Conf.db7, (data & 0x8) >> 3);
@@ -30,6 +33,7 @@ ng:  #188-D: enumerated type mixed with another type
 ..\hd44780.c(149): warning:  #188-D: enumerated type mixed with another type
         GPIO_WriteBit(Lcd_Conf.gpio_data, Lcd_Conf.db4, (data & 0x1));
 ..\hd44780.c: 5 warnings, 0 errors
+compiling ArbitoryFunc.c...
 compiling stm32f4_discovery.c...
 compiling misc.c...
 compiling stm32f4xx_gpio.c...
@@ -42,29 +46,21 @@ compiling stm32f4xx_exti.c...
 compiling stm32f4xx_dac.c...
 assembling startup_stm32f4xx.s...
 linking...
-Program Size: Code=2392 RO-data=456 RW-data=56 ZI-data=19424  
-".\MyProject\MyProject.axf" - 0 Error(s), 6 Warning(s).
-Load "D:\\GitHub\\Design---Construction\\code\\The Project\\Project\\MDK-ARM\\MyProject\\MyProject.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
-ot created
-
-linking...
-Program Size: Code=10600 RO-data=768 RW-data=116 ZI-data=19444  
-".\MyProject\MyProject.axf" - 0 Error(s), 8 Warning(s).
-Load "D:\\GitHub\\Design---Construction\\code\\The Project\\Project\\MDK-ARM\\MyProject\\MyProject.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
-ion\\code\\The Project\\Project\\MDK-ARM\\MyProject\\MyProject.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
-
-mage symbols.
-Finished: 1 information, 0 warning and 1 error messages.
+.\MyProject\MyProject.axf: Error: L6200E: Symbol function multiply defined (by arbitoryfunc.o and main_2.o).
+Not enough information to list image symbols.
+Not enough information to list the image map.
+Finished: 2 information, 0 warning and 1 error messages.
+".\MyProject\MyProject.axf" - 1 Error(s), 6 Warning(s).
+Target not created
+ol function multiply defined (by arbitoryfunc.o and main_2.o).
+Not enough information to list image symbols.
+Not enough information to list the image map.
+Finished: 2 information, 0 warning and 1 error messages.
+".\MyProject\MyProject.axf" - 1 Error(s), 8 Warning(s).
+Target not created
+ned (by arbitoryfunc.o and main_2.o).
+Not enough information to list image symbols.
+Not enough information to list the image map.
+Finished: 2 information, 0 warning and 1 error messages.
 ".\MyProject\MyProject.axf" - 1 Error(s), 10 Warning(s).
 Target not created
-Clean started: Project: 'MyProject'
-   deleting intermediate output files for target 'MyProject'

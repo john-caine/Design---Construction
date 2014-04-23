@@ -60,6 +60,7 @@ void hd44780_init(GPIO_TypeDef* gpio_data, GPIO_TypeDef* gpio_config,
         const u16 rs, const u16 rw, const u16 e,
 		const u16 db4, const u16 db5, const u16 db6, const u16 db7,
 		const hd44780_lines_t lines, const hd44780_font_t font);
+void hd44780_print_lines(const char* line1_string, const char* line2_string);
 
 #endif
 
