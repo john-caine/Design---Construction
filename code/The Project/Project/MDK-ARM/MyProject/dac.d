@@ -36,3 +36,4 @@
 .\myproject\dac.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h
 .\myproject\dac.o: ..\main_2.h
 .\myproject\dac.o: ..\DAC.h
+.\myproject\dac.o: ..\ArbitoryFunc.h

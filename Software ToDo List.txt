@@ -1,14 +1,10 @@
 D & C List of To Do Items
 
-1. fix sys_tick handler or implement a timer to do same
 5. work out how to adjust duty cycle of square wave so can do pulse generator
-6. ability to change range of frequency meter - ask Roger for ranges & prescaler values
-
 
 
 Tasks Remaining
 
-1. arbitrary function generator
 2. Amplitude modulation
 3. Frequency modulation
 4. Ability to change amplitude of waves by sending signals to digital pot
@@ -21,3 +17,15 @@ THINGS DONE
 3. make LCD show correct strings at correct times - DONE!
 7. put validation checks into frequencies for DDS - DONE!
 4. make LEDs light and stay lit when a button is pressed
+1. fix sys_tick handler or implement a timer to do same
+6. ability to change range of frequency meter - ask Roger for ranges & prescaler values
+1. arbitrary function generator
+
+
+
+PRESCALER VALUES & RANGES
+
+0.076-1		psc=0xf000 (61441)
+1-100		psc=0x0f00 (3841)
+100-10k		psc=0x000f (16)
+10k-1m		psc=0x0000 (1)

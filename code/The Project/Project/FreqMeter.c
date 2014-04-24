@@ -15,7 +15,8 @@
 
 TIM_ICInitTypeDef  TIM_ICInitStructure;
 volatile uint16_t DutyCycle;
-volatile uint16_t Frequency;
+volatile uint32_t Frequency;
+volatile double low_Frequency;
 volatile uint16_t IC2Value;
 
 void Freq_Meter_Init(void)
@@ -101,20 +102,20 @@ void TIM4_IRQHandler(void){
 		
 		/* Frequency computation TIM4 counter clock = (RCC_Clocks.HCLK_Frequency)/2 */
 		if(freqRange == LESS_THAN_1) {
-			Frequency = ((RCC_Clocks.HCLK_Frequency)/61441 / IC2Value);			/* 0.06 - 1 hz */
+			low_Frequency = (((RCC_Clocks.HCLK_Frequency)/2 / (double)IC2Value) / 61441);			/* 0.06 - 1 hz */
 		}
-		else if(freqRange == ONE_TO_100) {
-			Frequency = ((RCC_Clocks.HCLK_Frequency)/3841 / IC2Value);			/* 1 - 100 hz */
+		if(freqRange == ONE_TO_100) {
+			Frequency = (((RCC_Clocks.HCLK_Frequency)/2 / IC2Value) / 3841);			/* 1 - 100 hz */
 		}
-		else if(freqRange == HUNDRED_TO_10K) {
-			Frequency = ((RCC_Clocks.HCLK_Frequency)/16 / IC2Value);				/* 100 - 10000 hz */
+		if(freqRange == HUNDRED_TO_10K) {
+			Frequency = (((RCC_Clocks.HCLK_Frequency)/2 / IC2Value) / 16);				/* 100 - 10000 hz */
 		}
-		else if(freqRange == MORE_THAN_10K) {
-			Frequency = ((RCC_Clocks.HCLK_Frequency)/1 / IC2Value);					/* 10000 - ~10M hz */
+		if(freqRange == MORE_THAN_10K) {
+			Frequency = (((RCC_Clocks.HCLK_Frequency)/2 / IC2Value) / 1);					/* 10000 - ~10M hz */
 		}
-		else {
-			Frequency = ((RCC_Clocks.HCLK_Frequency)/2 / IC2Value);					/* DEFAULT - 1.28k - 1M hz */
-		}
+//		else {
+//			Frequency = ((RCC_Clocks.HCLK_Frequency)/2 / IC2Value);					/* DEFAULT - 1.28k - 1M hz */
+//		}
   }
   else
   {

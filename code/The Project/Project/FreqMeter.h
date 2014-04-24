@@ -16,7 +16,8 @@
 
 extern volatile int freqRange;
 extern volatile uint16_t DutyCycle;
-extern volatile uint16_t Frequency;
+extern volatile uint32_t Frequency;
+extern volatile double low_Frequency;
 extern volatile uint16_t IC2Value;
 
 extern void TIM_Config(void);

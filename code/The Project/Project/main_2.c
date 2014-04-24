@@ -50,8 +50,6 @@ int main (void) {
 	
 	//Initialise components to defaults
 	DDS_Default_Init();	
-	DAC_Ch2_TriangleConfig();
-	DAC_Ch1_NoiseConfig();
 	
 	// Turn on LCD display
 	hd44780_display(true, false, false);
@@ -61,6 +59,8 @@ int main (void) {
 	Config_menu_interrupt();
 	
 	hd44780_print("first test");
+	
+	Freq_Meter_Init();
 	
 	while(1) 
 	{	
@@ -167,24 +167,28 @@ int main (void) {
 				LED_All_Off();
 				LED_On(0);
 				freqRange = LESS_THAN_1;
+				TIM4->PSC = 0xF000;
 				hd44780_print_lines("FREQUENCY METER", "Range = <1");
 			}
 			else if (switchsState == (1UL << 9)) {
 				LED_All_Off();
 				LED_On(1);
 				freqRange = ONE_TO_100;
+				TIM4->PSC = 0x0F00;
 				hd44780_print_lines("FREQUENCY METER", "Range = 1-100");
 			}
 			else if (switchsState == (1UL << 10)) {
 				LED_All_Off();
 				LED_On(2);
 				freqRange = HUNDRED_TO_10K;
+				TIM4->PSC = 0x000F;
 				hd44780_print_lines("FREQUENCY METER", "Range = 100-10K");
 			}
 			else if (switchsState == (1UL << 11)) {
 				LED_All_Off();
 				LED_On(3);
 				freqRange = MORE_THAN_10K;
+				TIM4->PSC = 0x0000;
 				hd44780_print_lines("FREQUENCY METER", "Range = > 10K");
 			}
 			else if (switchsState == (1UL << 15)) {
@@ -193,9 +197,12 @@ int main (void) {
 				
 				LED_On(7);
 				
-				Freq_Meter_Init();
-				
-				sprintf(Freq_Tmp, "Freq = %d", Frequency);
+				if(freqRange == LESS_THAN_1){
+					sprintf(Freq_Tmp, "Freq = %.2f", low_Frequency);
+				} 
+				else {
+					sprintf(Freq_Tmp, "Freq = %d", Frequency);
+				}
 				sprintf(DC_Tmp, "Duty = %d", DutyCycle);
 				hd44780_print_lines(Freq_Tmp, DC_Tmp);
 				
@@ -212,6 +219,7 @@ int main (void) {
 				hd44780_print("NOISE GENERATION");
 			}
 			
+			DAC_Ch1_NoiseConfig();
 			DAC_Noise_On();
 		}
 		else if(function == ARBITORY_FUNCTION)
@@ -332,6 +340,8 @@ void Config_menu_interrupt(void) {
 		{
 			updateFlag = 1;
 			function = WAVE_GENERATION;
+			DAC_Noise_Off();
+			DAC_Arbitory_Off();
 		}
 		
 	EXTI_ClearITPendingBit(EXTI_Line0);				// Clear the pending bit to signal IRQ finished
