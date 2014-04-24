@@ -26,6 +26,7 @@ volatile double increment = 1;
 volatile int function = WAVE_GENERATION;
 volatile int freqRange = HUNDRED_TO_10K;
 volatile unsigned char updateFlag = 1;
+volatile int dutyCycle = 50;
 
 /*----------------------------------------------------------------------------
   MAIN function
@@ -50,6 +51,8 @@ int main (void) {
 	
 	//Initialise components to defaults
 	DDS_Default_Init();	
+	Freq_Meter_Init();
+	Pulse_Config();
 	
 	// Turn on LCD display
 	hd44780_display(true, false, false);
@@ -58,15 +61,13 @@ int main (void) {
 	//STM_EVAL_PBInit(BUTTON_USER, BUTTON_MODE_EXTI);
 	Config_menu_interrupt();
 	
-	hd44780_print("first test");
-	
-	Freq_Meter_Init();
-	
 	while(1) 
 	{	
 		if(function == WAVE_GENERATION) 
 		{
 			uint32_t switchsState;
+			
+			DDS_Default_Init();
 			
 			if(updateFlag == 1) 
 			{
@@ -235,6 +236,53 @@ int main (void) {
 			DAC_Ch1_ArbitoryConfig();
 			DAC_Arbitory_On();
 		}
+		else if(function == PULSE_GENERATOR)
+		{
+			uint32_t switchsState;
+			
+			if(updateFlag == 1) 
+			{
+				updateFlag = 0;
+				hd44780_clear();
+				hd44780_position(0, 0);
+				hd44780_print("PULSE GENERATOR");
+			}
+			
+			if (switchsState == (1UL << 14)) {
+				char tmp_string[15];
+				
+				LED_On(6);
+				
+				dutyCycle--;
+				
+				if(dutyCycle < 0)
+					dutyCycle = 0;
+				
+				PWM_SetDC(dutyCycle);
+				
+				sprintf(tmp_string, "Duty = %d %%", dutyCycle);
+				hd44780_print_lines("PULSE GENERATOR", tmp_string);
+				
+				LED_Off(6);
+			}
+			else if (switchsState == (1UL << 15)) {
+				char tmp_string[15];
+				
+				LED_On(7);
+				
+				dutyCycle++;
+				
+				if(dutyCycle > 100)
+					dutyCycle = 100;
+				
+				PWM_SetDC(dutyCycle);
+				
+				sprintf(tmp_string, "Duty = %d %%", dutyCycle);
+				hd44780_print_lines("PULSE GENERATOR", tmp_string);
+				
+				LED_Off(7);
+			}
+		}
 	}
 }
 
@@ -313,32 +361,33 @@ void Config_menu_interrupt(void) {
 
  void EXTI0_IRQHandler(void) {
 	 
+	 LED_All_Off();
+	 updateFlag = 1;
+	 
 	 if (function == WAVE_GENERATION) 
 		{
-			updateFlag = 1;
 			function = FREQUENCY_METER;
-			LED_All_Off();
 		}
 	else if (function == FREQUENCY_METER)
 		{
-			updateFlag = 1;
 			function = NOISE_GENERATION;
 		}
 	else if (function == NOISE_GENERATION)
 		{
-			updateFlag = 1;
 			function = ARBITORY_FUNCTION;
 			DAC_Noise_Off();
 		}
 	else if (function == ARBITORY_FUNCTION)
 		{
-			updateFlag = 1;
-			function = WAVE_GENERATION;
+			function = PULSE_GENERATOR;
 			DAC_Arbitory_Off();
 		}
+	else if (function == PULSE_GENERATOR)
+		{
+			function = WAVE_GENERATION;
+		}		
 	else
 		{
-			updateFlag = 1;
 			function = WAVE_GENERATION;
 			DAC_Noise_Off();
 			DAC_Arbitory_Off();

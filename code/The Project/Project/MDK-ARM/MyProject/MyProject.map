@@ -87,12 +87,12 @@ Section Cross References
     main_2.o(i.main) refers to dds.o(i.DDS_Init) for DDS_Init
     main_2.o(i.main) refers to dac.o(i.DACs_Init) for DACs_Init
     main_2.o(i.main) refers to dds.o(i.DDS_Default_Init) for DDS_Default_Init
+    main_2.o(i.main) refers to freqmeter.o(i.Freq_Meter_Init) for Freq_Meter_Init
     main_2.o(i.main) refers to hd44780.o(i.hd44780_display) for hd44780_display
     main_2.o(i.main) refers to main_2.o(i.Config_menu_interrupt) for Config_menu_interrupt
-    main_2.o(i.main) refers to hd44780.o(i.hd44780_print) for hd44780_print
-    main_2.o(i.main) refers to freqmeter.o(i.Freq_Meter_Init) for Freq_Meter_Init
     main_2.o(i.main) refers to hd44780.o(i.hd44780_clear) for hd44780_clear
     main_2.o(i.main) refers to hd44780.o(i.hd44780_position) for hd44780_position
+    main_2.o(i.main) refers to hd44780.o(i.hd44780_print) for hd44780_print
     main_2.o(i.main) refers to swt.o(i.SWT_Get) for SWT_Get
     main_2.o(i.main) refers to led.o(i.LED_All_Off) for LED_All_Off
     main_2.o(i.main) refers to led.o(i.LED_On) for LED_On
@@ -1270,29 +1270,29 @@ Image Symbol Table
     i.hd44780_print_lines                    0x08003610   Section        0  hd44780.o(i.hd44780_print_lines)
     i.init_lcd_driver                        0x08003638   Section        0  hd44780.o(i.init_lcd_driver)
     i.main                                   0x08003678   Section        0  main_2.o(i.main)
-    i.periph_get                             0x08003c6c   Section        0  hd44780.o(i.periph_get)
-    periph_get                               0x08003c6d   Thumb Code    60  hd44780.o(i.periph_get)
-    i.read_busy                              0x08003cbc   Section        0  hd44780.o(i.read_busy)
-    read_busy                                0x08003cbd   Thumb Code    96  hd44780.o(i.read_busy)
-    i.set_output                             0x08003d20   Section        0  hd44780.o(i.set_output)
-    set_output                               0x08003d21   Thumb Code   108  hd44780.o(i.set_output)
-    i.sqrt                                   0x08003d90   Section        0  sqrt.o(i.sqrt)
-    i.task_add                               0x08003e00   Section        0  hd44780.o(i.task_add)
-    task_add                                 0x08003e01   Thumb Code   126  hd44780.o(i.task_add)
-    i.task_del                               0x08003e8c   Section        0  hd44780.o(i.task_del)
-    task_del                                 0x08003e8d   Thumb Code    36  hd44780.o(i.task_del)
-    i.write                                  0x08003eb8   Section        0  hd44780.o(i.write)
-    write                                    0x08003eb9   Thumb Code   124  hd44780.o(i.write)
-    .constdata                               0x08003f38   Section      160  dds.o(.constdata)
-    .constdata                               0x08003fd8   Section       32  led.o(.constdata)
-    .constdata                               0x08003ff8   Section      256  arbitoryfunc.o(.constdata)
-    .constdata                               0x080040f8   Section      136  pow.o(.constdata)
-    bp                                       0x080040f8   Data          16  pow.o(.constdata)
-    dp_h                                     0x08004108   Data          16  pow.o(.constdata)
-    dp_l                                     0x08004118   Data          16  pow.o(.constdata)
-    L                                        0x08004128   Data          48  pow.o(.constdata)
-    P                                        0x08004158   Data          40  pow.o(.constdata)
-    .constdata                               0x08004180   Section        8  qnan.o(.constdata)
+    i.periph_get                             0x08003c60   Section        0  hd44780.o(i.periph_get)
+    periph_get                               0x08003c61   Thumb Code    60  hd44780.o(i.periph_get)
+    i.read_busy                              0x08003cb0   Section        0  hd44780.o(i.read_busy)
+    read_busy                                0x08003cb1   Thumb Code    96  hd44780.o(i.read_busy)
+    i.set_output                             0x08003d14   Section        0  hd44780.o(i.set_output)
+    set_output                               0x08003d15   Thumb Code   108  hd44780.o(i.set_output)
+    i.sqrt                                   0x08003d84   Section        0  sqrt.o(i.sqrt)
+    i.task_add                               0x08003df4   Section        0  hd44780.o(i.task_add)
+    task_add                                 0x08003df5   Thumb Code   126  hd44780.o(i.task_add)
+    i.task_del                               0x08003e80   Section        0  hd44780.o(i.task_del)
+    task_del                                 0x08003e81   Thumb Code    36  hd44780.o(i.task_del)
+    i.write                                  0x08003eac   Section        0  hd44780.o(i.write)
+    write                                    0x08003ead   Thumb Code   124  hd44780.o(i.write)
+    .constdata                               0x08003f2c   Section      160  dds.o(.constdata)
+    .constdata                               0x08003fcc   Section       32  led.o(.constdata)
+    .constdata                               0x08003fec   Section      256  arbitoryfunc.o(.constdata)
+    .constdata                               0x080040f0   Section      136  pow.o(.constdata)
+    bp                                       0x080040f0   Data          16  pow.o(.constdata)
+    dp_h                                     0x08004100   Data          16  pow.o(.constdata)
+    dp_l                                     0x08004110   Data          16  pow.o(.constdata)
+    L                                        0x08004120   Data          48  pow.o(.constdata)
+    P                                        0x08004150   Data          40  pow.o(.constdata)
+    .constdata                               0x08004178   Section        8  qnan.o(.constdata)
     .data                                    0x20000000   Section        8  timer.o(.data)
     .data                                    0x20000008   Section       32  main_2.o(.data)
     .data                                    0x20000028   Section       18  freqmeter.o(.data)
@@ -1590,13 +1590,13 @@ Image Symbol Table
     hd44780_print                            0x080035e5   Thumb Code    44  hd44780.o(i.hd44780_print)
     hd44780_print_lines                      0x08003611   Thumb Code    40  hd44780.o(i.hd44780_print_lines)
     init_lcd_driver                          0x08003639   Thumb Code    58  hd44780.o(i.init_lcd_driver)
-    main                                     0x08003679   Thumb Code  1478  main_2.o(i.main)
-    sqrt                                     0x08003d91   Thumb Code   110  sqrt.o(i.sqrt)
-    led_mask                                 0x08003fd8   Data          32  led.o(.constdata)
-    waveForm                                 0x08003ff8   Data         256  arbitoryfunc.o(.constdata)
-    __mathlib_zero                           0x08004180   Data           8  qnan.o(.constdata)
-    Region$$Table$$Base                      0x08004188   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x080041a8   Number         0  anon$$obj.o(Region$$Table)
+    main                                     0x08003679   Thumb Code  1466  main_2.o(i.main)
+    sqrt                                     0x08003d85   Thumb Code   110  sqrt.o(i.sqrt)
+    led_mask                                 0x08003fcc   Data          32  led.o(.constdata)
+    waveForm                                 0x08003fec   Data         256  arbitoryfunc.o(.constdata)
+    __mathlib_zero                           0x08004178   Data           8  qnan.o(.constdata)
+    Region$$Table$$Base                      0x08004180   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x080041a0   Number         0  anon$$obj.o(Region$$Table)
     CCR1_Val                                 0x20000000   Data           2  timer.o(.data)
     counter                                  0x20000004   Data           4  timer.o(.data)
     currentFrequency                         0x20000008   Data           8  main_2.o(.data)
@@ -1623,9 +1623,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000189
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00004210, Max: 0x00100000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00004208, Max: 0x00100000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x000041a8, Max: 0x00100000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x000041a0, Max: 0x00100000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1786,21 +1786,22 @@ Memory Map of the image
     0x080035e4   0x0000002c   Code   RO          744    i.hd44780_print     hd44780.o
     0x08003610   0x00000028   Code   RO          745    i.hd44780_print_lines  hd44780.o
     0x08003638   0x00000040   Code   RO          748    i.init_lcd_driver   hd44780.o
-    0x08003678   0x000005f4   Code   RO          497    i.main              main_2.o
-    0x08003c6c   0x00000050   Code   RO          749    i.periph_get        hd44780.o
-    0x08003cbc   0x00000064   Code   RO          750    i.read_busy         hd44780.o
-    0x08003d20   0x00000070   Code   RO          751    i.set_output        hd44780.o
-    0x08003d90   0x0000006e   Code   RO         3286    i.sqrt              m_wm.l(sqrt.o)
-    0x08003dfe   0x00000002   PAD
-    0x08003e00   0x0000008c   Code   RO          752    i.task_add          hd44780.o
-    0x08003e8c   0x0000002c   Code   RO          753    i.task_del          hd44780.o
-    0x08003eb8   0x00000080   Code   RO          754    i.write             hd44780.o
-    0x08003f38   0x000000a0   Data   RO          221    .constdata          dds.o
-    0x08003fd8   0x00000020   Data   RO          447    .constdata          led.o
-    0x08003ff8   0x00000100   Data   RO          878    .constdata          arbitoryfunc.o
-    0x080040f8   0x00000088   Data   RO         2978    .constdata          m_wm.l(pow.o)
-    0x08004180   0x00000008   Data   RO         3283    .constdata          m_wm.l(qnan.o)
-    0x08004188   0x00000020   Data   RO         3347    Region$$Table       anon$$obj.o
+    0x08003678   0x000005e8   Code   RO          497    i.main              main_2.o
+    0x08003c60   0x00000050   Code   RO          749    i.periph_get        hd44780.o
+    0x08003cb0   0x00000064   Code   RO          750    i.read_busy         hd44780.o
+    0x08003d14   0x00000070   Code   RO          751    i.set_output        hd44780.o
+    0x08003d84   0x0000006e   Code   RO         3286    i.sqrt              m_wm.l(sqrt.o)
+    0x08003df2   0x00000002   PAD
+    0x08003df4   0x0000008c   Code   RO          752    i.task_add          hd44780.o
+    0x08003e80   0x0000002c   Code   RO          753    i.task_del          hd44780.o
+    0x08003eac   0x00000080   Code   RO          754    i.write             hd44780.o
+    0x08003f2c   0x000000a0   Data   RO          221    .constdata          dds.o
+    0x08003fcc   0x00000020   Data   RO          447    .constdata          led.o
+    0x08003fec   0x00000100   Data   RO          878    .constdata          arbitoryfunc.o
+    0x080040ec   0x00000004   PAD
+    0x080040f0   0x00000088   Data   RO         2978    .constdata          m_wm.l(pow.o)
+    0x08004178   0x00000008   Data   RO         3283    .constdata          m_wm.l(qnan.o)
+    0x08004180   0x00000020   Data   RO         3347    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00004c68, Max: 0x00020000, ABSOLUTE)
@@ -1836,7 +1837,7 @@ Image component sizes
        476         46          0         18         10       2502   freqmeter.o
       1598        106          0          4       3040      11189   hd44780.o
        176         38         32          0          0       2267   led.o
-      1776        452          0         32          0      23254   main_2.o
+      1764        442          0         32          0      23254   main_2.o
        140         22          0          0          0       3475   misc.o
         36          8        392          0      16384        892   startup_stm32f4xx.o
        190         24          0          0          0       8665   stm32f4xx_dac.o
@@ -1852,9 +1853,9 @@ Image component sizes
         52         10          0          8          0        909   timer.o
 
     ----------------------------------------------------------------------
-      8028       1000        872        100      19456     840042   Object Totals
+      8016        990        876        100      19456     840042   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        22          0          0          2          6          0   (incl. Padding)
+        22          0          4          2          6          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1921,15 +1922,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     15792       1430       1016        104      19456     831662   Grand Totals
-     15792       1430       1016        104      19456     831662   ELF Image Totals
-     15792       1430       1016        104          0          0   ROM Totals
+     15780       1420       1020        104      19456     831662   Grand Totals
+     15780       1420       1020        104      19456     831662   ELF Image Totals
+     15780       1420       1020        104          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                16808 (  16.41kB)
+    Total RO  Size (Code + RO Data)                16800 (  16.41kB)
     Total RW  Size (RW Data + ZI Data)             19560 (  19.10kB)
-    Total ROM Size (Code + RO Data + RW Data)      16912 (  16.52kB)
+    Total ROM Size (Code + RO Data + RW Data)      16904 (  16.51kB)
 
 ==============================================================================
 
