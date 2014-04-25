@@ -1,12 +1,9 @@
 D & C List of To Do Items
 
-5. work out how to adjust duty cycle of square wave so can do pulse generator
-
-
 Tasks Remaining
 
-2. Amplitude modulation
-3. Frequency modulation
+*. Adjust frequency of pulse generator
+3. FSK with Input Capture Mode
 4. Ability to change amplitude of waves by sending signals to digital pot
 
 
@@ -20,6 +17,7 @@ THINGS DONE
 1. fix sys_tick handler or implement a timer to do same
 6. ability to change range of frequency meter - ask Roger for ranges & prescaler values
 1. arbitrary function generator
+5. work out how to adjust duty cycle of square wave so can do pulse generator
 
 
 

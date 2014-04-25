@@ -110,9 +110,9 @@ int main(void)
   TIM_OCInitStructure.TIM_Pulse = CCR1_Val;
   TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
 
-  TIM_OC1Init(TIM3, &TIM_OCInitStructure);
+  TIM_OC3Init(TIM3, &TIM_OCInitStructure);
 
-  TIM_OC1PreloadConfig(TIM3, TIM_OCPreload_Enable);
+  TIM_OC3PreloadConfig(TIM3, TIM_OCPreload_Enable);
 
   /* PWM1 Mode configuration: Channel2 */
   TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;

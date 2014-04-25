@@ -248,6 +248,9 @@ int main (void) {
 				hd44780_print("PULSE GENERATOR");
 			}
 			
+			// Check for switch presses to change duty cycle
+			switchsState = SWT_Get();
+			
 			if (switchsState == (1UL << 14)) {
 				char tmp_string[15];
 				
