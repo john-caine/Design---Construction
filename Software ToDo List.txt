@@ -3,8 +3,8 @@ D & C List of To Do Items
 Tasks Remaining
 
 *. Adjust frequency of pulse generator
-3. FSK with Input Capture Mode
-4. Ability to change amplitude of waves by sending signals to digital pot
+3. FSK with Input Capture Mode - make work
+4. Ability to change amplitude of waves by sending signals to digital pot - poss analogue pot?!
 
 
 

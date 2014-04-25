@@ -18,6 +18,7 @@
 #include "FreqMeter.h"
 #include "hd44780.h"
 #include "ArbitoryFunc.h"
+#include "FSK.h"
 #include <stdio.h>
 
 volatile uint32_t msTicks;                      /* counts 1ms timeTicks       */
@@ -53,6 +54,7 @@ int main (void) {
 	DDS_Default_Init();	
 	Freq_Meter_Init();
 	Pulse_Config();
+	FSK_Init();
 	
 	// Turn on LCD display
 	hd44780_display(true, false, false);
@@ -286,6 +288,25 @@ int main (void) {
 				LED_Off(7);
 			}
 		}
+		else if(function == FREQUENCY_KEY_SHIFT)
+		{
+			if(updateFlag == 1) 
+			{
+				updateFlag = 0;
+				hd44780_clear();
+				hd44780_position(0, 0);
+				hd44780_print("FREQ KEY SHIFT");
+			}
+			
+			if(FSK_Freq == HIGH)
+			{
+				DDS_Set(1000);					//Output 1KHz wave if input wave is "high"
+			}
+			else if(FSK_Freq == LOW)
+			{
+				DDS_Set(100);						//Output 100Hz wave if input wave is "low"
+			}	
+		}
 	}
 }
 
@@ -387,8 +408,12 @@ void Config_menu_interrupt(void) {
 		}
 	else if (function == PULSE_GENERATOR)
 		{
+			function = FREQUENCY_KEY_SHIFT;
+		}
+	else if (function == FREQUENCY_KEY_SHIFT)
+		{
 			function = WAVE_GENERATION;
-		}		
+		}
 	else
 		{
 			function = WAVE_GENERATION;

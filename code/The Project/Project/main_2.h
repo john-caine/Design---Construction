@@ -14,6 +14,7 @@
 #define NOISE_GENERATION 2
 #define ARBITORY_FUNCTION 3
 #define PULSE_GENERATOR 4
+#define FREQUENCY_KEY_SHIFT 5
 
 
 extern void SysTick_Handler (void);

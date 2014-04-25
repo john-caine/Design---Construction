@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\MyProject\MyProject.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\MyProject\MyProject.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Fri Apr 25 16:51:10 2014
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Fri Apr 25 17:41:03 2014
 <BR><P>
 <H3>Maximum Stack Usage =        536 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -821,8 +821,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[e2]"></a>GPIO_ResetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_gpio.o(i.GPIO_ResetBits))
-<BR><BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_busy
-<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write
+<BR><BR>[Called By]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_busy
 </UL>
 
 <P><STRONG><a name="[d6]"></a>GPIO_SetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_gpio.o(i.GPIO_SetBits))
@@ -1001,7 +1001,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pulse_Config
 </UL>
 
-<P><STRONG><a name="[29]"></a>TIM4_IRQHandler</STRONG> (Thumb, 260 bytes, Stack size 48 bytes, freqmeter.o(i.TIM4_IRQHandler))
+<P><STRONG><a name="[29]"></a>TIM4_IRQHandler</STRONG> (Thumb, 290 bytes, Stack size 48 bytes, freqmeter.o(i.TIM4_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = TIM4_IRQHandler &rArr; __aeabi_ui2d &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
@@ -1373,18 +1373,18 @@ Local Symbols
 <BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ToggleBits
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_busy
-<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write
+<BR>[Called By]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_busy
 </UL>
 
 <P><STRONG><a name="[b2]"></a>exec</STRONG> (Thumb, 128 bytes, Stack size 8 bytes, hd44780.o(i.exec))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60 + In Cycle
 <LI>Call Chain = exec &rArr;  exec (Cycle)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_busy
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exec
-<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write
+<BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task_del
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_busy
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exec
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exec
 <LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM7_IRQHandler
@@ -1411,8 +1411,8 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_busy
-<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write
+<BR>[Called By]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_busy
 </UL>
 
 <P><STRONG><a name="[cc]"></a>task_add</STRONG> (Thumb, 126 bytes, Stack size 16 bytes, hd44780.o(i.task_add))

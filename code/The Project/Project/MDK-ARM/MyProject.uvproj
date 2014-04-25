@@ -404,11 +404,6 @@
               <FilePath>..\stm32f4xx_it.c</FilePath>
             </File>
             <File>
-              <FileName>timer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\timer.c</FilePath>
-            </File>
-            <File>
               <FileName>DDS.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\DDS.c</FilePath>
@@ -462,6 +457,11 @@
               <FileName>system_stm32f4xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\system_stm32f4xx.c</FilePath>
+            </File>
+            <File>
+              <FileName>FSK.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FSK.c</FilePath>
             </File>
           </Files>
         </Group>
