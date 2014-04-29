@@ -11,7 +11,7 @@
 #include "FSK.h"
 
 volatile int FSK_Freq;
-volatile uint16_t IC2Value;
+volatile int toggleBit;
 
 void FSK_Init(void)
 {  
@@ -28,7 +28,7 @@ void FSK_Init(void)
   ------------------------------------------------------------ */
 
   TIM_ICInitStructure.TIM_Channel = TIM_Channel_2;
-  TIM_ICInitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
+  TIM_ICInitStructure.TIM_ICPolarity = TIM_ICPolarity_BothEdge;
   TIM_ICInitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
   TIM_ICInitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
   TIM_ICInitStructure.TIM_ICFilter = 0x0;
@@ -85,16 +85,15 @@ void TIM2_IRQHandler(void){
   RCC_ClocksTypeDef RCC_Clocks;
   RCC_GetClocksFreq(&RCC_Clocks);
   
-	/* Get the Input Capture value */
-  IC2Value = TIM_GetCapture2(TIM2);
-  
-	if (IC2Value >= THRESHOLD)
+	if (toggleBit == 1)
   {
 		FSK_Freq = HIGH;
+		toggleBit = 0;
   }
   else
   {
 		FSK_Freq = LOW;
+		toggleBit = 1;
   }
 	
 	/* Clear TIM2 Capture compare interrupt pending bit */

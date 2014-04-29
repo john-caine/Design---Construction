@@ -14,7 +14,7 @@
 #include "STM32F4xx.h"
 
 extern volatile int FSK_Freq;
-extern volatile uint16_t IC2Value;
+extern volatile int toggleBit;
 
 extern void TIM2_Config(void);
 extern void FSK_Init(void);

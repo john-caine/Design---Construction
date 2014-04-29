@@ -300,11 +300,11 @@ int main (void) {
 			
 			if(FSK_Freq == HIGH)
 			{
-				DDS_Set(1000);					//Output 1KHz wave if input wave is "high"
+				DDS_Set(25000000);					//Output 1KHz wave if input wave is "high"
 			}
 			else if(FSK_Freq == LOW)
 			{
-				DDS_Set(100);						//Output 100Hz wave if input wave is "low"
+				DDS_Set(1000000);						//Output 100Hz wave if input wave is "low"
 			}	
 		}
 	}

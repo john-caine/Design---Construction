@@ -7,42 +7,31 @@ D:\GitHub\Design---Construction\code\The Project\Project\MDK-ARM\MyProject.uvpro
 Project File Date:  04/25/2014
 
 <h2>Output:</h2>
-Build target 'MyProject'
-compiling FSK.c...
-linking...
-Program Size: Code=16364 RO-data=1020 RW-data=104 ZI-data=19456  
-".\MyProject\MyProject.axf" - 0 Error(s), 0 Warning(s).
-</pre>
-</body>
-</html>
-e symbols.
-Not enough information to list the image map.
-Finished: 2 information, 0 warning and 1 error messages.
-".\MyProject\MyProject.axf" - 1 Error(s), 0 Warning(s).
-Target not created
-: Error: L6200E: Symbol TIM_ICInitStructure multiply defined (by fsk.o and freqmeter.o).
-.\MyProject\MyProject.axf: Error: L6200E: Symbol IC2Value multiply defined (by fsk.o and freqmeter.o).
-Not enough information to list image symbols.
-Not enough information to list the image map.
-Finished: 2 information, 0 warning and 5 error messages.
-".\MyProject\MyProject.axf" - 5 Error(s), 0 Warning(s).
-Target not created
- Lcd_Conf.db5, (data & 0x2) >> 1);
+Rebuild target 'MyProject'
+compiling stm32f4xx_it.c...
+compiling DDS.c...
+compiling LCD.c...
+compiling LED.c...
+compiling main_2.c...
+compiling Sqaure.c...
+compiling SWT.c...
+compiling DAC.c...
+compiling FreqMeter.c...
+compiling hd44780.c...
+..\hd44780.c(145): warning:  #188-D: enumerated type mixed with another type
+        GPIO_WriteBit(Lcd_Conf.gpio_config, Lcd_Conf.rs, !reg);
+..\hd44780.c(146): warning:  #188-D: enumerated type mixed with another type
+        GPIO_WriteBit(Lcd_Conf.gpio_data, Lcd_Conf.db7, (data & 0x8) >> 3);
+..\hd44780.c(147): warning:  #188-D: enumerated type mixed with another type
+        GPIO_WriteBit(Lcd_Conf.gpio_data, Lcd_Conf.db6, (data & 0x4) >> 2);
+..\hd44780.c(148): warning:  #188-D: enumerated type mixed with another type
+        GPIO_WriteBit(Lcd_Conf.gpio_data, Lcd_Conf.db5, (data & 0x2) >> 1);
 ..\hd44780.c(149): warning:  #188-D: enumerated type mixed with another type
         GPIO_WriteBit(Lcd_Conf.gpio_data, Lcd_Conf.db4, (data & 0x1));
 ..\hd44780.c: 5 warnings, 0 errors
 compiling ArbitoryFunc.c...
 compiling system_stm32f4xx.c...
 compiling FSK.c...
-..\FSK.c(101): error:  #20: identifier "LESS_THAN_1" is undefined
-                if(freqRange == LESS_THAN_1) {
-..\FSK.c(104): error:  #20: identifier "ONE_TO_100" is undefined
-                else if(freqRange == ONE_TO_100) {
-..\FSK.c(107): error:  #20: identifier "HUNDRED_TO_10K" is undefined
-                else if(freqRange == HUNDRED_TO_10K) {
-..\FSK.c(110): error:  #20: identifier "MORE_THAN_10K" is undefined
-                else if(freqRange == MORE_THAN_10K) {
-..\FSK.c: 0 warnings, 4 errors
 compiling stm32f4_discovery.c...
 compiling misc.c...
 compiling stm32f4xx_gpio.c...
@@ -55,16 +44,17 @@ compiling stm32f4xx_exti.c...
 compiling stm32f4xx_dac.c...
 compiling stm32f4xx_dma.c...
 assembling startup_stm32f4xx.s...
-".\MyProject\MyProject.axf" - 4 Error(s), 5 Warning(s).
-Target not created
-b\\Design---Construction\\code\\The Project\\Project\\MDK-ARM\\MyProject\\MyProject.axf" 
+linking...
+Program Size: Code=16740 RO-data=1020 RW-data=112 ZI-data=19456  
+".\MyProject\MyProject.axf" - 0 Error(s), 5 Warning(s).
+Load "D:\\GitHub\\Design---Construction\\code\\The Project\\Project\\MDK-ARM\\MyProject\\MyProject.axf" 
+Error: Flash Download failed  -  Target DLL has been cancelled
+Load "D:\\GitHub\\Design---Construction\\code\\The Project\\Project\\MDK-ARM\\MyProject\\MyProject.axf" 
+Error: Flash Download failed  -  Target DLL has been cancelled
+Load "D:\\GitHub\\Design---Construction\\code\\The Project\\Project\\MDK-ARM\\MyProject\\MyProject.axf" 
 Erase Done.
 Programming Done.
 Verify OK.
-ng(s).
-Target not created
-t enough information to list image symbols.
-Not enough information to list the image map.
-Finished: 2 information, 0 warning and 1 error messages.
-".\MyProject\MyProject.axf" - 1 Error(s), 10 Warning(s).
-Target not created
+</pre>
+</body>
+</html>
