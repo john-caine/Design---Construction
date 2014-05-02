@@ -71,20 +71,20 @@ int main(void)
   TIM_ICInitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
   TIM_ICInitStructure.TIM_ICFilter = 0x0;
 
-  TIM_PWMIConfig(TIM4, &TIM_ICInitStructure);
+  TIM_PWMIConfig(TIM2, &TIM_ICInitStructure);
 
   /* Select the TIM4 Input Trigger: TI2FP2 */
-  TIM_SelectInputTrigger(TIM4, TIM_TS_TI2FP2);
+  TIM_SelectInputTrigger(TIM2, TIM_TS_TI2FP2);
 
   /* Select the slave Mode: Reset Mode */
-  TIM_SelectSlaveMode(TIM4, TIM_SlaveMode_Reset);
-  TIM_SelectMasterSlaveMode(TIM4,TIM_MasterSlaveMode_Enable);
+  TIM_SelectSlaveMode(TIM2, TIM_SlaveMode_Reset);
+  TIM_SelectMasterSlaveMode(TIM2,TIM_MasterSlaveMode_Enable);
 
   /* TIM enable counter */
-  TIM_Cmd(TIM4, ENABLE);
+  TIM_Cmd(TIM2, ENABLE);
 
   /* Enable the CC2 Interrupt Request */
-  TIM_ITConfig(TIM4, TIM_IT_CC2, ENABLE);
+  TIM_ITConfig(TIM2, TIM_IT_CC2, ENABLE);
 
   while (1);
 }
@@ -100,7 +100,7 @@ void TIM_Config(void)
   NVIC_InitTypeDef NVIC_InitStructure;
 
   /* TIM4 clock enable */
-  RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
+  RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
 
   /* GPIOB clock enable */
   RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
@@ -114,10 +114,10 @@ void TIM_Config(void)
   GPIO_Init(GPIOB, &GPIO_InitStructure);
   
   /* Connect TIM pin to AF2 */
-  GPIO_PinAFConfig(GPIOB, GPIO_PinSource7, GPIO_AF_TIM4);
+  GPIO_PinAFConfig(GPIOB, GPIO_PinSource7, GPIO_AF_TIM2);
 
   /* Enable the TIM4 global Interrupt */
-  NVIC_InitStructure.NVIC_IRQChannel = TIM4_IRQn;
+  NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;
   NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;

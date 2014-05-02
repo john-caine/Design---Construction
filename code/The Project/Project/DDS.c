@@ -83,6 +83,7 @@ void DDS_Default_Init (void) {
 	}
 	
 	Pulse_Frequency();
+	Delay(1);
 	Data_Low();
 
 }
@@ -115,5 +116,6 @@ void DDS_Set (double frequency) {
 	}
 	
 	Pulse_Frequency();
+	Delay(1);
 	Data_Low();
 }

@@ -36,3 +36,5 @@
 .\myproject\fsk.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h
 .\myproject\fsk.o: ..\main_2.h
 .\myproject\fsk.o: ..\FSK.h
+.\myproject\fsk.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
+.\myproject\fsk.o: ..\DDS.h

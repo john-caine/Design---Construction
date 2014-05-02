@@ -39,3 +39,5 @@
 .\myproject\freqmeter.o: ..\main_2.h
 .\myproject\freqmeter.o: ..\LCD.h
 .\myproject\freqmeter.o: ..\FreqMeter.h
+.\myproject\freqmeter.o: ..\FSK.h
+.\myproject\freqmeter.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h

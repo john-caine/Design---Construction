@@ -16,6 +16,7 @@
 #define PULSE_GENERATOR 4
 #define FREQUENCY_KEY_SHIFT 5
 
+extern volatile int function;
 
 extern void SysTick_Handler (void);
 extern void Delay (uint32_t dlyTicks);

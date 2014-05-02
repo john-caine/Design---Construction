@@ -147,21 +147,21 @@ void SysTick_Handler(void)
   * @param  None
   * @retval None
   */
-void TIM4_IRQHandler(void)
+void TIM2_IRQHandler(void)
 {
   RCC_ClocksTypeDef RCC_Clocks;
   RCC_GetClocksFreq(&RCC_Clocks);
 
   /* Clear TIM4 Capture compare interrupt pending bit */
-  TIM_ClearITPendingBit(TIM4, TIM_IT_CC2);
+  TIM_ClearITPendingBit(TIM2, TIM_IT_CC2);
 
   /* Get the Input Capture value */
-  IC2Value = TIM_GetCapture2(TIM4);
+  IC2Value = TIM_GetCapture2(TIM2);
 
   if (IC2Value != 0)
   {
     /* Duty cycle computation */
-    DutyCycle = (TIM_GetCapture1(TIM4) * 100) / IC2Value;
+    DutyCycle = (TIM_GetCapture1(TIM2) * 100) / IC2Value;
 
     /* Frequency computation 
        TIM4 counter clock = (RCC_Clocks.HCLK_Frequency)/2 */

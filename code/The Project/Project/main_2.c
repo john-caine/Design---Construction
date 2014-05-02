@@ -34,11 +34,13 @@ volatile int dutyCycle = 50;
  *----------------------------------------------------------------------------*/
 int main (void) {
 	
+	__disable_irq();
 	SystemCoreClockUpdate();                      /* Get Core Clock Frequency   */
   
 	if (SysTick_Config(SystemCoreClock / 1680)) {  /* SysTick 1 msec interrupts  */
     while (1);                                  /* Capture error              */
   }
+	__enable_irq();
 	
   // Initialise Required Pins
 	BTN_Init();   
@@ -52,9 +54,9 @@ int main (void) {
 	
 	//Initialise components to defaults
 	DDS_Default_Init();	
-	Freq_Meter_Init();
+	//Freq_Meter_Init();
 	Pulse_Config();
-	FSK_Init();
+	//FSK_Init();
 	
 	// Turn on LCD display
 	hd44780_display(true, false, false);
@@ -65,11 +67,10 @@ int main (void) {
 	
 	while(1) 
 	{	
-		if(function == WAVE_GENERATION) 
+		
+		while(function == WAVE_GENERATION) 
 		{
 			uint32_t switchsState;
-			
-			DDS_Default_Init();
 			
 			if(updateFlag == 1) 
 			{
@@ -150,12 +151,14 @@ int main (void) {
 				LED_Off(7);
 			}
 		}
-		else if(function == FREQUENCY_METER)
+		
+		while(function == FREQUENCY_METER)
 		{		
 			uint32_t switchsState;
 
 			if(updateFlag == 1) 
 			{
+				Freq_Meter_Init();
 				updateFlag = 0;
 				hd44780_clear();
 				hd44780_position(0, 0);
@@ -212,7 +215,8 @@ int main (void) {
 				LED_Off(7);
 			}
 		}
-		else if(function == NOISE_GENERATION)
+		
+		while(function == NOISE_GENERATION)
 		{
 			if(updateFlag == 1) 
 			{
@@ -225,7 +229,8 @@ int main (void) {
 			DAC_Ch1_NoiseConfig();
 			DAC_Noise_On();
 		}
-		else if(function == ARBITORY_FUNCTION)
+		
+		while(function == ARBITORY_FUNCTION)
 		{
 			if(updateFlag == 1) 
 			{
@@ -238,7 +243,8 @@ int main (void) {
 			DAC_Ch1_ArbitoryConfig();
 			DAC_Arbitory_On();
 		}
-		else if(function == PULSE_GENERATOR)
+		
+		while(function == PULSE_GENERATOR)
 		{
 			uint32_t switchsState;
 			
@@ -288,24 +294,30 @@ int main (void) {
 				LED_Off(7);
 			}
 		}
-		else if(function == FREQUENCY_KEY_SHIFT)
+		
+		while(function == FREQUENCY_KEY_SHIFT)
 		{
 			if(updateFlag == 1) 
 			{
+				FSK_Init();
 				updateFlag = 0;
 				hd44780_clear();
 				hd44780_position(0, 0);
 				hd44780_print("FREQ KEY SHIFT");
 			}
 			
-			if(FSK_Freq == HIGH)
+			if(FSK_Change == true) 
 			{
-				DDS_Set(25000000);					//Output 1KHz wave if input wave is "high"
+				if(FSK_Freq == HIGH)
+				{
+					DDS_Set(1000);					//Output 1KHz wave if input wave is "high"
+				}
+				else if(FSK_Freq == LOW)
+				{
+					DDS_Set(1000000);						//Output 100Hz wave if input wave is "low"
+				}	
+				FSK_Change = false;
 			}
-			else if(FSK_Freq == LOW)
-			{
-				DDS_Set(1000000);						//Output 100Hz wave if input wave is "low"
-			}	
 		}
 	}
 }
@@ -359,6 +371,44 @@ void Delay (uint32_t dlyTicks) {
   while ((msTicks - curTicks) < dlyTicks);
 }
 
+void Config_menu_interrupt_2 (void) {
+	EXTI_InitTypeDef EXTI_InitStructure;
+	NVIC_InitTypeDef NVIC_InitStructure;
+	GPIO_InitTypeDef GPIO_InitStructure;
+	
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
+	
+	/* Configure GPIOs as as inputs */
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_4 | GPIO_Pin_4 | GPIO_Pin_4 | GPIO_Pin_4 | GPIO_Pin_4; 
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_DOWN; 	// changed from no puh/pull
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
+	
+	/* Connect EXTI Lines 8-15 to GPIOB Pins 8-15*/
+  SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOB, EXTI_PinSource9);
+	SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOB, EXTI_PinSource10);
+	SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOB, EXTI_PinSource11);
+	SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOB, EXTI_PinSource12);
+	SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOB, EXTI_PinSource13);
+	SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOB, EXTI_PinSource14);
+	SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOB, EXTI_PinSource15);
+
+	/* Configure EXTI lines 8-15 */
+	EXTI_InitStructure.EXTI_Line = EXTI_Line8 | EXTI_Line9 | EXTI_Line10 | EXTI_Line11 | EXTI_Line12 | EXTI_Line13 | EXTI_Line14 | EXTI_Line15;
+	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  
+	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+	EXTI_Init(&EXTI_InitStructure);
+
+	/* Enable and set EXTI Lines 8-15 Interrupt to the lowest priority */
+	NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn | EXTI15_10_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1; // changed from 0x01
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;				// changed from 0x01
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&NVIC_InitStructure); 
+}
+
 void Config_menu_interrupt(void) {
     EXTI_InitTypeDef EXTI_InitStructure;
 		NVIC_InitTypeDef NVIC_InitStructure;
@@ -377,8 +427,8 @@ void Config_menu_interrupt(void) {
 
     /* Enable and set EXTI Line0 Interrupt to the lowest priority */
     NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F; // changed from 0x01
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;				// changed from 0x01
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1; // changed from 0x01
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;				// changed from 0x01
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure); 
 }

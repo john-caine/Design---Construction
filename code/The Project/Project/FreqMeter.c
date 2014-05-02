@@ -12,12 +12,17 @@
 #include "main_2.h"
 #include "LCD.h"
 #include "FreqMeter.h"
+#include "FSK.h"
 
 TIM_ICInitTypeDef  TIM_ICInitStructure;
 volatile uint16_t DutyCycle;
 volatile uint32_t Frequency;
 volatile double low_Frequency;
 volatile uint16_t IC2Value;
+
+volatile bool FSK_Change = false;
+volatile int FSK_Freq;
+volatile int toggleBit = 1;
 
 void Freq_Meter_Init(void)
 {      
@@ -77,7 +82,7 @@ void TIM_Config(void)
 
   /* Enable the TIM4 global Interrupt */
   NVIC_InitStructure.NVIC_IRQChannel = TIM4_IRQn;
-  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;
   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
   NVIC_Init(&NVIC_InitStructure);
@@ -86,43 +91,66 @@ void TIM_Config(void)
 
 void TIM4_IRQHandler(void){
 	
-//	char Freq_Tmp[15];
-//	char DC_Tmp[15];
+	if(function == FREQUENCY_METER)
+	{
+		RCC_ClocksTypeDef RCC_Clocks;
+		RCC_GetClocksFreq(&RCC_Clocks);
+
+		/* Get the Input Capture value */
+		IC2Value = TIM_GetCapture2(TIM4);
+
+		if (IC2Value != 0)
+		{
+			/* Duty cycle computation */
+			DutyCycle = (TIM_GetCapture1(TIM4) * 100) / IC2Value;
+			
+			/* Frequency computation TIM4 counter clock = (RCC_Clocks.HCLK_Frequency)/2 */
+			if(freqRange == LESS_THAN_1) {
+				low_Frequency = (((RCC_Clocks.HCLK_Frequency)/2 / (double)IC2Value) / (61440 - 1));			/* 0.06 - 1 hz */
+			}
+			else if(freqRange == ONE_TO_100) {
+				Frequency = (((RCC_Clocks.HCLK_Frequency)/2 / IC2Value) / (3840 - 1));			/* 1 - 100 hz */
+			}
+			else if(freqRange == HUNDRED_TO_10K) {
+				Frequency = (((RCC_Clocks.HCLK_Frequency)/2 / IC2Value) / (15 - 1));				/* 100 - 10000 hz */
+			}
+			else if(freqRange == MORE_THAN_10K) {
+				Frequency = (((RCC_Clocks.HCLK_Frequency)/2 / IC2Value) / 1);					/* 10000 - ~10M hz */
+			}
+			else {
+				Frequency = ((RCC_Clocks.HCLK_Frequency)/2 / IC2Value);					/* DEFAULT - 1.28k - 1M hz */
+			}
+		}
+		else
+		{
+			DutyCycle = 0;
+			Frequency = 0;
+		}
+	}
+	else if (function == FREQUENCY_KEY_SHIFT);
+	{
+		NVIC_InitTypeDef NVIC_InitStructure;
 	
-  RCC_ClocksTypeDef RCC_Clocks;
-  RCC_GetClocksFreq(&RCC_Clocks);
-  
-	/* Get the Input Capture value */
-  IC2Value = TIM_GetCapture2(TIM4);
-  
-	if (IC2Value != 0)
-  {
-		/* Duty cycle computation */
-		DutyCycle = (TIM_GetCapture1(TIM4) * 100) / IC2Value;
+		FSK_Change = true;
 		
-		/* Frequency computation TIM4 counter clock = (RCC_Clocks.HCLK_Frequency)/2 */
-		if(freqRange == LESS_THAN_1) {
-			low_Frequency = (((RCC_Clocks.HCLK_Frequency)/2 / (double)IC2Value) / (61440 - 1));			/* 0.06 - 1 hz */
+		if (toggleBit == 1)
+		{
+			FSK_Freq = HIGH;
+			toggleBit = 0;
 		}
-		else if(freqRange == ONE_TO_100) {
-			Frequency = (((RCC_Clocks.HCLK_Frequency)/2 / IC2Value) / (3840 - 1));			/* 1 - 100 hz */
-		}
-		else if(freqRange == HUNDRED_TO_10K) {
-			Frequency = (((RCC_Clocks.HCLK_Frequency)/2 / IC2Value) / (15 - 1));				/* 100 - 10000 hz */
-		}
-		else if(freqRange == MORE_THAN_10K) {
-			Frequency = (((RCC_Clocks.HCLK_Frequency)/2 / IC2Value) / 1);					/* 10000 - ~10M hz */
-		}
-		else {
-			Frequency = ((RCC_Clocks.HCLK_Frequency)/2 / IC2Value);					/* DEFAULT - 1.28k - 1M hz */
-		}
-  }
-  else
-  {
-		DutyCycle = 0;
-		Frequency = 0;
+		else
+		{
+			FSK_Freq = LOW;
+			toggleBit = 1;
   }
 	
+	/* Clear TIM2 Capture compare interrupt pending bit */
+  TIM_ClearITPendingBit(TIM4, TIM_IT_CC2);
+	
+	NVIC_InitStructure.NVIC_IRQChannel = TIM4_IRQn;
+  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+  NVIC_Init(&NVIC_InitStructure);
+	}
 	/* Clear TIM4 Capture compare interrupt pending bit */
   TIM_ClearITPendingBit(TIM4, TIM_IT_CC2);
 }
