@@ -22,6 +22,7 @@ extern void SysTick_Handler (void);
 extern void Delay (uint32_t dlyTicks);
 extern int main (void);
 extern void Config_menu_interrupt(void);
+extern void Config_menu_interrupt_2(void);
 extern void EXTI0_IRQHandler(void);
 //extern void wait_config(void);
 //extern void wait(uint32_t ticks);

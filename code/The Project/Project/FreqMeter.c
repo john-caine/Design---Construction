@@ -15,6 +15,7 @@
 #include "FSK.h"
 
 TIM_ICInitTypeDef  TIM_ICInitStructure;
+
 volatile uint16_t DutyCycle;
 volatile uint32_t Frequency;
 volatile double low_Frequency;
@@ -127,7 +128,7 @@ void TIM4_IRQHandler(void){
 			Frequency = 0;
 		}
 	}
-	else if (function == FREQUENCY_KEY_SHIFT);
+	else if (function == FREQUENCY_KEY_SHIFT)
 	{
 		NVIC_InitTypeDef NVIC_InitStructure;
 	
@@ -142,15 +143,13 @@ void TIM4_IRQHandler(void){
 		{
 			FSK_Freq = LOW;
 			toggleBit = 1;
-  }
+		}
 	
-	/* Clear TIM2 Capture compare interrupt pending bit */
-  TIM_ClearITPendingBit(TIM4, TIM_IT_CC2);
-	
-	NVIC_InitStructure.NVIC_IRQChannel = TIM4_IRQn;
-  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-  NVIC_Init(&NVIC_InitStructure);
+		NVIC_InitStructure.NVIC_IRQChannel = TIM4_IRQn;
+		NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+		NVIC_Init(&NVIC_InitStructure);
 	}
+	
 	/* Clear TIM4 Capture compare interrupt pending bit */
   TIM_ClearITPendingBit(TIM4, TIM_IT_CC2);
 }

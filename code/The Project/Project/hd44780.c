@@ -234,7 +234,7 @@ void hd44780_clear(void) {
 
 	task_add(HD44780_WRITE, true, HD44780_CLEAR, 2);
 	task_add(HD44780_WAIT_NOT_BUSY, NONE, NONE, NONE);
-	Delay(6);
+	Delay(16);
 }
 
 /**
