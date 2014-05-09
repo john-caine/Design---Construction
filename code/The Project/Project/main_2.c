@@ -327,7 +327,6 @@ void SysTick_Handler(void) {
   msTicks++;
 }
 
-
 /*----------------------------------------------------------------------------
   delays number of tick Systicks (happens every 1 ms)
  *----------------------------------------------------------------------------*/
@@ -349,7 +348,7 @@ void Config_menu_interrupt_2 (void) {
 	/* Configure GPIOs as as inputs */
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_15 | GPIO_Pin_14 | GPIO_Pin_13 | GPIO_Pin_12 | GPIO_Pin_11 | GPIO_Pin_10; 
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
-  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL; 	// changed from no puh/pull
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL; 	
   GPIO_Init(GPIOB, &GPIO_InitStructure);
 	
 	/* Connect EXTI Lines 10-15 to GPIOB Pins 10-15*/
@@ -369,8 +368,8 @@ void Config_menu_interrupt_2 (void) {
 
 	/* Enable and set EXTI Lines 8-15 Interrupt to the lowest priority */
 	NVIC_InitStructure.NVIC_IRQChannel = EXTI15_10_IRQn;
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1; // changed from 0x01
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;				// changed from 0x01
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1; 
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;				
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStructure); 
 }
