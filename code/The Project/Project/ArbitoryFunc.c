@@ -1,8 +1,9 @@
 /*----------------------------------------------------------------------------
  * Name:    ArbitoryFunc.c
- * Purpose: 
+ * Purpose: Code to ouput a specified resolution of a wave table to the DAC, using
+						DMA requests to free up CPU time.
  * Note(s): adapted from example code found at 
- *						http://00xnor.blogspot.co.uk/2014/01/6-stm32-f4-dac-dma-waveform-generator.html
+ *					http://00xnor.blogspot.co.uk/2014/01/6-stm32-f4-dac-dma-waveform-generator.html
  *----------------------------------------------------------------------------
  * 
  *----------------------------------------------------------------------------*/
@@ -16,6 +17,7 @@
 #define   CNT_FREQ          84000000                             // TIM6 counter clock (prescaled APB1)
 #define   TIM_PERIOD        ((CNT_FREQ)/((WAVE_RES)*(OUT_FREQ))) // Autoreload reg value
 
+// Sinc fucntion
 const uint16_t waveForm[WAVE_RES] = { 3995, 3987, 3964, 3925, 3872, 3805, 3725, 3633, 3531, 3419, 
 																			3300, 3176, 3047, 2915, 2784, 2653, 2524, 2400, 2282, 2171, 
 																			2068, 1975, 1891, 1819, 1758, 1708, 1670, 1644, 1629, 1624, 
@@ -34,16 +36,21 @@ void TIM5_Config(void)
 {
   TIM_TimeBaseInitTypeDef TIM5_TimeBase;
 
+	/* TIM5 Periph clock enable */
   RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM5, ENABLE);
  
+	/* Time base configuration */
   TIM_TimeBaseStructInit(&TIM5_TimeBase); 
   TIM5_TimeBase.TIM_Period        = (uint16_t)TIM_PERIOD;          
   TIM5_TimeBase.TIM_Prescaler     = 0;       
   TIM5_TimeBase.TIM_ClockDivision = 0;    
   TIM5_TimeBase.TIM_CounterMode   = TIM_CounterMode_Up;  
   TIM_TimeBaseInit(TIM6, &TIM5_TimeBase);
-  TIM_SelectOutputTrigger(TIM5, TIM_TRGOSource_Update);
+  
+	/* TIM5 TRGO selection */
+	TIM_SelectOutputTrigger(TIM5, TIM_TRGOSource_Update);
 
+	/* TIM5 enable counter */
   TIM_Cmd(TIM5, ENABLE);
 }
 
@@ -52,11 +59,13 @@ void DAC_Ch1_ArbitoryConfig(void)
   DAC_InitTypeDef DAC_INIT;
   DMA_InitTypeDef DMA_INIT;
   
+	/* DAC channel1 Configuration */
   DAC_INIT.DAC_Trigger        = DAC_Trigger_T5_TRGO;
   DAC_INIT.DAC_WaveGeneration = DAC_WaveGeneration_None;
   DAC_INIT.DAC_OutputBuffer   = DAC_OutputBuffer_Enable;
   DAC_Init(DAC_Channel_1, &DAC_INIT);
 
+	/* DMA1_Stream5 channel7 configuration **************************************/
   DMA_DeInit(DMA1_Stream5);
   DMA_INIT.DMA_Channel            = DMA_Channel_7;  
   DMA_INIT.DMA_PeripheralBaseAddr = (uint32_t)DAC_DHR12R1_ADDR;
@@ -75,8 +84,13 @@ void DAC_Ch1_ArbitoryConfig(void)
   DMA_INIT.DMA_PeripheralBurst    = DMA_PeripheralBurst_Single;
   DMA_Init(DMA1_Stream5, &DMA_INIT);
 
+	/* Enable DMA1_Stream5 */
   DMA_Cmd(DMA1_Stream5, ENABLE);
+	
+	/* Enable DAC Channel1 */
   DAC_Cmd(DAC_Channel_1, ENABLE);
+	
+	/* Enable DMA for DAC Channel1 */
   DAC_DMACmd(DAC_Channel_1, ENABLE);
 }
 

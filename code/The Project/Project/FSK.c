@@ -1,7 +1,9 @@
 /*----------------------------------------------------------------------------
  * Name:    FSK.c
- * Purpose: 
- * Note(s): Example code taken from STMicroElectronics TIM_PWM_Input project
+ * Purpose: Functions to provide frequency shift keying for an input waveform,
+						by setting 2 different DDS frequencies appropiately.
+ * Note(s): Example code taken from STMicroElectronics Application Teams,
+						TIM_PWM_Input eample project.
  *----------------------------------------------------------------------------
  * 
  *----------------------------------------------------------------------------*/
@@ -14,9 +16,6 @@
 void FSK_Init(void)
 {  
 	TIM_ICInitTypeDef  TIM_ICInitStructure;
-	
-  /* TIM Configuration */
- // TIM4_FSK_Config();
 	
 	GPIO_InitTypeDef GPIO_InitStructure;
   NVIC_InitTypeDef NVIC_InitStructure;
@@ -45,13 +44,7 @@ void FSK_Init(void)
   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
   NVIC_Init(&NVIC_InitStructure);
 
-  /* TIM2 configuration: PWM Input mode ------------------------
-     The external signal is connected to TIM2 CH2 pin (PB.08), 
-     The Rising edge is used as active edge,
-     The TIM2 CCR2 is used to compute the frequency value 
-     The TIM2 CCR1 is used to compute the duty cycle value
-  ------------------------------------------------------------ */
-
+	/* TIM4 configuration: PWM Input mode	*/
 	TIM_ICInitStructure.TIM_Channel = TIM_Channel_2;
   TIM_ICInitStructure.TIM_ICPolarity = TIM_ICPolarity_BothEdge;
   TIM_ICInitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
@@ -73,37 +66,3 @@ void FSK_Init(void)
   /* Enable the CC2 Interrupt Request */
   TIM_ITConfig(TIM4, TIM_IT_CC2, ENABLE);
 }
-
-void TIM4_FSK_Config(void)
-{
-
-
-}
-
-//void TIM4_IRQHandler(void){
-//  
-//	NVIC_InitTypeDef NVIC_InitStructure;
-//	
-//	FSK_Change = true;
-//	
-//	if (toggleBit == 1)
-//  {
-//		FSK_Freq = HIGH;
-////		DDS_Set(100000);
-//		toggleBit = 0;
-//  }
-//  else
-//  {
-//		FSK_Freq = LOW;
-////		DDS_Set(800000);
-//		toggleBit = 1;
-//  }
-//	
-//	/* Clear TIM2 Capture compare interrupt pending bit */
-//  TIM_ClearITPendingBit(TIM4, TIM_IT_CC2);
-//	
-//	NVIC_InitStructure.NVIC_IRQChannel = TIM4_IRQn;
-//  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-//  NVIC_Init(&NVIC_InitStructure);
-
-//}

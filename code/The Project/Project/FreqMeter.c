@@ -1,7 +1,9 @@
 /*----------------------------------------------------------------------------
- * Name:    DAC.c
- * Purpose: 
- * Note(s): Example code taken from STMicroElectronics DAC_SignalsGeneration project
+ * Name:    FreqMeter.c
+ * Purpose: Function to initialse timer 4 into PWM mode, allowing the duty cycle
+						and frquency to be measured by the capture compare registers.
+ * Note(s): Example code taken from STMicroElectronics Application Teams,
+						TIM_PWM_Input eample project.
  *----------------------------------------------------------------------------
  * 
  *----------------------------------------------------------------------------*/
@@ -132,8 +134,10 @@ void TIM4_IRQHandler(void){
 	{
 		NVIC_InitTypeDef NVIC_InitStructure;
 	
+		// Set the FSK_Chnage flag to true to signal DDS frequencies need updating
 		FSK_Change = true;
 		
+		// Based on the current toggleBit value, change the DDS frequency
 		if (toggleBit == 1)
 		{
 			FSK_Freq = HIGH;
@@ -145,6 +149,8 @@ void TIM4_IRQHandler(void){
 			toggleBit = 1;
 		}
 	
+		// Problems encounter with the timers global interrupt flag, so re-enable
+		// the interrupt which appears to fix the problem for some reason.
 		NVIC_InitStructure.NVIC_IRQChannel = TIM4_IRQn;
 		NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 		NVIC_Init(&NVIC_InitStructure);

@@ -1,7 +1,8 @@
 /*----------------------------------------------------------------------------
  * Name:    Square.c
- * Purpose: 
- * Note(s):
+ * Purpose: Pulse gerator, with a duty cyle variable by the user.
+ * Note(s):	Code modified from ST MicroElectronics Application Teams, 
+						TIM_PWM_Output example project.
  *----------------------------------------------------------------------------
  * 
  *----------------------------------------------------------------------------*/
@@ -16,7 +17,7 @@
 #define FIFTY_PERCENT 333
 
 void Pulse_Config (void) {
-	
+	// Run timer config and initialise pulses to 50:50 duty cycle
 	TIM3_Config();
 	PWM_Config(TIM3_ARR);
 }
@@ -62,7 +63,7 @@ void PWM_Config(int period)
   /* PWM1 Mode configuration: Channel1 */
   TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
   TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
-  TIM_OCInitStructure.TIM_Pulse = FIFTY_PERCENT;
+  TIM_OCInitStructure.TIM_Pulse = FIFTY_PERCENT;									// 50:50 duty cyle
   TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
 
   TIM_OC1Init(TIM3, &TIM_OCInitStructure);
@@ -79,7 +80,9 @@ void PWM_SetDC(uint16_t dutycycle)
 {
 	uint16_t newDutyCycle;
 	
+	// Calculate the new duty cycle
 	newDutyCycle = (dutycycle * TIM3_ARR) / 100;
 	
+	// set the new duty cycle into the capture compare register
 	TIM_SetCompare1(TIM3, newDutyCycle);
 }

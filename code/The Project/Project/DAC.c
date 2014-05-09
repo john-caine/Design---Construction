@@ -1,7 +1,9 @@
 /*----------------------------------------------------------------------------
  * Name:    DAC.c
- * Purpose: 
- * Note(s): Example code taken from STMicroElectronics DAC_SignalsGeneration project
+ * Purpose: Functions to initilise the DAC, and subsequently provide triangle wave
+						functionality, noise generation, and supports arbitory function generation.
+ * Note(s): Example code taken from STMicroElectronics Application Teams, 
+						DAC_SignalsGeneration example project
  *----------------------------------------------------------------------------
  * 
  *----------------------------------------------------------------------------*/
@@ -16,7 +18,7 @@ DAC_InitTypeDef  DAC_InitStructure;
 
 void DACs_Init(void)
 {
-	 /* Preconfiguration before using DAC----------------------------------------*/
+	 /* Preconfiguration before using DAC------*/
   GPIO_InitTypeDef GPIO_InitStructure;
 
   /* DMA1 clock and GPIOA clock enable (to be used with DAC) */
@@ -31,7 +33,7 @@ void DACs_Init(void)
   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
   GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-  /* TIM6 Configuration ------------------------------------------------------*/
+  /* TIM Configuration ----------*/
   TIM6_Config();
 	TIM5_Config();
 	
@@ -42,7 +44,8 @@ void DACs_Init(void)
 void TIM6_Config(void)
 {
   TIM_TimeBaseInitTypeDef    TIM_TimeBaseStructure;
-  /* TIM6 Periph clock enable */
+  
+	/* TIM6 Periph clock enable */
   RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM6, ENABLE);
 
   /* Time base configuration */
@@ -65,12 +68,9 @@ void DAC_Ch2_TriangleConfig(void)
  /* DAC channel2 Configuration */
   DAC_InitStructure.DAC_Trigger = DAC_Trigger_T6_TRGO;
   DAC_InitStructure.DAC_WaveGeneration = DAC_WaveGeneration_Triangle;
-  DAC_InitStructure.DAC_LFSRUnmask_TriangleAmplitude = DAC_TriangleAmplitude_2047; 	// Max amplitude = 4095
+  DAC_InitStructure.DAC_LFSRUnmask_TriangleAmplitude = DAC_TriangleAmplitude_255;
   DAC_InitStructure.DAC_OutputBuffer = DAC_OutputBuffer_Enable;
   DAC_Init(DAC_Channel_2, &DAC_InitStructure);
-
-//  /* Enable DAC Channel2 */
-//  DAC_Cmd(DAC_Channel_2, ENABLE);
 
   /* Set DAC channel2 DHR12RD register */
   DAC_SetChannel2Data(DAC_Align_12b_R, 0x100);
@@ -84,9 +84,6 @@ void DAC_Ch1_NoiseConfig(void)
   DAC_InitStructure.DAC_LFSRUnmask_TriangleAmplitude = DAC_LFSRUnmask_Bits11_0;		// Max bits unmasked
   DAC_InitStructure.DAC_OutputBuffer = DAC_OutputBuffer_Enable;
   DAC_Init(DAC_Channel_1, &DAC_InitStructure);
-
-//  /* Enable DAC Channel1 */
-//  DAC_Cmd(DAC_Channel_1, ENABLE);
 
   /* Set DAC Channel1 DHR12L register */
   DAC_SetChannel1Data(DAC_Align_12b_L, 0x7FF0);

@@ -327,37 +327,6 @@ void SysTick_Handler(void) {
   msTicks++;
 }
 
-//void wait (uint32_t ticks) {
-//	volatile int count = 0;
-//	
-//	/* Enable counter 3 */
-//	TIM_Cmd(TIM3, ENABLE);
-//	
-//	/* Block until counter exceeds desired time value */
-//	while(count < ticks) {
-//		if (TIM_GetFlagStatus(TIM3, TIM_FLAG_Update) != RESET) {
-//			count++;
-//			TIM_ClearFlag(TIM3, TIM_IT_Update);
-//		}
-//	}
-//	
-//	/* Disable counter 3 */
-//	TIM_Cmd(TIM3, DISABLE);
-//}
-//
-//void wait_config (void) {
-//	TIM_TimeBaseInitTypeDef TIM_InitStructure;
-//	
-//	/* TIM3 Periph clock enable */
-//  RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
-//	
-//	TIM_InitStructure.TIM_Period = 10;													/* set 0.1ms periods */
-//	TIM_InitStructure.TIM_Prescaler = 5000 - 1;									/* set the clock to 10kHz */
-//	TIM_InitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
-//	TIM_InitStructure.TIM_CounterMode = TIM_CounterMode_Up;
-//	TIM_InitStructure.TIM_RepetitionCounter = 0;
-//	TIM_TimeBaseInit(TIM3, &TIM_InitStructure);
-//}
 
 /*----------------------------------------------------------------------------
   delays number of tick Systicks (happens every 1 ms)
